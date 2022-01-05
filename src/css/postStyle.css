@@ -34,6 +34,12 @@ body {
   clip: rect(0 0 0 0);
 }
 
+.txt_ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .txt_date {
   font-size: 10px;
   color: #767676;
@@ -42,6 +48,8 @@ body {
 .img_profile {
   display: block;
   float: left;
+  width: 42px;
+  height: 42px;
   margin-right: 12px;
   background-size: contain;
 }
@@ -64,13 +72,12 @@ body {
 
 .post_main {
   position: relative;
-  padding: 0 16px;
 }
 
 .post_main .sec_post {
   border-bottom: 1px solid #DBDBDB;
   margin-bottom: 20px;
-  padding-bottom: 24px;
+  padding: 0 16px 24px;
 }
 
 .sec_post .cont_user {
@@ -80,8 +87,6 @@ body {
 }
 
 .sec_post .cont_user .img_profile {
-  width: 42px;
-  height: 42px;
   background-image: url(../../images/basic-profile-img.png);
 }
 
@@ -121,11 +126,6 @@ body {
 .sec_post .list_count dd {
   margin-right: 16px;
   vertical-align: top;
-}
-
-.sec_post .list_count img {
-  width: 22px;
-  height: 22px;
 }
 
 .sec_comment {
@@ -176,8 +176,10 @@ body {
 }
 
 .post_main .form_comment {
+  position: fixed;
+  bottom: 0;
   border-top: .5px solid #DBDBDB;
-  margin-top: 66px;
+  width: 390px;
   padding: 12px 16px;
 }
 
@@ -218,4 +220,4 @@ body {
   height: 33px;
   color: #C4C4C4;
 }
-/*# sourceMappingURL=chatStyle.css.map */
+/*# sourceMappingURL=postStyle.css.map */

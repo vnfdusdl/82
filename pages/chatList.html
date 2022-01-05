@@ -5,38 +5,44 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>채팅</title>
-  <link rel="stylesheet" href="css/chatStyle.css">
+  <link rel="stylesheet" href="../src/css/chatListStyle.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header id="header_chatList" class="header_chatList">
     <h1 class="txt_hide">채팅하기</h1>
     <ul class="list_btnTop">
-      <li><button type="button" class="btn_back"><img src="img/icon-arrow-left.png" alt="페이지 나가기"></button></li>
-      <li><button type="button" class="btn_menu"><img src="img/icon- more-vertical.png" alt="메뉴탭 열기"></button></li>
+      <li><button type="button" class="btn_back"><img src="../images/icon/arr" alt="페이지 나가기"></button></li>
+      <li><button type="button" class="btn_menu"><img src="../images/icon/icon-more-vertical.png" alt="메뉴탭 열기"></button></li>
     </ul>
   </header>
   <main id="main_chatList" class="main_chatList">
     <h2 class="txt_hide">채팅 목록</h2>
     <ul class="list_chat">
       <li>
-        <a href="">
-          <span class="img_profile"></span>
+        <a href="" class="cont_user">
+          <span class="img_profile img_id2"></span>
           <strong>애월읍 위니브 감귤농장</strong>
-          <small>깊은 어둠의 존재감, 롤스로이스 뉴 블랙 배지...<span>2021.01.01</span></small>
+          <small class="txt_preview txt_ellipsis">이번에 정정 언제하맨마씸?</small>
+          <small>2021.01.01</small>
         </a>
       </li>
       <li>
-        <a href="">
-          <span class="img_profile"></span>
+        <a href="" class="cont_user">
+          <span class="img_profile img_id3"></span>
           <strong>제주감귤마을</strong>
-          <small>깊은 어둠의 존재감, 롤스로이스 뉴 블랙 배지...<span>2021.01.01</span></small>
+          <small class="txt_preview txt_ellipsis">깊은 어둠의 존재감, 롤스로이스 뉴 블랙 배지 자동차 최고야</small>
+          <small>2021.01.01</small>
         </a>
       </li>
       <li>
-        <a href="">
-          <span class="img_profile"></span>
+        <a href="" class="cont_user">
+          <span class="img_profile img_id4"></span>
           <strong>누구네 농장 친환경 한라봉</strong>
-          <small>깊은 어둠의 존재감, 롤스로이스 뉴 블랙 배지...<span>2021.01.01</span></small>
+          <small class="txt_preview txt_ellipsis">내 차는 내가 평가한다. 오픈 이벤트에 참여 하세요</small>
+          <small>2021.01.01</small>
         </a>
       </li>
     </ul>
@@ -44,10 +50,10 @@
   <footer id="footer_chatList" class="footer_chatList">
     <h2 class="txt_hide">메뉴 목록</h2>
     <ul class="list_nav">
-      <li><a href=""><img src="img/icon-home.png" alt=""></a></li>
-      <li><a href=""><img src="img/icon-message-circle-fill.png" alt=""></a></li>
-      <li><a href=""><img src="img/icon-edit.png" alt=""></a></li>
-      <li><a href=""><img src="img/icon-user.png" alt=""></a></li>
+      <li><a href="" class="item_menu"><img src="../images/icon/icon-home.png" alt=""><small>홈</small></a></li>
+      <li><a href="" class="item_menu"><img src="../images/icon/icon-message-circle-fill.png" alt=""><small>채팅</small></a></li>
+      <li><a href="" class="item_menu"><img src="../images/icon/icon-edit.png" alt=""><small>게시물 작성</small></a></li>
+      <li><a href="" class="item_menu"><img src="../images/icon/icon-user.png" alt=""><small>프로필</small></a></li>
     </ul>
   </footer>
 </body>

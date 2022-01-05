@@ -1,0 +1,154 @@
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  list-style: none;
+  text-decoration: none;
+  color: black;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+strong {
+  font-weight: 500;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+body {
+  width: 390px;
+  margin: 0 auto;
+}
+
+.txt_hide {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.txt_ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.txt_date {
+  font-size: 10px;
+  color: #767676;
+}
+
+.img_profile {
+  display: block;
+  float: left;
+  width: 42px;
+  height: 42px;
+  margin-right: 12px;
+  background-size: contain;
+}
+
+.list_btnTop {
+  overflow: hidden;
+  border-bottom: 1px solid #DBDBDB;
+  margin-bottom: 20px;
+}
+
+.list_btnTop .btn_back {
+  float: left;
+  margin: 13px 12px;
+}
+
+.list_btnTop .btn_menu {
+  float: right;
+  margin: 12px;
+}
+
+.upload_main {
+  padding: 0 16px;
+}
+
+.upload_main .img_profile {
+  margin-right: 7px;
+  background-image: url(../../images/basic-profile-img.png);
+}
+
+.upload_main .form_upload {
+  position: relative;
+}
+
+.upload_main .form_upload textarea {
+  border: none;
+  width: calc(100% - 49px);
+  min-height: 60px;
+  padding: 5px;
+  resize: none;
+}
+
+.upload_main .form_upload textarea::-webkit-input-placeholder {
+  color: #C4C4C4;
+}
+
+.upload_main .form_upload textarea:-ms-input-placeholder {
+  color: #C4C4C4;
+}
+
+.upload_main .form_upload textarea::-ms-input-placeholder {
+  color: #C4C4C4;
+}
+
+.upload_main .form_upload textarea::placeholder {
+  color: #C4C4C4;
+}
+
+.upload_main .form_upload .img_upload {
+  margin-left: 54px;
+}
+
+.upload_main .form_upload .inp_hide {
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.upload_main .form_upload .inp_hide:focus + .btn_imgLoad {
+  outline: 2px solid black;
+}
+
+.upload_main .form_upload .btn_imgLoad {
+  display: block;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  margin-top: 20px;
+  padding: 11px;
+  background-color: #F26E22;
+  cursor: pointer;
+}
+
+.upload_main .form_upload .btn_imgLoad img {
+  width: 27px;
+  height: 27px;
+}
+
+.upload_main .form_upload .btn_upload {
+  position: absolute;
+  top: -65px;
+  right: 0;
+  border-radius: 32px;
+  width: 90px;
+  padding: 7px 0;
+  color: #ffffff;
+  background-color: #FFC7A7;
+}
+/*# sourceMappingURL=uploadStyle.css.map */

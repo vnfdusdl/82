@@ -5,38 +5,44 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>채팅방</title>
-  <link rel="stylesheet" href="css/chatStyle.css">
+  <link rel="stylesheet" href="../src/css/chatRoomStyle.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header id="header_chatRoom" class="header_chatRoom">
     <h1 class="txt_hide">채팅하기</h1>
     <ul class="list_btnTop">
-      <li><button type="button" class="btn_back"><img src="img/icon-arrow-left.png" alt="페이지 나가기"></button></li>
+      <li><button type="button" class="btn_back"><img src="../images/icon/icon-arrow-left.png" alt="페이지 나가기"></button></li>
       <li class="item_chatUser">애월읍 위니브 감귤농장</li>
-      <li><button type="button" class="btn_menu"><img src="img/icon- more-vertical.png" alt="메뉴탭 열기"></button></li>
+      <li><button type="button" class="btn_menu"><img src="../images/icon/icon-more-vertical.png" alt="메뉴탭 열기"></button></li>
     </ul>
   </header>
   <main id="main_chatRoom" class="main_chatRoom">
     <h2 class="txt_hide">채팅 구역</h2>
-    <div class="item_chat">
-      <span class="img_profile"></span>
-      <p>
-        옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.
-      </p>
-      <small>12 : 39</small>
-    </div>
-    <div class="item_myChat">
-      <p>
-        네, 말씀하세요.
-      </p>
-      <small>12 : 39</small>
-    </div>
+    <section class="sec_chat">
+      <h3 class="txt_hide">채팅 내용</h3>
+      <div class="item_chat">
+        <span class="img_profile img_id3"></span>
+        <p class="txt_chat">
+          옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.
+        </p>
+        <small class="txt_date">12 : 39</small>
+      </div>
+      <div class="item_myChat">
+        <p class="txt_chat">
+          네, 말씀하세요.
+        </p>
+        <small class="txt_date">12 : 39</small>
+      </div>
+    </section>
     <form action="" class="form_comment">
-      <label for="inp_img">사진 선택하기</label>
-      <input type="file" name="" id="inp_img">
-      <label for="inp_comment">댓글 입력창</label>
-      <input type="text" name="" placeholder="댓글 입력하기..." id="inp_comment">
-      <button type="submit">전송</button>
+      <input type="file" name="" id="inp_img" class="inp_hide">
+      <label for="inp_img" class="btn_imgLoad"><img src="../images/icon/icon-upload.png" alt="파일 불러오기"></label>
+      <label for="inp_comment" class="txt_hide">댓글 입력창</label>
+      <input type="text" name="" placeholder="댓글 입력하기..." id="inp_comment" class="inp_comment">
+      <button type="submit" class="btn_comment">전송</button>
     </form>
   </main>
 </body>
