@@ -73,6 +73,7 @@ button {
     bottom: 25px;
     right: 140px;
 }
+
 /* input들 */
 .input-profile {
     max-width: 322px;
@@ -80,8 +81,7 @@ button {
 }
 .input-profile label {
     display: block;
-    margin-bottom: 16px;
-    border-bottom: 1px solid #DBDBDB;
+    /* margin-bottom: 16px; */
     color: #767676;
     font-size: 12px;
     line-height: 15px;
@@ -92,10 +92,15 @@ button {
     font-size: 14px;
     line-height: 18px;
     color: black;
-    padding: 0;
-    margin: 6px 0 8px;
+    padding: 0 0 9px;
+    margin: 6px 0 16px;
     outline: none;
     border: none;
+    border-bottom: 1px solid #DBDBDB;
+}
+
+.input-profile input:focus {
+    border-bottom: 1px solid #F26E22;
 }
 .input-profile input::placeholder {
     color: #DBDBDB;
