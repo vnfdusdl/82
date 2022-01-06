@@ -222,7 +222,7 @@ body {
 }
 .more_image {
   position: absolute;
-  background: url(../../../images/icon/iccon-img-layers.png);
+  background: url(../images/icon/iccon-img-layers.png);
   width: 20px;
   height: 20px;
   top: 142px;
@@ -348,4 +348,37 @@ body {
 }
 body.modal_active {
   overflow: hidden;
+}
+
+.footer_chatList {
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #dbdbdb;
+  background-color: #fff;
+  width: 390px;
+  padding: 0 6px;
+  box-sizing: border-box;
+}
+
+.footer_chatList .list_nav li {
+  display: inline-block;
+  margin-right: 3px;
+  box-sizing: border-box;
+}
+
+.footer_chatList .list_nav li:hover {
+  background-color: #dbdbdb;
+}
+
+.footer_chatList .list_nav .item_menu {
+  display: inline-block;
+  width: 84px;
+  height: 60px;
+  padding: 14px 0 0;
+  text-align: center;
+}
+
+.footer_chatList .list_nav small {
+  display: block;
+  font-size: 10px;
 }
