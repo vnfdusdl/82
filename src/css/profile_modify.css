@@ -1,0 +1,102 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 390px;
+    /* margin: 0 auto; */
+    min-height: 100vh;
+}
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.txt_hide {
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+/* form */
+
+/* 상단 헤더 */
+.list-btnTop {
+    overflow: hidden;
+    border-bottom: 1px solid #dbdbdb;
+    margin-bottom: 20px;
+}
+
+.list-btnTop .btn-back {
+    float: left;
+    margin: 13px 12px;
+    line-height: 26px;
+}
+.list-btnTop .btn-back img {
+    vertical-align: middle;
+}
+.list-btnTop .btn-save {
+    float: right;
+    width: 90px;
+    height: 32px;
+    margin: 12px;
+    background-color: #ffc7a7;
+    border-radius: 32px;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+/* 유효성 검사 통과 이후에 저장 버튼 활성화 */
+/* type이 submit일 때*/
+.list-btnTop .btn-save[type='submit'] {
+    background-color: #f26e22;
+}
+
+/* 프로필 사진 */
+.user-profile {
+    position: relative;
+    padding: 30px 0;
+}
+.user-profile .img-profile {
+    display: block;
+    width: 110px;
+    margin: 0 auto;
+}
+.user-profile .img-upload-file {
+    display: block;
+    width: 36px;
+    position: absolute;
+    bottom: 25px;
+    right: 140px;
+}
+/* input들 */
+.input-profile {
+    max-width: 322px;
+    margin: 0 auto;
+}
+.input-profile label {
+    display: block;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #DBDBDB;
+    color: #767676;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.input-profile input {
+    width: 100%;
+    font-size: 14px;
+    line-height: 18px;
+    color: black;
+    padding: 0;
+    margin: 6px 0 8px;
+    outline: none;
+    border: none;
+}
+.input-profile input::placeholder {
+    color: #DBDBDB;
+}
