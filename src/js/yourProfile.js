@@ -48,6 +48,7 @@ function iconClickHandler(e) {
 moreImageBtn.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     modal.style.display = "flex";
+    modal.scrollTop;
     const imagesParent = e.target.parentNode;
     const images = imagesParent.querySelectorAll("img");
     images.forEach((img) => {
@@ -64,7 +65,6 @@ moreImageBtn.forEach((btn) => {
 closeBtn.addEventListener("click", (e) => {
   modal.style.display = "none";
   modalContent.innerHTML = "";
-
   feedSection.classList.remove("modal_active");
   body.classList.remove("modal_active");
 });
