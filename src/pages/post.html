@@ -4,24 +4,22 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>post</title>
-  <link rel="stylesheet" href="../src/css/postStyle.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>게시글</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/postStyle.css">
 </head>
 <body>
   <header id="post_header" class="post_header">
-    <h1 class="txt_hide">포스트 소개</h1>
+    <h1 class="sr-only">포스트 소개</h1>
     <ul class="list_btnTop">
       <li><button type="button" class="btn_back"><img src="../images/icon/icon-arrow-left.png" alt="페이지 나가기"></button></li>
       <li><button type="button" class="btn_menu"><img src="../images/icon/icon-more-vertical.png" alt="메뉴탭 열기"></button></li>
     </ul>
   </header>
   <main id="post_main" class="post_main">
-    <h2 class="txt_hide">포스트 설명</h2>
+    <h2 class="sr-only">포스트 설명</h2>
     <section class="sec_post">
-      <h3 class="txt_hide">내용 표시란</h3>
+      <h3 class="sr-only">내용 표시란</h3>
       <a href="" class="cont_user">
         <span class="img_profile"></span>
         <strong>애월읍 위니브 감귤농장</strong>
@@ -30,11 +28,16 @@
       <button type="button" class="btn_more"><img src="../images/icon/s-icon-more-vertical.png" alt=""></button>
       <div class="div_cont_post">
         <p class="txt_post">옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.</p>
-        <ul class="list_img">
-          <li><img src="../images/post-img-example.png" alt=""></li>
-          <!-- <li><img src="" alt=""></li>
-          <li><img src="" alt=""></li> -->
-        </ul>
+        <div class="wrap_list_img">
+          <ul class="list_img">
+            <li class="item_img"><img src="../images/post-img-example.png" alt=""></li>
+            <li class="item_img"><img src="../images/post-img-example.png" alt=""></li>
+            <li class="item_img"><img src="../images/post-img-example.png" alt=""></li>
+          </ul>
+          <button type="button" class="btn_slide"></button>
+          <button type="button" class="btn_slide"></button>
+          <button type="button" class="btn_slide"></button>
+        </div>
         <dl class="list_count">
           <dt><button type="button"><img src="../images/icon/icon-heart.png" alt="좋아요"></button></dt>
           <dd>58</dd>
@@ -45,7 +48,7 @@
       </div>
     </section>
     <section class="sec_comment">
-      <h3 class="txt_hide">댓글 표시란</h3>
+      <h3 class="sr-only">댓글 표시란</h3>
       <ul class="list_comment">
         <li class="item_comment">
           <a href="">
@@ -69,10 +72,17 @@
     </section>
     <form action="" class="form_comment">
       <span class="img_profile img_id3"></span>
-      <label for="inp_comment" class="txt_hide">댓글 입력창</label>
-      <input type="text" name="" placeholder="댓글 입력하기..." id="inp_comment" class="inp_comment">
-      <button type="submit" class="btn_comment">게시</button>
+      <textarea name="" placeholder="댓글 입력하기..." id="" class="inp_comment"></textarea>
+      <button type="submit" disabled class="btn_comment">게시</button>
     </form>
+    <section class="sec_modal on">
+      <h3 class="sr-only">신고하기 창</h3>
+      <div class="wrap_modal">
+        <button type="button" class="btn_close"><span class="txt_hide">신고하기 창 닫기</span></button>
+        <a href="">신고하기</a>
+      </div>
+    </section>
   </main>
+  <script src="../js/post.js"></script>
 </body>
 </html>

@@ -1,5 +1,4 @@
 * {
-  font-family: 'Noto Sans KR', sans-serif;
   margin: 0;
   padding: 0;
   font-size: 14px;
@@ -10,6 +9,11 @@
           box-sizing: border-box;
 }
 
+body {
+  width: 390px;
+  margin: 0 auto;
+}
+
 strong {
   font-weight: 500;
 }
@@ -18,20 +22,6 @@ button {
   border: none;
   background: none;
   cursor: pointer;
-}
-
-body {
-  width: 390px;
-  margin: 0 auto;
-}
-
-.txt_hide {
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
 }
 
 .txt_ellipsis {
@@ -89,15 +79,15 @@ body {
 }
 
 .main_chatList .list_chat .cont_user .img_id2 {
-  background-image: url(../../images/basic-profile-img.png);
+  background-image: url(../images/basic-profile-img.png);
 }
 
 .main_chatList .list_chat .cont_user .img_id3 {
-  background-image: url(../../images/Ellipse4.png);
+  background-image: url(../images/Ellipse4.png);
 }
 
 .main_chatList .list_chat .cont_user .img_id4 {
-  background-image: url(../../images/Ellipse5.png);
+  background-image: url(../images/Ellipse5.png);
 }
 
 .main_chatList .list_chat .cont_user strong {
@@ -117,30 +107,35 @@ body {
 .footer_chatList {
   position: fixed;
   bottom: 0;
-  border-top: 1px solid #DBDBDB;
+  border-top: 1px solid #dbdbdb;
+  background-color: #fff;
   width: 390px;
-  padding: 0 15px 5px;
+  padding: 0 6px;
 }
 
+.footer_chatList .list_nav {
+  display: flex;
+  justify-content: space-between;
+}
 .footer_chatList .list_nav li {
   display: inline-block;
   margin-right: 3px;
 }
 
 .footer_chatList .list_nav li:hover {
-  background-color: #DBDBDB;
+  background-color: #dbdbdb;
 }
 
 .footer_chatList .list_nav .item_menu {
   display: inline-block;
   width: 84px;
-  height: 60px;
-  padding: 14px 0 0;
+  padding: 11.5px 0 8.5px;
   text-align: center;
 }
 
 .footer_chatList .list_nav small {
   display: block;
   font-size: 10px;
+  line-height: 14px;
 }
 /*# sourceMappingURL=chatListStyle.css.map */

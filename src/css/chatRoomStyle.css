@@ -1,5 +1,4 @@
 * {
-  font-family: 'Noto Sans KR', sans-serif;
   margin: 0;
   padding: 0;
   font-size: 14px;
@@ -23,21 +22,6 @@ button {
 body {
   width: 390px;
   margin: 0 auto;
-}
-
-.txt_hide {
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-}
-
-.txt_ellipsis {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .txt_date {
@@ -87,22 +71,23 @@ body {
 }
 
 .sec_chat {
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
   height: 100%;
   padding: 0 16px;
 }
 
 .sec_chat .img_id3 {
-  background-image: url(../img/Ellipse4.png);
+  background-image: url(../images/Ellipse4.png);
 }
 
 .sec_chat .txt_chat {
@@ -136,8 +121,8 @@ body {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
   margin-bottom: 10px;
 }
 
@@ -150,6 +135,10 @@ body {
 .sec_chat .item_myChat .txt_date {
   margin-top: auto;
   margin-right: 6px;
+}
+
+.sec_chat .item_myChat .img_myChat {
+  border-radius: 10px;
 }
 
 .main_chatRoom .form_comment {

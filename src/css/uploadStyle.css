@@ -1,5 +1,4 @@
 * {
-  font-family: 'Noto Sans KR', sans-serif;
   margin: 0;
   padding: 0;
   font-size: 14px;
@@ -23,21 +22,6 @@ button {
 body {
   width: 390px;
   margin: 0 auto;
-}
-
-.txt_hide {
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-}
-
-.txt_ellipsis {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .txt_date {
@@ -76,7 +60,7 @@ body {
 
 .upload_main .img_profile {
   margin-right: 7px;
-  background-image: url(../../images/basic-profile-img.png);
+  background-image: url(../images/basic-profile-img.png);
 }
 
 .upload_main .form_upload {
