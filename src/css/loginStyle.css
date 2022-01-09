@@ -1,0 +1,65 @@
+body {
+  background-color: #EA7F42;
+  max-width: 390px;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+/* -----메인화면----- */
+.tit_main {
+  width: 144px;
+  margin: 180px auto 177px;
+}
+
+.main_login {
+  background-color: #fff;
+  height: 362px;
+  border-radius: 20px;
+  padding: 50px 34px;
+}
+
+/* -----외부-로그인화면----- */
+.list_socialLogin .btn {
+  display: block;
+  padding: 13px 0;
+  border-radius: 44px;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: 17px center;
+  color: #767676;
+  font-size: 14px;
+}
+.list_socialLogin li+li {
+  margin-top: 10px;
+}
+.btn.btn_kakao {
+  border: 1px solid #F2C94C;
+  background-image: url(../images/message-circle.png);
+}
+.btn.btn_google {
+  border: 1px solid #767676;
+  background-image: url(../images/google.png);
+}
+.btn.btn_facebook {
+  border: 1px solid #2D9CDB;
+  background-image: url(../images/facebook.png);
+}
+/* -----내부-로그인화면----- */
+.section_userLogin {
+  margin-top: 20px;
+}
+.list_userLogin {
+  display: flex;
+  justify-content: center;
+  color: #767676;
+}
+.list_userLogin a {
+  font-size: 12px;
+  color: #767676;
+}
+.btn_login::after {
+  display: inline-block;
+  content: "|";
+  margin-left: 12px;
+  margin-right: 12px;
+}
