@@ -29,15 +29,15 @@ followBtn.addEventListener("click", (e) => {
 });
 function iconClickHandler(e) {
   if (e.target === iList) {
-    iList.src = "../../../images/icon/icon-post-list-on.png";
-    iAlbum.src = "../../../images/icon/icon-post-album-off.png";
+    iList.src = "../images/icon/icon-post-list-on.png";
+    iAlbum.src = "../images/icon/icon-post-album-off.png";
     feedCard.classList.remove("grid");
     moreImageBtn.forEach((btn) => {
       btn.classList.remove("album");
     });
   } else {
-    iList.src = "../../../images/icon/icon-post-list-off.png";
-    iAlbum.src = "../../../images/icon/icon-post-album-on.png";
+    iList.src = "../images/icon/icon-post-list-off.png";
+    iAlbum.src = "../images/icon/icon-post-album-on.png";
     feedCard.classList.add("grid");
     moreImageBtn.forEach((btn) => {
       btn.classList.add("album");

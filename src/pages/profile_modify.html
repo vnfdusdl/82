@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 수정</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/profile_modify.css">
+    <script src="../js/profile_modify.js" defer></script>
+</head>
+<body>
+    <form action="" method="" class="form-user-profile">
+        <header class="header_chatList">
+            <h1 class="txt_hide">프로필 수정</h1>
+            <ul class="list-btnTop">
+                <li><button type="button" class="btn-back"><img src="../images/icon/icon-arrow-left.png" alt="페이지 나가기"></button></li>
+                <li><button type="button" class="btn-save">저장</button></li>
+            </ul>
+        </header>
+        <main class="user-main">
+            <article class="user-profile">
+                <img src="../images/basic-profile-img.png" alt="프로필사진 수정" class="img-profile"/>
+                <img src="../images/upload-file.png" alt="" class="img-upload-file"/>
+            </article>
+            <article class="input-profile">
+                <label for="username">사용자 이름</label>
+                <input type="text" name="username" placeholder="2~10자 이내여야 합니다" id="username">
+                <label for="accountname"">계정 ID</label>
+                <input type="text" name="accountname" placeholder="영문, 숫자, 특수문자(,),(_)만 사용 가능합니다." id="accountname">
+                <label for="intro">소개</label>
+                <input type="text" name="intro" placeholder="자신과 판매할 상품에 대해 소개해 주세요!" id="intro">
+            </article>
+        </main>
+    </form>
+</body>
+</html>
