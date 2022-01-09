@@ -1,7 +1,5 @@
-/* home style */
-
 html {
-  width: 390px;
+  max-width: 390px;
   height: 100vh;
   top: 24px;
 }
@@ -15,8 +13,9 @@ body {
 .home_nav {
   width: 390px;
   height: 48px;
-  border-bottom: solid 1px #DBDBDB
-  ;
+  border-bottom: solid 1px #DBDBDB;
+  position: fixed;
+  background-color: #fff;
 }
 
 .nav_text {
@@ -42,92 +41,82 @@ body {
   padding-right: 15px;
 }
 
-/* 피드 */
+/* main */
 
-.home_peed {
-  margin-left: 16px;
-  margin-top: 0;
-  margin-right: 16px;
-  margin-bottom: 10px;
+.main_start {
+  max-width: 390px;
+  margin-top: 48px;
 }
 
-.container_Post {
-  display: flex;
-  margin-top: 20px;
+.article_guide {
+  display: inline-block;
+  position: absolute;
+  top: 30%;
+  left: 25%;
+  text-align: center;
 }
 
-.container_profile {
-  margin-right: 12px;
-}
-
-.Profile_1stContent, .Profile_2ndContent, .Profile_3rdContent {
-  width: 42px;
-  height: 42px;
-}
-
-.nicknameId {
-  display: flex;
-  flex-direction: column;
-}
-
-.nickname_1stPost, .nickname_2ndPost, .nickname_3rdPost {
+.article_guide p {
   font-size: 14px;
-  height: 18px;
+  color: #767676;
+  margin-top: 25px;
+  margin-bottom: 20px;
 }
 
-.id_1stPost, .id_2ndPost, .id_3rdPost {
-  font-size: 12px;
-  height: 14px;
-}
-
-.container_Contents {
-  margin-top: 16px;
-}
-
-.img_1stPost, .img_2ndPost, .img_3rdPost{
-  margin-top: 16px;
-}
-
-.container_footer {
-  margin-top: 16px;
+.btn_search {
+  width: 120px;
+  height: 44px;
+  border-style: none;
+  background: #F26E22;
+  border-radius: 44px;
+  color: #fff;
 }
 
 
-/* .container1 {
-  margin-top: 20px;
 
-}
 
-.container1_user {
-  display: flex;
+
+
+
+
+
+
+/* footer */
+
+/* Q. 또 여기서는 줄 간격이 맞다... */
+.footer_chatList {
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #dbdbdb;
+  background-color: #fff;
   width: 390px;
-  height: 54px;
+  padding: 0 6px;
+  box-sizing: border-box;
 }
 
-.profile_1stContent {
-  width: 42px;
-  height: 42px;
+.footer_chatList .list_nav {
+  display: flex;
+  justify-content: space-between;
+}
+.footer_chatList .list_nav li {
+  display: inline-block;
+  margin-right: 3px;
+  box-sizing: border-box;
 }
 
-.nicknameId_1stContent {
-  padding-left: 12px;
-  height: 54px;
+.footer_chatList .list_nav li:hover {
+  background-color: #dbdbdb;
 }
 
-.nickname_1stContent {
+.footer_chatList .list_nav .item_menu {
+  display: inline-block;
+  width: 84px;
+  padding: 11.5px 0 8.5px;
+  text-align: center;
+}
+
+.footer_chatList .list_nav small {
   display: block;
+  font-size: 10px;
+  line-height: 14px;
 }
-
-.id_1stContent {
-  display: block;
-}
-
-.container1_post {
-  max-width: 304px;
-  padding-left: 66px;
-}
-
-.post_img {
-  width: 304px;
-  height: 76px;
-} */
