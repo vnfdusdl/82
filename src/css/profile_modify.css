@@ -12,13 +12,14 @@ button {
     background: none;
     cursor: pointer;
 }
-.txt_hide {
+
+.sr-only {
+    position: absolute;
+    clip: rect(0 0 0 0);
     width: 1px;
     height: 1px;
     margin: -1px;
-    position: absolute;
     overflow: hidden;
-    clip: rect(0 0 0 0);
 }
 
 /* form */
@@ -96,12 +97,12 @@ button {
     margin: 6px 0 16px;
     outline: none;
     border: none;
-    border-bottom: 1px solid #DBDBDB;
+    border-bottom: 1px solid #dbdbdb;
 }
 
 .input-profile input:focus {
-    border-bottom: 1px solid #F26E22;
+    border-bottom: 1px solid #f26e22;
 }
 .input-profile input::placeholder {
-    color: #DBDBDB;
+    color: #dbdbdb;
 }
