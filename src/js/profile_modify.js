@@ -21,7 +21,7 @@ function infoModify_check() {
     const userName = document.querySelector('#username');
     const accountName = document.querySelector('#accountname');
 
-    const RegExp1 = /[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,10}/;
+    const RegExp1 = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,10}$/;
     const RegExp2 = /^[a-z0-9_,]+$/; 
 
     // username 유효성 검사
