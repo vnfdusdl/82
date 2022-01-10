@@ -17,12 +17,31 @@
   </header>
   <main id="upload_main" class="upload_main">
     <h2 class="sr-only">게시글 내용 작성하기</h2>
-    <div class="img_profile"></div>
     <form action="" method="" class="form_upload">
-      <textarea name="" id="" placeholder="게시글 입력하기..."></textarea>
-      <ul class="list_img">
-        <li><img src="../images/post-img-example.png" alt="" class="img_upload"></li>
-      </ul>
+      <div class="wrap_form">
+        <span class="img_profile"></span>
+        <textarea name="" id="" placeholder="게시글 입력하기..."></textarea>
+      </div>
+      <div class="wrap_list_img">
+        <ul class="list_img">
+          <li class="img_upload">
+            <button type="button" class="btn_delete">
+              <img src="../images/icon/icon-delete.png" alt="이미지 삭제">
+            </button>
+          </li>
+          <!--
+          <li class="img_upload">
+            <button type="button" class="btn_delete">
+              <img src="../images/icon/icon-delete.png" alt="이미지 삭제">
+            </button>
+          </li><li class="img_upload">
+            <button type="button" class="btn_delete">
+              <img src="../images/icon/icon-delete.png" alt="이미지 삭제">
+            </button>
+          </li>
+          -->
+        </ul>
+      </div>
       <input type="file" name="" multiple id="btn_imgLoad" class="inp_hide">
       <label for="btn_imgLoad" class="btn_imgLoad"><img src="../images/icon/icon-upload.png" alt="이미지 파일 불러오기" class="img_imgLoad"></label>
       <button type="submit" class="btn_upload">업로드</button>

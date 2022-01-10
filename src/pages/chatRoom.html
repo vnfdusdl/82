@@ -17,7 +17,7 @@
       <li><button type="button" class="btn_menu"><img src="../images/icon/icon-more-vertical.png" alt="메뉴탭 열기"></button></li>
     </ul>
   </header>
-  <main id="main_chatRoom" class="main_chatRoom">
+  <main id="chatRoom_main" class="chatRoom_main">
     <h2 class="sr-only">채팅 구역</h2>
     <section class="sec_chat">
       <h3 class="sr-only">채팅 내용</h3>
@@ -29,7 +29,7 @@
         <small class="txt_date">12 : 39</small>
       </div>
       <div class="item_myChat">
-        <p class="txt_chat">
+        <p class="txt_chat txt_myChat">
           네, 말씀하세요.
         </p>
         <small class="txt_date">12 : 39</small>
@@ -46,6 +46,13 @@
       <input type="text" name="" placeholder="댓글 입력하기..." id="inp_comment" class="inp_comment">
       <button type="submit" class="btn_comment">전송</button>
     </form>
+    <section class="sec_modal modal_out on">
+      <h3 class="sr-only">채팅방 나가기 창</h3>
+      <div class="wrap_modal">
+        <button type="button" class="btn_close"><span class="sr-only">채팅방 나가기 창 닫기</span></button>
+        <a href="">채팅방 나가기</a>
+      </div>
+    </section>
   </main>
 </body>
 </html>
