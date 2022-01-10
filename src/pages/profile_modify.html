@@ -20,8 +20,10 @@
         </header>
         <main class="user-main">
             <article class="user-profile">
-                <img src="../images/basic-profile-img.png" alt="프로필사진 수정" class="img-profile"/>
-                <img src="../images/upload-file.png" alt="" class="img-upload-file"/>
+                <input type="file" id="input-img" name="image" class="sr-only">
+                <label for="input-img" id="label-img">
+                    <img src="../images/upload-file.png" alt="" class="img-upload-icon"/>
+                </label>
             </article>
             <article class="input-profile">
                 <label for="username">사용자 이름</label>
