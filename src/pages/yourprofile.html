@@ -14,7 +14,11 @@
         <h1 class="sr-only">메인 화면</h1>
         <div class="icon_main">
           <img src="../images/icon/icon-arrow-left.png" alt="" />
-          <img src="../images/icon/icon-more-vertical.png" alt="" />
+          <img
+            class="btn_profile"
+            src="../images/icon/icon-more-vertical.png"
+            alt=""
+          />
         </div>
         <div class="profile_user">
           <div>
@@ -90,8 +94,15 @@
             <h4 class="sr-only">피드</h4>
             <img class="profile_feed" src="../images/Ellipse6.png" alt="" />
             <div class="content_feed">
-              <strong>애월읍 위니브 감귤농장</strong>
-              <span>@ weniv_Mandarin</span>
+              <div>
+                <strong>감성 농부</strong>
+                <img
+                  src="../images/icon/s-icon-more-vertical.png"
+                  alt=""
+                  class="edit_feed"
+                />
+              </div>
+              <span>@ gamsung_Farmer</span>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
                 explicabo necessitatibus quasi placeat deleniti quos a, qui
@@ -450,9 +461,7 @@
               <span>@ weniv_Mandarin</span>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-                explicabo necessitatibus quasi placeat deleniti quos a, qui
-                temporibus neque totam minus repellat aut maxime optio corrupti
-                quas delectus odio ipsa!
+                explicabo necessitatibu
               </p>
               <div class="imagelist_feed">
                 <img
@@ -477,12 +486,7 @@
             <div class="content_feed">
               <strong>애월읍 위니브 감귤농장</strong>
               <span>@ weniv_Mandarin</span>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-                explicabo necessitatibus quasi placeat deleniti quos a, qui
-                temporibus neque totam minus repellat aut maxime optio corrupti
-                quas delectus odio ipsa!
-              </p>
+              <p>Lorem ipsum dolor sit</p>
               <div class="icon_feed">
                 <img src="../images/icon/icon-heart.png" alt="" />
                 <span class="likecount_feed">58</span>
@@ -499,8 +503,29 @@
             <div class="content"></div>
           </div>
         </div>
+        <div class="modal modal-overlay modal_feed">
+          <div class="modal-window modal-feedWindow">
+            <div class="modal_content delete_feed">삭제</div>
+            <div class="modal_content modify_feed">수정</div>
+          </div>
+        </div>
       </section>
     </main>
+    <div class="modal-overlay modal_profile">
+      <div class="modal-window modal-profileWindow">
+        <div class="modal_content setting_profile">설정 및 개인정보</div>
+        <div class="modal_content logout_profile">로그아웃</div>
+      </div>
+    </div>
+    <div class="modal-overlay modal_logout">
+      <div class="modal-window modal-logoutWindow">
+        <div class="question_logout">로그아웃 하시겠어요?</div>
+        <div class="btn_container">
+          <div class="cancel modal_content">취소</div>
+          <div class="logout modal_content">로그아웃</div>
+        </div>
+      </div>
+    </div>
     <footer id="footer_chatList" class="footer_chatList">
       <h2 class="sr-only">메뉴 목록</h2>
       <ul class="list_nav">
