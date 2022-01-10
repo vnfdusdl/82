@@ -71,6 +71,7 @@ button {
     border-radius: 50%;
     background: url(../images/basic-profile-img.png);
     margin: 0 auto;
+    cursor: pointer;
 }
 .user-profile .img-upload-icon {
     display: block;
