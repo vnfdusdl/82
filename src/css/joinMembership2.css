@@ -47,18 +47,26 @@ label~label {
   width: 110px;
   height: 110px;
   margin: 0 auto;
-  /* border-radius: 50%; */
-  /* overflow: hidden; */
   margin-bottom: 30px;
+  position: relative;
 }
+
 label[for="inp_img"] {
-  background-color: #F26E22;
   display: block;
   width: 110px;
   height: 110px;
+  cursor: pointer;
 }
+/* 직접적인 업로드 인풋은 숨기고 */
 .inp_img {
   display: none;
+}
+.img_upload {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 36px;
+  height: 36px;
 }
 
 /* display:none 이었다가 js로 컨트롤? */
