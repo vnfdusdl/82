@@ -1,25 +1,85 @@
-const btnTop = document.querySelector('.post_header');
 const post = document.querySelector('.sec_post');
-const comment = document.querySelector('.sec_comment');
-const modal = document.querySelector('.sec_modal');
 const form = document.querySelector('.form_comment')
+const btnMore = document.querySelectorAll('.btn_more');
+const btnClose = document.querySelectorAll('.btn_close');
 
-const btnMore = comment.querySelectorAll('.btn_more');
+function modalSet() {
+  const btnMenu = document.querySelector('.btn_menu');
+  const modalSet = document.querySelector('.modal_set');
 
-btnMore.forEach((i) => {
-  i.addEventListener('click', () => {
-    modal.classList.toggle('on');
+  btnMenu.addEventListener('click', () => {
+    modalSet.classList.toggle('on');
   })
-})
-
-function closeModal() {
-  const btn = modal.querySelector('.btn_close');
-
-  btn.addEventListener('click', () => {
-    modal.classList.toggle('on');
+  btnClose[0].addEventListener('click', () => {
+    modalSet.classList.toggle('on');
   })
 }
-closeModal();
+modalSet()
+
+function modalNotify() {
+  const modalModify = document.querySelector('.modal_modify');
+  const modalNotify = document.querySelector('.modal_notify');
+
+  // if(post.id == user.id) {
+  //   btnMore.forEach((i) => {
+  //     i.addEventListener('click', () => {
+  //       modalModify.classList.toggle('on');
+  //     })
+  //   })
+  //   btnClose[1].addEventListener('click', () => {
+  //     modalNotify.classList.toggle('on');
+  //   })
+  // } else {
+  //   btnMore.forEach((i) => {
+  //     i.addEventListener('click', () => {
+  //       modalNotify.classList.toggle('on');
+  //     })
+  //   })
+  //   btnClose[2].addEventListener('click', () => {
+  //     modalNotify.classList.toggle('on');
+  //   }) 
+  // }
+  btnMore.forEach((i) => {
+    i.addEventListener('click', () => {
+      modalNotify.classList.toggle('on');
+    })
+  })
+  btnClose[2].addEventListener('click', () => {
+    modalNotify.classList.toggle('on');
+  })
+}
+modalNotify()
+
+function imgShow() {
+  const img = post.querySelectorAll('.item_img');
+  const btnSlide = post.querySelectorAll('.btn_slide');
+
+  btnSlide[0].addEventListener('click', () => {
+    img[0].style.display = 'block'
+    img[1].style.display = 'none'
+    img[2].style.display = 'none'
+    btnSlide[0].style.backgroundColor = '#F26E22'
+    btnSlide[1].style.backgroundColor = '#FFFFFF'
+    btnSlide[2].style.backgroundColor = '#FFFFFF'
+  })
+  btnSlide[1].addEventListener('click', () => {
+    img[0].style.display = 'none'
+    img[1].style.display = 'block'
+    img[2].style.display = 'none'
+    btnSlide[0].style.backgroundColor = '#FFFFFF'
+    btnSlide[1].style.backgroundColor = '#F26E22'
+    btnSlide[2].style.backgroundColor = '#FFFFFF'
+  })
+  btnSlide[2].addEventListener('click', () => {
+    img[0].style.display = 'none'
+    img[1].style.display = 'none'
+    img[2].style.display = 'block'
+    btnSlide[0].style.backgroundColor = '#FFFFFF'
+    btnSlide[1].style.backgroundColor = '#FFFFFF'
+    btnSlide[2].style.backgroundColor = '#F26E22'
+  })
+}
+imgShow()
 
 function send() {
   const textarea = form.querySelector('.inp_comment');
