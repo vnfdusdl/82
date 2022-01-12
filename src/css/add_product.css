@@ -28,7 +28,6 @@ button {
 .list-btnTop {
     overflow: hidden;
     border-bottom: 1px solid #dbdbdb;
-    margin-bottom: 20px;
 }
 
 .list-btnTop .btn-back {
@@ -58,35 +57,40 @@ button {
 }
 
 /* 프로필 사진 */
-.user-profile {
+.product-img {
     position: relative;
-    padding: 30px 0;
+    padding: 30px 34px;
 }
 
-.user-profile #label-img {
+.des-input {
+    font-size: 12px;
+    color: #767676;
+    margin-bottom: 18px;
+}
+.product-img #label-img {
     display: block;
     position: relative;
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    background: url(../images/basic-profile-img.png);
+    width: 322px;
+    height: 204px;
+    border-radius: 10px;
+    background: url(../images/basic-product-img.png);
     margin: 0 auto;
     cursor: pointer;
 }
-.user-profile .img-upload-icon {
+.product-img .img-upload-icon {
     display: block;
     width: 36px;
     position: absolute;
-    bottom: 0px;
-    right: 0px;
+    bottom: 12px;
+    right: 12px;
 }
 
 /* input들 */
-.input-profile {
+.input-product {
     max-width: 322px;
     margin: 0 auto;
 }
-.input-profile label {
+.input-product label {
     display: block;
     /* margin-bottom: 16px; */
     color: #767676;
@@ -95,7 +99,7 @@ button {
     
 }
 
-.input-profile input {
+.input-product input {
     width: 100%;
     font-size: 14px;
     line-height: 18px;
@@ -107,9 +111,9 @@ button {
     border-bottom: 1px solid #dbdbdb;
 }
 
-.input-profile input:focus {
+.input-product input:focus {
     border-bottom: 1px solid #f26e22;
 }
-.input-profile input::placeholder {
+.input-product input::placeholder {
     color: #dbdbdb;
 }

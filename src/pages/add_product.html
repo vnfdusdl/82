@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 등록</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/add_product.css">
+    <script src="../js/add_product.js" defer></script>
+</head>
+<body>
+    <form action="" method="" class="form-add-product">
+        <header class="header_chatList">
+            <h1 class="sr-only">상품 등록</h1>
+            <ul class="list-btnTop">
+                <li><button type="button" class="btn-back"><img src="../images/icon/icon-arrow-left.png" alt="페이지 나가기"></button></li>
+                <li><button type="button" class="btn-save">저장</button></li>
+            </ul>
+        </header>
+        <main class="add-product-main">
+            <article class="product-img">
+                <p class="des-input">이미지 등록</p>
+                <input type="file" id="input-img" name="image" class="sr-only" accept="image/*">
+                <label for="input-img" id="label-img">
+                    <img src="../images/img-button.png" alt="" class="img-upload-icon"/>
+                </label>
+            </article>
+            <article class="input-product">
+                <label for="itemName">상품명</label>
+                <input type="text" name="itemName" placeholder="2~15자 이내여야 합니다." id="item-name">
+                <label for="price"">가격</label>
+                <input type="text" name="price" placeholder="숫자만 입력 가능합니다." id="item-price">
+                <label for="link">판매 링크</label>
+                <input type="text" name="link" placeholder="URL을 입력해 주세요." id="item-link">
+            </article>
+        </main>
+    </form>
+</body>
+</html>
