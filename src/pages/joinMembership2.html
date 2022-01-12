@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>joinMembership2</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/joinMembership2.css">
+</head>
+<body>
+  <header>
+    <h1 class="tit_setting" aria-label="초기프로필설정">프로필 설정</h1>
+    <p class="desc_setting">나중에 언제든지 변경될 수 있습니다.</p>
+  </header>
+  <main>
+    <form action="" class="form_signIn">
+      <h1 class="sr-only">프로필설정 정보입력</h1>
+      <section class="wrap_inp_img">
+        <label for="inp_img">
+          <img src="../images/basic-profile-img.png" alt="기본프로필사진">
+        </label>
+        <input
+          type="file"
+          name="inp_img"
+          class="inp_img"
+          id="inp_img">
+        <img src="../images/upload-file.png" alt="사진업로드" class="img_upload">
+        </section>
+      <label for="inp_name">사용자 이름</label>
+      <input 
+        type="text"
+        minlength="2"
+        maxlength="10"
+        name="inp_name" 
+        class="inp_name"
+        id="inp_name"
+        placeholder="2~10자 이내여야 합니다.">
+      <label for="inp_Id">계정 ID</label>
+      <input 
+        type="text"
+        name="inp_Id"
+        class="inp_Id"
+        id="inp_Id"
+        placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다.">
+      <span class="warn" id="warn_valid">*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.</span>
+      <span class="warn" id="warn_usedId">*이미 사용 중인 ID입니다.</span>
+      <label for="inp_intro">소개</label>
+      <input 
+        type="text"
+        name="inp_intro"
+        class="inp_intro"
+        id="inp_intro"
+        placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
+      <button type="submit" class="btn_start" disabled>감귤마켓 시작하기</button>
+    </form>
+  </main>
+</body>
+</html>

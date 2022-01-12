@@ -1,0 +1,58 @@
+/* 로그인제목 */
+.tit_login {
+  text-align: center;
+  font-size: 24px;
+  margin: 30px auto 40px;
+}
+/* 로그인폼 */
+form {
+  display: flex;
+  flex-direction: column;
+  color: #767676;
+  padding: 0 34px;
+}
+/* 공통인풋 */
+input {
+  border: none;
+  border-bottom: 1px solid #DBDBDB;
+  padding: 8px 0;
+  font-size: 14px;
+  line-height: 14px;
+}
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #F26E22;
+}
+label {
+  font-size: 12px;
+  line-height: 15px;
+}
+.inp_loginEmail {
+  margin-bottom: 16px;
+}
+.txt_loginWarn {
+  font-size: 12px;
+  line-height: 14px;
+  color: #EB5757;
+  margin-top: 6px;
+}
+.btn_login {
+  background-color: #FFC7A7;
+  border-radius: 44px;
+  padding: 13px 0;
+  border: none;
+  color: #fff;
+  line-height: 18px;
+  margin-top: 30px;
+}
+
+/* 푸터 */
+footer {
+  margin-top: 20px;
+  text-align: center;
+}
+footer .btn_signIn {
+  color: #767676;
+  font-size: 12px;
+  line-height: 15px;
+}
