@@ -106,7 +106,7 @@ button {
   display: block;
   width: 304px;
   height: 228px;
-  background-image: url(../images/post-img-example.png);
+  /* background-image: url(../images/post-img-example.png); */
   background-size: contain;
   background-repeat: no-repeat;
 }
