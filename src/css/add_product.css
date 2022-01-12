@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 390px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.sr-only {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+}
+
+/* form */
+
+/* 상단 헤더 */
+.list-btnTop {
+    overflow: hidden;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.list-btnTop .btn-back {
+    float: left;
+    margin: 13px 12px;
+    line-height: 26px;
+}
+.list-btnTop .btn-back img {
+    vertical-align: middle;
+}
+.list-btnTop .btn-save {
+    float: right;
+    width: 90px;
+    height: 32px;
+    margin: 12px;
+    background-color: #ffc7a7;
+    border-radius: 32px;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+/* 유효성 검사 통과 이후에 저장 버튼 활성화 */
+/* type이 submit일 때*/
+.list-btnTop .btn-save[type='submit'] {
+    background-color: #f26e22;
+}
+
+/* 프로필 사진 */
+.product-img {
+    position: relative;
+    padding: 30px 34px;
+}
+
+.des-input {
+    font-size: 12px;
+    color: #767676;
+    margin-bottom: 18px;
+}
+.product-img #label-img {
+    display: block;
+    position: relative;
+    width: 322px;
+    height: 204px;
+    border-radius: 10px;
+    background: url(../images/basic-product-img.png);
+    margin: 0 auto;
+    cursor: pointer;
+}
+.product-img .img-upload-icon {
+    display: block;
+    width: 36px;
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+}
+
+/* input들 */
+.input-product {
+    max-width: 322px;
+    margin: 0 auto;
+}
+.input-product label {
+    display: block;
+    /* margin-bottom: 16px; */
+    color: #767676;
+    font-size: 12px;
+    line-height: 15px;
+    
+}
+
+.input-product input {
+    width: 100%;
+    font-size: 14px;
+    line-height: 18px;
+    color: black;
+    padding: 0 0 9px;
+    margin: 6px 0 16px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.input-product input:focus {
+    border-bottom: 1px solid #f26e22;
+}
+.input-product input::placeholder {
+    color: #dbdbdb;
+}
