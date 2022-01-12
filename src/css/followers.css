@@ -1,0 +1,161 @@
+@charset "utf-8";
+/* 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    list-style: none;
+    text-decoration: none;
+    color: black;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/* 공통 스타일 */
+html {
+    max-width: 390px;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+body {
+    height: 100%;
+}
+strong {
+    font-weight: 500;
+}
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.txt_ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.txt_date {
+    font-size: 10px;
+    color: #767676;
+}
+
+/* 헤더 */
+.header-followers {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.header-followers .btn_back {
+    margin: 13px 16px;
+}
+.header-followers .title {
+    font-size: 14px;
+    line-height: 18px;
+}
+
+/* 팔로워 목록 */
+.main-followersList {
+    /* min-height: 712px; */
+    margin-top: 24px;
+    padding: 0 16px;
+}
+.main-followersList .list-followers li {
+    margin-bottom: 16px;
+}
+
+.main-followersList .list-followers .cont_user {
+    display: flex;
+    justify-content: space-between;
+}
+
+.img_profile {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 12px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    position: relative;
+}
+.img_profile.img_id2 {
+    background-image: url(../images/post-img-example.png);
+}
+
+.img_profile.img_id3 {
+    background-image: url(../images/Ellipse4.png);
+}
+
+.img_profile.img_id4 {
+    background-image: url(../images/Ellipse5.png);
+}
+
+.main-followersList .list-followers div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5px 0 6px;
+    margin-right: auto;
+}
+.main-followersList .list-followers .cont_user strong {
+    display: block;
+}
+.main-followersList .list-followers .cont_user .txt_preview {
+    max-width: 238px;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #767676;
+}
+.main-followersList .list-followers .cont_user .txt_date {
+    margin-top: auto;
+    padding: 3px 0;
+}
+
+.btn-follow {
+    width: 56px;
+    height: 28px;
+    padding: 7px 11px;
+    border-radius: 26px;
+    font-size: 12px;
+    line-height: 15px;
+    margin: 11px 0;
+    background-color: #F26E22;
+    color: #fff;
+    border: none;
+}
+.btn-follow.btn-active {
+    color: #767676;
+    border: 1px solid #DBDBDB;
+    background-color: #fff;
+}
+
+
+/* 하단 메뉴 */
+.footer_chatList {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #dbdbdb;
+    background-color: #fff;
+    max-width: 390px;
+    padding: 0 6px;
+}
+.footer_chatList .list_nav {
+    display: flex;
+    justify-content: space-between;
+}
+.footer_chatList .list_nav li:hover {
+    background-color: #dbdbdb;
+}
+.footer_chatList .list_nav .item_menu {
+    display: inline-block;
+    width: 84px;
+    padding: 11.5px 0 8.5px;
+    text-align: center;
+}
+.footer_chatList .list_nav small {
+    display: block;
+    font-size: 10px;
+    line-height: 14px;
+}
