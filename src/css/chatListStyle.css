@@ -1,5 +1,6 @@
+@charset "utf-8";
+/* 초기화 */
 * {
-  font-family: 'Noto Sans KR', sans-serif;
   margin: 0;
   padding: 0;
   font-size: 14px;
@@ -9,138 +10,142 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-
+/* 공통 스타일 */
+html {
+  max-width: 390px;
+  height: 100vh;
+  margin: 0 auto;
+}
+body {
+  height: 100%;
+}
 strong {
   font-weight: 500;
 }
-
 button {
   border: none;
   background: none;
   cursor: pointer;
 }
-
-body {
-  width: 390px;
-  margin: 0 auto;
-}
-
-.txt_hide {
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-}
-
 .txt_ellipsis {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-
 .txt_date {
   font-size: 10px;
   color: #767676;
 }
-
 .img_profile {
   display: block;
-  float: left;
   width: 42px;
   height: 42px;
   margin-right: 12px;
   background-size: contain;
+  background-repeat: no-repeat;
 }
-
+/* 상단 메뉴 */
 .list_btnTop {
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid #DBDBDB;
-  margin-bottom: 20px;
 }
-
 .list_btnTop .btn_back {
-  float: left;
-  margin: 13px 12px;
+  margin: 13px 16px;
 }
-
 .list_btnTop .btn_menu {
-  float: right;
   margin: 12px;
 }
-
+/* 채팅 목록 */
 .main_chatList {
+  min-height: 712px;
+  margin-top: 24px;
   padding: 0 16px;
-  height: 100%;
 }
-
 .main_chatList .list_chat li {
   padding: 10px 0;
 }
-
 .main_chatList .list_chat li:hover {
   background-color: #DBDBDB;
 }
-
 .main_chatList .list_chat .cont_user {
+  display: flex;
+  justify-content: space-between;
+}
+.main_chatList .list_chat .img_id2 {
+  position: relative;
+  background-image: url(../images/basic-profile-img.png);
+}
+.main_chatList .list_chat .img_id2::before {
+  content: '';
   display: block;
-  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 100%;
+  width: 12px;
+  height: 12px;
+  background-color: #F26E22;
 }
-
-.main_chatList .list_chat .cont_user .img_id2 {
-  background-image: url(../../images/basic-profile-img.png);
+.main_chatList .list_chat .img_id3 {
+  position: relative;
+  background-image: url(../images/Ellipse4.png);
 }
-
-.main_chatList .list_chat .cont_user .img_id3 {
-  background-image: url(../../images/Ellipse4.png);
+.main_chatList .list_chat .img_id3::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 100%;
+  width: 12px;
+  height: 12px;
+  background-color: #F26E22;
 }
-
-.main_chatList .list_chat .cont_user .img_id4 {
-  background-image: url(../../images/Ellipse5.png);
+.main_chatList .list_chat .img_id4 {
+  background-image: url(../images/Ellipse5.png);
 }
-
+.main_chatList .list_chat div {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  padding: 3px 0;
+}
 .main_chatList .list_chat .cont_user strong {
   display: block;
 }
-
-.main_chatList .list_chat .cont_user small {
-  display: inline-block;
+.main_chatList .list_chat .cont_user .txt_preview {
+  max-width: 238px;
+  margin-top: auto;
   font-size: 12px;
   color: #767676;
 }
-
-.main_chatList .list_chat .cont_user .txt_preview {
-  width: 240px;
+.main_chatList .list_chat .cont_user .txt_date {
+  margin-top: auto;
+  padding: 3px 0;
 }
-
+/* 하단 메뉴 */
 .footer_chatList {
-  position: fixed;
-  bottom: 0;
-  border-top: 1px solid #DBDBDB;
-  width: 390px;
-  padding: 0 15px 5px;
+  border-top: 1px solid #dbdbdb;
+  background-color: #fff;
+  max-width: 390px;
+  padding: 0 6px;
 }
-
-.footer_chatList .list_nav li {
-  display: inline-block;
-  margin-right: 3px;
+.footer_chatList .list_nav {
+  display: flex;
+  justify-content: space-between;
 }
-
 .footer_chatList .list_nav li:hover {
-  background-color: #DBDBDB;
+  background-color: #dbdbdb;
 }
-
 .footer_chatList .list_nav .item_menu {
   display: inline-block;
   width: 84px;
-  height: 60px;
-  padding: 14px 0 0;
+  padding: 11.5px 0 8.5px;
   text-align: center;
 }
-
 .footer_chatList .list_nav small {
   display: block;
   font-size: 10px;
+  line-height: 14px;
 }
-/*# sourceMappingURL=chatListStyle.css.map */

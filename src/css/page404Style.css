@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  list-style: none;
+  text-decoration: none;
+  color: black;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  width: 390px;
+  margin: 0 auto;
+}
+
+strong {
+  font-weight: 500;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.txt_hide {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.page404_main {
+  margin-top: 200px;
+  text-align: center;
+}
+
+.page404_main img {
+  width: 158px;
+  height: 158px;
+}
+
+.page404_main p {
+  margin: 30px 0 20px;
+  color: #767676;
+}
+
+.page404_main a {
+  display: inline-block;
+  border-radius: 44px;
+  width: 120px;
+  height: 44px;
+  line-height: 44px;
+  color: #ffffff;
+  background-color: #F26E22;
+}
+/*# sourceMappingURL=page404Style.css.map */

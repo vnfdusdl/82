@@ -5,24 +5,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>채팅방</title>
-  <link rel="stylesheet" href="../src/css/chatRoomStyle.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/chatRoomStyle.css">
 </head>
 <body>
   <header id="header_chatRoom" class="header_chatRoom">
-    <h1 class="txt_hide">채팅하기</h1>
+    <h1 class="sr-only">채팅하기</h1>
     <ul class="list_btnTop">
       <li><button type="button" class="btn_back"><img src="../images/icon/icon-arrow-left.png" alt="페이지 나가기"></button></li>
       <li class="item_chatUser">애월읍 위니브 감귤농장</li>
       <li><button type="button" class="btn_menu"><img src="../images/icon/icon-more-vertical.png" alt="메뉴탭 열기"></button></li>
     </ul>
   </header>
-  <main id="main_chatRoom" class="main_chatRoom">
-    <h2 class="txt_hide">채팅 구역</h2>
+  <main id="chatRoom_main" class="chatRoom_main">
+    <h2 class="sr-only">채팅 구역</h2>
     <section class="sec_chat">
-      <h3 class="txt_hide">채팅 내용</h3>
+      <h3 class="sr-only">채팅 내용</h3>
       <div class="item_chat">
         <span class="img_profile img_id3"></span>
         <p class="txt_chat">
@@ -31,19 +29,30 @@
         <small class="txt_date">12 : 39</small>
       </div>
       <div class="item_myChat">
-        <p class="txt_chat">
+        <p class="txt_chat txt_myChat">
           네, 말씀하세요.
         </p>
+        <small class="txt_date">12 : 39</small>
+      </div>
+      <div class="item_myChat">
+        <img src="../images/chat-exapmle.png" alt="" class="img_myChat">
         <small class="txt_date">12 : 39</small>
       </div>
     </section>
     <form action="" class="form_comment">
       <input type="file" name="" id="inp_img" class="inp_hide">
       <label for="inp_img" class="btn_imgLoad"><img src="../images/icon/icon-upload.png" alt="파일 불러오기"></label>
-      <label for="inp_comment" class="txt_hide">댓글 입력창</label>
+      <label for="inp_comment" class="sr-only">댓글 입력창</label>
       <input type="text" name="" placeholder="댓글 입력하기..." id="inp_comment" class="inp_comment">
       <button type="submit" class="btn_comment">전송</button>
     </form>
+    <section class="sec_modal modal_out on">
+      <h3 class="sr-only">채팅방 나가기 창</h3>
+      <div class="wrap_modal">
+        <button type="button" class="btn_close"><span class="sr-only">채팅방 나가기 창 닫기</span></button>
+        <a href="">채팅방 나가기</a>
+      </div>
+    </section>
   </main>
 </body>
 </html>

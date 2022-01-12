@@ -1,5 +1,6 @@
+@charset "utf-8";
+
 * {
-  font-family: 'Noto Sans KR', sans-serif;
   margin: 0;
   padding: 0;
   font-size: 14px;
@@ -9,119 +10,123 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-
+/* 공통 스타일 */
+html {
+  max-width: 390px;
+  height: 100vh;
+  margin: 0 auto;
+}
+body {
+  height: 100%;
+}
 strong {
   font-weight: 500;
 }
-
 button {
   border: none;
   background: none;
   cursor: pointer;
 }
-
-body {
-  width: 390px;
-  margin: 0 auto;
-}
-
-.txt_hide {
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-}
-
 .txt_ellipsis {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-
 .txt_date {
   font-size: 10px;
   color: #767676;
 }
-
 .img_profile {
   display: block;
-  float: left;
   width: 42px;
   height: 42px;
   margin-right: 12px;
   background-size: contain;
+  background-repeat: no-repeat;
 }
-
-.list_btnTop {
-  overflow: hidden;
-  border-bottom: 1px solid #DBDBDB;
+/* 상단 메뉴 */
+.upload_header {
   margin-bottom: 20px;
 }
-
+.list_btnTop {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #DBDBDB;
+}
 .list_btnTop .btn_back {
-  float: left;
-  margin: 13px 12px;
+  margin: 13px 16px;
 }
-
-.list_btnTop .btn_menu {
-  float: right;
-  margin: 12px;
-}
-
+/* 게시물 작성 */
 .upload_main {
+  min-height: 772px;
   padding: 0 16px;
 }
-
 .upload_main .img_profile {
-  margin-right: 7px;
-  background-image: url(../../images/basic-profile-img.png);
+  background-image: url(../images/basic-profile-img.png);
 }
-
 .upload_main .form_upload {
+  display: flex;
+  flex-direction: column;
   position: relative;
 }
-
+.upload_main .wrap_form {
+  display: flex;
+}
 .upload_main .form_upload textarea {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
   border: none;
-  width: calc(100% - 49px);
-  min-height: 60px;
+  width: 100%;
+  min-height: 70px;
+  margin-bottom: 16px;
   padding: 5px;
   resize: none;
 }
-
 .upload_main .form_upload textarea::-webkit-input-placeholder {
   color: #C4C4C4;
 }
-
 .upload_main .form_upload textarea:-ms-input-placeholder {
   color: #C4C4C4;
 }
-
 .upload_main .form_upload textarea::-ms-input-placeholder {
   color: #C4C4C4;
 }
-
 .upload_main .form_upload textarea::placeholder {
   color: #C4C4C4;
 }
-
-.upload_main .form_upload .img_upload {
+.upload_main .form_upload .wrap_list_img {
+  overflow: hidden;
+}
+.upload_main .form_upload .list_img {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 228px;
   margin-left: 54px;
 }
-
+.upload_main .form_upload .img_upload {
+  display: block;
+  width: 304px;
+  height: 228px;
+  background-image: url(../images/post-img-example.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.upload_main .form_upload .btn_delete {
+  float: right;
+  margin: 6px;
+}
+.upload_main .form_upload .btn_delete img {
+  width: 22px;
+  height: 22px;
+}
 .upload_main .form_upload .inp_hide {
   overflow: hidden;
   width: 1px;
   height: 1px;
   opacity: 0;
 }
-
 .upload_main .form_upload .inp_hide:focus + .btn_imgLoad {
   outline: 2px solid black;
 }
-
 .upload_main .form_upload .btn_imgLoad {
   display: block;
   position: fixed;
@@ -130,18 +135,16 @@ body {
   border-radius: 100%;
   width: 50px;
   height: 50px;
-  margin-top: 20px;
   padding: 11px;
   background-color: #F26E22;
   cursor: pointer;
 }
-
 .upload_main .form_upload .btn_imgLoad img {
   width: 27px;
   height: 27px;
 }
-
 .upload_main .form_upload .btn_upload {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
   position: absolute;
   top: -65px;
   right: 0;
@@ -151,4 +154,3 @@ body {
   color: #ffffff;
   background-color: #FFC7A7;
 }
-/*# sourceMappingURL=uploadStyle.css.map */
