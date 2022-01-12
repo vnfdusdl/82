@@ -1,0 +1,130 @@
+/* 공통 */
+
+html {
+  max-width: 390px;
+  height: 100vh;
+  top: 24px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  max-width: 390px;
+}
+
+/* header */
+
+.home_header {
+  width: 390px;
+  height: 48px;
+  border-bottom: solid 1px #DBDBDB;
+  position: fixed;
+  background-color: #fff;
+}
+
+.nav_text {
+  width: 104px;
+  height: 22px;
+  padding-left: 16px;
+  line-height: 48px;
+}
+
+.btn_searchNav {
+  background: none;
+  width: 48px;
+  height: 48px;
+  border: none;
+  float: right;
+  cursor: pointer;
+  line-height: 58px;
+}
+
+.btn_searchNav .icon_search {
+  width: 16px;
+  height: 16px;
+  padding-right: 15px;
+}
+
+/* main */
+
+.main_start {
+  max-width: 390px;
+  height: 100vh;
+  margin-top: 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.article_guide {
+  margin-top: 30%;
+}
+
+.article_guide p {
+  font-size: 14px;
+  color: #767676;
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+
+.btn_search {
+  width: 120px;
+  height: 44px;
+  border-style: none;
+  background: #F26E22;
+  border-radius: 44px;
+  color: #fff;
+}
+
+/* .link_search {
+  마진이랑 글자색이 적용안됨
+  color: #fff;
+  padding-left: 31px;
+  padding-right: 31px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  margin-top: 20px;
+  background: #F26E22;
+  border-radius: 44px;
+} */
+
+
+/* footer */
+
+.footer_chatList {
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #dbdbdb;
+  background-color: #fff;
+  width: 390px;
+  padding: 0 6px;
+  box-sizing: border-box;
+}
+
+.footer_chatList .list_nav {
+  display: flex;
+  justify-content: space-between;
+}
+.footer_chatList .list_nav li {
+  display: inline-block;
+  margin-right: 3px;
+  box-sizing: border-box;
+}
+
+.footer_chatList .list_nav li:hover {
+  background-color: #dbdbdb;
+}
+
+.footer_chatList .list_nav .item_menu {
+  display: inline-block;
+  width: 84px;
+  padding: 11.5px 0 8.5px;
+  text-align: center;
+}
+
+.footer_chatList .list_nav small {
+  display: block;
+  font-size: 10px;
+  line-height: 14px;
+}
