@@ -1,3 +1,9 @@
+// 이전 페이지로 이동
+const btnBack = document.querySelector('.btn-back');
+btnBack.addEventListener('click', () => {
+    window.history.back();
+});
+
 //상품 사진 변경
 const imgInput = document.querySelector('#input-img');
 const imgLabel = document.querySelector('#label-img');
@@ -11,3 +17,4 @@ imgInput.addEventListener('change', (e) => {
     })
     
 })
+
