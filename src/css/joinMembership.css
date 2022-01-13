@@ -1,11 +1,11 @@
-/* 로그인제목 */
+/* 회원가입제목 */
 .tit_signIn {
   text-align: center;
   font-size: 24px;
   line-height: 30px;
   margin: 30px 0 40px;
 }
-/* 로그인폼 */
+/* 회원가입폼 */
 .form_signIn {
   display: flex;
   flex-direction: column;
@@ -42,7 +42,6 @@ label~label {
   line-height: 14px;
   color: #EB5757;
   margin-top: 6px;
-  display: none;
 }
 .btn_next {
   background-color: #FFC7A7;
@@ -53,7 +52,9 @@ label~label {
   line-height: 18px;
   margin-top: 30px;
 }
-
+.btn_next[type="button"] {
+  background-color: #F26E22;
+}
 
 /* 프로필설정 UI */
 /* 정보입력제목 */

@@ -22,7 +22,8 @@
           name="inp_loginEmail"
           class="inp_loginEmail"
           id="inp_loginEmail">
-        <span class="txt_emailWarn"></span>
+        <span class="txt_emailWarn Duplicate"></span>
+        <span class="txt_emailWarn RegExp"></span>
         <label for="inp_loginPw">비밀번호</label>
         <input
           type="password"
@@ -30,7 +31,7 @@
           class="inp_loginPw"
           id="inp_loginPw">
         <span class="txt_pwdWarn"></span>
-        <button type="submit" class="btn_next" disabled>다음</button>
+        <button type="submit" class="btn_next">다음</button>
       </form>
     </main>
   </section>
@@ -85,23 +86,6 @@
     </main>
   </section>
 
-  <script>
-    // 비밀번호는 6자이상 유효성
-    
-    let inpUserPwd = document.querySelector("#inp_loginPw");
-    const pwdWarn = document.querySelector(".txt_pwdWarn");
-    inpUserPwd.addEventListener('keydown', () => {
-          if (inpUserPwd.value.length > 5) {
-            pwdWarn.style = 'display:none;'
-          } else {
-            pwdWarn.style = 'display:inline;'
-          }
-        });
-    inpUserPwd.addEventListener('keyup', () => {
-      if (inpUserPwd.value.length < 6) {
-        pwdWarn.style = 'display:inline;'
-      }
-    });
-  </script>
+  <script src="../js/joinMembership.js"></script>
 </body>
 </html>
