@@ -20,7 +20,7 @@
     <form action="" method="" class="form_upload">
       <div class="wrap_form">
         <span class="img_profile"></span>
-        <textarea name="" id="" placeholder="게시글 입력하기..."></textarea>
+        <textarea name="" id="" placeholder="게시글 입력하기..." class="inp_textarea"></textarea>
       </div>
       <div class="wrap_list_img">
         <ul class="list_img">
@@ -42,10 +42,11 @@
           -->
         </ul>
       </div>
-      <input type="file" name="" multiple id="btn_imgLoad" class="inp_hide">
+      <input type="file" name="" multiple id="btn_imgLoad" class="inp_hide inp_file">
       <label for="btn_imgLoad" class="btn_imgLoad"><img src="../images/icon/icon-upload.png" alt="이미지 파일 불러오기" class="img_imgLoad"></label>
-      <button type="submit" class="btn_upload">업로드</button>
+      <button type="submit" disabled class="btn_upload">업로드</button>
     </form>
   </main>
+  <script src="../js/upload.js"></script>
 </body>
 </html>
