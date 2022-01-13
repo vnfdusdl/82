@@ -56,6 +56,19 @@ label[for="inp_img"] {
   width: 110px;
   height: 110px;
   cursor: pointer;
+  position: relative;
+}
+.img_upload {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 36px;
+}
+.img_profile {
+  width: auto;
+  height: 110px;
+  border-radius: 50%;
 }
 /* 직접적인 업로드 인풋은 숨기고 */
 .inp_img {
