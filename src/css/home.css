@@ -29,20 +29,13 @@ body {
   line-height: 48px;
 }
 
-.btn_searchNav {
-  background: none;
+.link_searchNav {
   width: 48px;
   height: 48px;
-  border: none;
   float: right;
+  padding-left: 25px;
   cursor: pointer;
   line-height: 58px;
-}
-
-.btn_searchNav .icon_search {
-  width: 16px;
-  height: 16px;
-  padding-right: 15px;
 }
 
 /* main */
@@ -58,7 +51,7 @@ body {
 }
 
 .article_guide {
-  margin-top: 30%;
+  margin-top: 58%;
 }
 
 .article_guide p {
@@ -68,27 +61,20 @@ body {
   margin-bottom: 20px;
 }
 
-.btn_search {
-  width: 120px;
-  height: 44px;
-  border-style: none;
-  background: #F26E22;
-  border-radius: 44px;
-  color: #fff;
-}
-
-/* .link_search {
-  마진이랑 글자색이 적용안됨
-  color: #fff;
+.link_searchMain {
+  display: inline-block;
   padding-left: 31px;
   padding-right: 31px;
   padding-top: 11px;
   padding-bottom: 11px;
-  margin-top: 20px;
   background: #F26E22;
   border-radius: 44px;
-} */
+} 
 
+.link_searchMain span {
+  color: #fff;
+  font-size: 14px;
+}
 
 /* footer */
 
