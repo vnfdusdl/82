@@ -11,7 +11,7 @@ function send() {
       btn.removeAttribute('disabled');
       btn.style.backgroundColor = '#F26E22';
     } else if (textarea.value == '') {
-      // btn.hasAttribute('disabled');
+      btn.setAttribute('disabled', 'disabled');
       btn.style.backgroundColor = '#FFC7A7';
     }
   })

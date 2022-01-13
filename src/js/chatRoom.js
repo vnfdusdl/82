@@ -24,8 +24,8 @@ function send() {
       btnSend.removeAttribute('disabled');
       btnSend.style.color = '#F26E22';
     } else if (textarea.value == '') {
-      btnSend.hasAttribute('disabled')
-      bbtnSendtn.style.color = '#C4C4C4';
+      btnSend.setAttribute('disabled', 'disabled')
+      btnSend.style.color = '#C4C4C4';
     }
   })
 }
