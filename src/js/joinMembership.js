@@ -84,10 +84,37 @@ email.addEventListener("keyup", () => {
   document.querySelector(".txt_emailWarn.Duplicate").innerText = '';
 })
 
+// 요거는 이미지태그를 가져온거
+const imgPre = document.querySelector("#img_pre");
+
 // 사진 데이터 보내기
+// 데이터를 폼 형식으로 보내주는걸 js로 컨트롤 하는거임
+async function imageUpload(files){
+  const formData = new FormData();
+  formData.append("image", files[0]);//formData.append("키이름","값")
+  console.log(formData);
+  const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+      method: "POST",
+      body : formData
+  })
+  const data = await res.json()
+  const productImgName = data["filename"];
+  console.log(productImgName); // 1642158806566.png 요런식임
+  return productImgName
+}
 
-// 사진 데이터 받기
+// 사진 데이터 받기 + 뿌리기?
+// 이제 서버에 내 사진이 잘 가있다.
+// 새탭에서 이미지를 열어보면 위에 주소가 보이는것처럼!
+async function profileImage(e) {
+  // 여기서 말하는 이벤트란 인풋이 변하는것=>사진을올리는것
+  const files = e.target.files
+  const result = await imageUpload(files)
+  imgPre.src = url+"/"+result // 요청url/123889127.png
+  console.log(result) // 1642158806566.png 
+}
+// 인풋에 변화가 생기면 해당 태그의 소스값을 서버에서 받아온다
+document.querySelector("#inp_img").addEventListener("change",profileImage)
 
-// 받은 데이터 화면에 뿌리기
 
 // 종합으로 내 프로필설정값 보내기

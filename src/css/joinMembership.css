@@ -125,9 +125,11 @@ label[for="inp_img"] {
   width: 36px;
 }
 .img_profile {
-  width: auto;
+  width: 110px;
   height: 110px;
   border-radius: 50%;
+  /* object-fit:contain; */
+  object-fit:cover;
 }
 /* 직접적인 업로드 인풋은 숨기고 */
 .inp_img {
