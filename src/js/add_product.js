@@ -27,7 +27,7 @@ let nameFlag = false;
 let priceFlag = false;
 let linkFlag = false;
 
-itemName.addEventListener('keyup', function() {
+function nameTest() {
     const RegExp1 = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,15}$/;
     if (!RegExp1.test(itemName.value)) {
         itemName.focus();
@@ -35,30 +35,48 @@ itemName.addEventListener('keyup', function() {
     } else {
         nameFlag = true;
     }
-    btnAttrChange()
-});
+}
 
-itemPrice.addEventListener('keyup', function() {
+function priceTest() {
     const RegExp2 = /[^0-9]/gi;
     itemPrice.value = itemPrice.value.replace(RegExp2,'');
-    btnAttrChange()
-});
+}
 
-itemLink.addEventListener('keyup', function() {
+function linkTest() {
     const RegExp3 = /(http(s)?:\/\/)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/gi;
     if(!RegExp3.test(itemLink.value)) {
-        let linkFlag = false;
+        itemLink.focus();
+        linkFlag = false;
     } else {
         linkFlag = true;
     }
-    btnAttrChange()
+}
+
+itemName.addEventListener('focus', function () {
+    nameTest();
+    btnAttrChange();
+});
+
+itemName.addEventListener('keyup', function() {
+    nameTest();
+    btnAttrChange();
+});
+
+itemPrice.addEventListener('keyup', function() {
+    priceTest();
+    btnAttrChange();
+});
+
+itemLink.addEventListener('keyup', function() {
+    linkTest();
+    btnAttrChange();
 })
 
 // 저장 버튼 활성화 및 비활성화
 function btnAttrChange() {
     if (nameFlag && itemPrice.value && linkFlag) {
-        btnSave.setAttribute('type', 'submit');
+        btnSave.removeAttribute('disabled');
     } else {
-        btnSave.setAttribute('type', 'button');
+        btnSave.setAttribute('disabled', 'disabled');
     }
 }

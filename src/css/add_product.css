@@ -38,22 +38,22 @@ button {
 .list-btnTop .btn-back img {
     vertical-align: middle;
 }
+
+/* 유효성 검사 통과 이후에 저장 버튼 활성화 */
 .list-btnTop .btn-save {
     float: right;
     width: 90px;
     height: 32px;
     margin: 12px;
-    background-color: #ffc7a7;
+    background-color: #f26e22;
     border-radius: 32px;
     color: #ffffff;
     font-size: 14px;
     line-height: 18px;
 }
 
-/* 유효성 검사 통과 이후에 저장 버튼 활성화 */
-/* type이 submit일 때*/
-.list-btnTop .btn-save[type='submit'] {
-    background-color: #f26e22;
+.list-btnTop .btn-save[disabled='disabled'] {
+    background-color: #ffc7a7;
 }
 
 /* 프로필 사진 */
