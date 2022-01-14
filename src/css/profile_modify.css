@@ -69,7 +69,7 @@ button {
     width: 110px;
     height: 110px;
     border-radius: 50%;
-    background: url(../images/basic-profile-img.png);
+    background-image: url(../images/basic-profile-img.png);
     margin: 0 auto;
     cursor: pointer;
 }
