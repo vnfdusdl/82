@@ -42,9 +42,9 @@ idInput.addEventListener('keyup', function () {
 // 저장 버튼 활성화 및 비활성화
 function btnAttrChange() {
     if (nameFlag && idFlag) {
-        btnSave.setAttribute('type', 'submit');
+        btnSave.removeAttribute('disabled');
     } else {
-        btnSave.setAttribute('type', 'button');
+        btnSave.setAttribute('disabled', 'disabled');
     }
 }
 
