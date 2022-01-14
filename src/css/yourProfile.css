@@ -230,7 +230,7 @@ body {
 .content_feed .icon_feed {
   display: flex;
   align-items: center;
-  display: none;
+  /* display: none; */
 }
 .icon_feed img {
   width: 15px;

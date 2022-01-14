@@ -20,6 +20,7 @@ body {
   border-bottom: solid 1px #DBDBDB;
   position: fixed;
   background-color: #fff;
+  z-index: 1000
 }
 
 .nav_text {
@@ -44,8 +45,7 @@ body {
   max-width: 390px;
   height: 100vh;
   margin-top: 48px;
-  text-align: center;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   align-items: center;
 }
@@ -74,6 +74,91 @@ body {
 .link_searchMain span {
   color: #fff;
   font-size: 14px;
+}
+
+/* 팔로잉에 따른 화면 보이기 */
+
+.card_wrap {
+  margin-bottom: 74px;
+}
+
+.card_feed {
+  display: flex;
+  padding: 16px 16px 0 16px;
+}
+.card_feed > img {
+  width: 42px;
+  height: 42px;
+  margin-right: 12px;
+}
+.card_feed .content_feed {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.content_feed .edit_feed {
+  float: right;
+  cursor: pointer;
+}
+.content_feed strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+.content_feed > span {
+  margin: 2px 0 16px;
+  color: #767676;
+  font-size: 12px;
+}
+.content_feed p {
+  font-size: 14px;
+  line-height: 16px;
+}
+.content_feed .image_feed {
+  width: 304px;
+  height: 228px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 16px;
+  cursor:pointer;
+}
+.content_feed .date_feed {
+  margin-top: 16px;
+}
+
+.imagelist_feed > img:nth-child(1) ~ img {
+  display: none;
+}
+.more_image {
+  position: absolute;
+  background: url(../images/icon/iccon-img-layers.png);
+  width: 20px;
+  height: 20px;
+  bottom: 275px;
+  right: 6px;
+  cursor: pointer;
+}
+.content_feed .icon_feed {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  /* display: none; */
+}
+.icon_feed img {
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+.icon_feed .likecount_feed {
+  margin-right: 16px;
+}
+.icon_feed span {
+  font-size: 12px;
+  color: #767676;
+}
+.card_feed .date_feed {
+  color: #767676;
+  font-size: 10px;
 }
 
 /* footer */
@@ -113,4 +198,87 @@ body {
   display: block;
   font-size: 10px;
   line-height: 14px;
+}
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: none;
+  left: 0;
+  top: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-sizing: border-box;
+}
+.modal-overlay.modal_active {
+  overflow: hidden;
+}
+.modal-window {
+  background: transparent;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(13.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  height: 282px;
+  position: fixed;
+  padding: 10px;
+  border-radius: 10px;
+  top: 50%;
+  box-sizing: border-box;
+}
+
+.close-area {
+  display: inline;
+  float: right;
+  padding: 0 10px 10px 0;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px gray;
+  color: white;
+}
+
+.content {
+  display: flex;
+  overflow-x: scroll;
+  width: 351px;
+  z-index: 100;
+  padding: 0 16px;
+}
+.content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+.content .image_feed {
+  width: 304px;
+  height: 228px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 16px;
+}
+
+body.modal_active {
+  overflow: hidden;
+}
+
+.modal_content {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 14px 0 14px 26px;
+  box-sizing: border-box;
+}
+.modal_content:hover {
+  background-color: #dbdbdb;
+}
+.modal-feedWindow::before,
+.modal-logout::before,
+.modal-profileWindow::before {
+  display: block;
+  width: 50px;
+  height: 4px;
+  background: #dbdbdb;
+  border-radius: 5px;
+  content: "";
+  margin: 16px auto;
 }
