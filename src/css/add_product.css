@@ -73,7 +73,9 @@ button {
     width: 322px;
     height: 204px;
     border-radius: 10px;
-    background: url(../images/basic-product-img.png);
+    background-image: url(../images/basic-product-img.png);
+    background-position: center;
+    background-size: cover;
     margin: 0 auto;
     cursor: pointer;
 }
