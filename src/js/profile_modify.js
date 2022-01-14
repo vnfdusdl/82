@@ -71,11 +71,11 @@ async function getUserData() {
     );
     const json = await res.json();
     console.log(json.profile)
-    let userImg = document.getElementById('label-img').style.backgroundImage;
+    const userImg = document.getElementById('label-img');
     const intro = document.getElementById('intro');
-    userImg = json.profile.image
+    const userImgUrl = json.profile.image
+    userImg.style.backgroundImage = `url(${userImgUrl})`
     console.log(userImg);
-
     nameInput.value = json.profile.username;
     idInput.value = accountName;
     intro.value = json.profile.intro;
@@ -93,10 +93,7 @@ let imgPreview = document.getElementById('label-img');
 async function profileImage(e) {
     const files = e.target.files;
     const result = await imageUpload(files);
-    // console.log(localStorage.getItem('url'));
     imgPreview.style.backgroundImage = `url(http://146.56.183.55:5050/${result})`;
-    imgPreview.style.backgroundPosition = `center`;
-    imgPreview.style.backgroundSize = `cover`;
 }
 
 async function imageUpload(files) {
@@ -120,9 +117,7 @@ async function formSubmit() {
     const userName = nameInput.value;
     const accountName = idInput.value;
     const intro = document.querySelector('#intro').value;
-    // const imageUrl = imgPreview;
-    // const reader = new FileReader();
-    // reader.readAsDataURL(imageUrl);
+    const userImgUrl = imgPreview.style.backgroundImage.slice(5,-2); //url()을 잘라주기 위해서. 
     const token = localStorage.getItem('Token');
     try {
         const res = await fetch(`http://146.56.183.55:5050/user`, {
@@ -136,7 +131,7 @@ async function formSubmit() {
                     username: userName,
                     accountname: accountName,
                     intro: intro,
-                    // image: `${reader.result}`,
+                    image: userImgUrl,
                 },
             }),
         });

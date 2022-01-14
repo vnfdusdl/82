@@ -72,6 +72,8 @@ button {
     height: 110px;
     border-radius: 50%;
     background-image: url(../images/basic-profile-img.png);
+    background-position: center;
+    background-size: cover;
     margin: 0 auto;
     cursor: pointer;
 }
