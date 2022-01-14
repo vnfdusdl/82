@@ -21,7 +21,7 @@ function nameTest() {
     }
 }
 function idTest() {
-    const RegExp2 = /^[a-z0-9_,]+$/;
+    const RegExp2 = /^[a-zA-Z0-9_,]+$/;
     if (!RegExp2.test(idInput.value)) {
         idInput.focus();
         idFlag = false;
@@ -72,7 +72,7 @@ async function getUserData() {
     nameInput.value = json.profile.username;
     idInput.value = accountName;
     intro.value = json.profile.intro;
-    
+
     nameTest();
     idTest();
 }
