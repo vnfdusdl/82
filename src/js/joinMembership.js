@@ -1,20 +1,3 @@
-//프로필 사진 변경
-const imgInput = document.querySelector('#inp_img');
-const imgLabel = document.querySelector('#label_img');
-imgInput.addEventListener('change', (e) => {
-  let image = e.target.files[0]; //파일 선택
-  const reader = new FileReader();
-  reader.readAsDataURL(image); // 파일을 읽는 메서드
-  reader.addEventListener('load', () => {
-    console.log(reader.result);
-    imgLabel.innerHTML =
-    `<img src="${reader.result}" alt="기본프로필"
-    class="img_profile">
-    <img src="../images/upload-file.png" alt="프로필사진 업로드" class="img_upload">`
-  })
-  
-});
-
 // 유효성검사와 버튼활성화
 const btnNext = document.querySelector(".btn_next")
 const formSignIn = document.querySelector('.form_signIn');
@@ -26,13 +9,13 @@ const pwdWarn = document.querySelector(".txt_pwdWarn");
 
 // 이메일 유효성검사
 const exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-
+// 키업 보다는 체인지
 email.addEventListener('keyup', () => {
   if (exptext.test(email.value) == false) {
     document.querySelector(".txt_emailWarn.RegExp").innerText = '*이메일 형식이 올바르지 않습니다.';
   } else if (exptext.test(email.value) == true) {
     document.querySelector(".txt_emailWarn.RegExp").innerText = '';
-  }
+  } 
 });
 
 
@@ -59,12 +42,14 @@ function btnAttrChange() {
   }
 };
 
+
 // 프로필설정으로 넘어가기
 const $signIn = document.querySelector('.signIn');
 const $setProfile = document.querySelector('.setProfile');
+// 이건 디스플레이만 감춰지나 확인한거임
 // 이메일 중복체크 함수
-async function checkEmailValid(emailVal) {
-  const url = "http://146.56.183.55:5050";
+const url = "http://146.56.183.55:5050";
+async function checkEmailValid(email) {
   const emailData = {
     "user": {
       "email":email
@@ -77,18 +62,32 @@ async function checkEmailValid(emailVal) {
   })
   const json = await res.json();
   console.log(json)
-  return json.message;
+  // return json.message;
+  return json.message == "사용 가능한 이메일 입니다." ? true : false
 }
 
 btnNext.addEventListener("click", async () => {
+  // 요거는 왜 꼭 안에서? 는 클릭할때의 값이니까^^
   const emailVal = email.value;
-  const pwdVal = pwd.value;
-  const emailvalid = await checkEmailValid(email)
-
-  if (emailvalid) {
+  const emailValid = await checkEmailValid(emailVal)
+  console.log(emailVal);
+  console.log(emailValid);
+  if (emailValid) {
     $signIn.style.display = "none"
-    // profile style dp - block
+    $setProfile.style.display = "block"
   } else {
     document.querySelector(".txt_emailWarn.Duplicate").innerText = '*중복된 이메일입니다.';
   }
 })
+// 지울때 중복된이메일 입니다 없애기
+email.addEventListener("keyup", () => {
+  document.querySelector(".txt_emailWarn.Duplicate").innerText = '';
+})
+
+// 사진 데이터 보내기
+
+// 사진 데이터 받기
+
+// 받은 데이터 화면에 뿌리기
+
+// 종합으로 내 프로필설정값 보내기
