@@ -43,15 +43,37 @@ function btnAttrChange() {
     }
 }
 
-//프로필 사진 변경
-const imgInput = document.querySelector('#input-img');
-const imgLabel = document.querySelector('#label-img');
-imgInput.addEventListener('change', (e) => {
-    let image = e.target.files[0]; //파일 선택
-    const reader = new FileReader();
-    reader.readAsDataURL(image); // 파일을 읽는 메서드
-    reader.addEventListener('load', () => {
-        console.log(reader.result);
-        imgLabel.style = `background-image : url(${reader.result}); background-position: center; background-size : cover`;
-    });
-});
+// 프로필 사진 변경 
+document.querySelector("#input-img").addEventListener("change",profileImage)
+let imgPreview =  document.getElementById('label-img');
+
+async function profileImage(e) {
+    const files = e.target.files;
+    const result = await imageUpload(files); 
+    imgPreview.style.backgroundImage = `url(http://146.56.183.55:5050/${result})`
+    imgPreview.style.backgroundPosition =`center`
+    imgPreview.style.backgroundSize = `cover`
+}
+
+async function imageUpload(files){
+    const formData = new FormData();
+    formData.append("image", files[0]);
+    
+    const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+        method: "POST",
+        body : formData
+    }) 
+    
+    const data = await res.json()
+    const imgFileName = data["filename"];
+    return imgFileName
+}
+
+
+
+
+//작성한 form을 서버에 전송
+
+
+
+
