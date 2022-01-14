@@ -29,6 +29,13 @@ function idTest() {
         idFlag = true;
     }
 }
+
+//화면이 로딩될 때, nameInput에 focus가 되도록 했고, 이때 바로 유효성 검사가 되도록 함. 
+nameInput.addEventListener('focus', function () {
+    nameTest();
+    btnAttrChange();
+});
+
 nameInput.addEventListener('keyup', function () {
     nameTest();
     btnAttrChange();
@@ -75,6 +82,7 @@ async function getUserData() {
 
     nameTest();
     idTest();
+    nameInput.focus(); //페이지 로드될 때 nameInput에 focus 되도록 하고, 이때 유효성 검사 일어남. 
 }
 getUserData();
 
