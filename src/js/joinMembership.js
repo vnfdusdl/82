@@ -118,3 +118,50 @@ document.querySelector("#inp_img").addEventListener("change",profileImage)
 
 
 // 종합으로 내 프로필설정값 보내기
+const submitBtn = document.querySelector(".btn_start");
+
+async function join(){
+  const email = document.querySelector("#inp_loginEmail").value;
+  const password = document.querySelector("#inp_loginPw").value;
+  const userName = document.querySelector("#inp_name").value;
+  const userId = document.querySelector("#inp_Id").value;
+  const intro = document.querySelector("#inp_intro").value;
+  const imageUrl = document.querySelector("#img_pre").src
+  try{
+      const res = await fetch("http://146.56.183.55:5050/user", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body : JSON.stringify({
+              "user": {
+                  "email": email,
+                  "password": password,
+                  "username": userName,
+                  "accountname": userId,
+                  "intro": intro,
+                  "image": imageUrl,
+              }
+          })
+      })
+      // 확인
+      console.log(res);
+      
+      const json = await res.json();
+      const message = json.message;
+      // 확인
+      console.log(json);
+      console.log(message);
+
+      if(res.status==200){
+          console.log("성공^^^^^^")
+          // location.href = "./home.html"
+      }
+      else{
+          console.log(json)
+      }
+  }catch(err){
+      alert(err)
+  }
+}
+submitBtn.addEventListener("click",join)
