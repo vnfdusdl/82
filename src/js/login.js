@@ -39,16 +39,15 @@ async function login() {
   // console.log(res);
   const json = await res.json();
   // res.json()도 비동기. await을 해줘야한다.
-  console.log(json);
-  console.log(json.user.token);
-  console.log(json.user.accountname); // 잘 뜬다. 만약 넣을라면 넣을 수 있겠다.
+  // console.log(json);
   if (json.message) {
-    document.querySelector('.txt_loginWarn').innerText = `* ${json.message}`
+    document.querySelector('.txt_loginWarn').innerText = `*이메일 또는 비밀번호가 일치하지 않습니다`
   }
   localStorage.setItem("Token",json.user.token)
   // accountname 이나 id를 같이 넣어준다
   // 토큰만으로 유저의 정보를 알 수 있나?
   localStorage.setItem("Accountname",json.user.accountname)
+  // 토큰이 있으면 홈, 없으면 로그인
   // location.href = "home.html"
 
 }
