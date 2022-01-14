@@ -5,13 +5,13 @@ btnBack.addEventListener('click', () => {
 });
 
 //유효성 검사
-const nameInput = document.getElementById('username');
-const idInput = document.getElementById('accountname');
+let nameInput = document.getElementById('username');
+let idInput = document.getElementById('accountname');
 const btnSave = document.querySelector('.btn-save');
 let nameFlag = false;
 let idFlag = false;
 
-nameInput.addEventListener('keyup', function () {
+function nameTest() {
     const RegExp1 = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,10}$/;
     if (!RegExp1.test(nameInput.value)) {
         nameInput.focus();
@@ -19,10 +19,8 @@ nameInput.addEventListener('keyup', function () {
     } else {
         nameFlag = true;
     }
-    btnAttrChange();
-});
-
-idInput.addEventListener('keyup', function () {
+}
+function idTest() {
     const RegExp2 = /^[a-z0-9_,]+$/;
     if (!RegExp2.test(idInput.value)) {
         idInput.focus();
@@ -30,6 +28,14 @@ idInput.addEventListener('keyup', function () {
     } else {
         idFlag = true;
     }
+}
+nameInput.addEventListener('keyup', function () {
+    nameTest();
+    btnAttrChange();
+});
+
+idInput.addEventListener('keyup', function () {
+    idTest();
     btnAttrChange();
 });
 
@@ -42,6 +48,36 @@ function btnAttrChange() {
     }
 }
 
+// 기존 계정 정보 불러오기
+async function getUserData() {
+    const token = localStorage.getItem('Token');
+    const accountName = localStorage.getItem('Accountname');
+    const res = await fetch(
+        `http://146.56.183.55:5050/profile/${accountName}`,
+        {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-type': 'application/json',
+            },
+        }
+    );
+    const json = await res.json();
+    console.log(json.profile)
+    let userImg = document.getElementById('label-img').style.backgroundImage;
+    const intro = document.getElementById('intro');
+    userImg = json.profile.image
+    console.log(userImg);
+
+    nameInput.value = json.profile.username;
+    idInput.value = accountName;
+    intro.value = json.profile.intro;
+    
+    nameTest();
+    idTest();
+}
+getUserData();
+
 // 프로필 사진 변경
 document.querySelector('#input-img').addEventListener('change', profileImage);
 let imgPreview = document.getElementById('label-img');
@@ -49,6 +85,7 @@ let imgPreview = document.getElementById('label-img');
 async function profileImage(e) {
     const files = e.target.files;
     const result = await imageUpload(files);
+    // console.log(localStorage.getItem('url'));
     imgPreview.style.backgroundImage = `url(http://146.56.183.55:5050/${result})`;
     imgPreview.style.backgroundPosition = `center`;
     imgPreview.style.backgroundSize = `cover`;
@@ -75,7 +112,9 @@ async function formSubmit() {
     const userName = nameInput.value;
     const accountName = idInput.value;
     const intro = document.querySelector('#intro').value;
-    const imageUrl = imgPreview.style.backgroundImage;
+    // const imageUrl = imgPreview;
+    // const reader = new FileReader();
+    // reader.readAsDataURL(imageUrl);
     const token = localStorage.getItem('Token');
     try {
         const res = await fetch(`http://146.56.183.55:5050/user`, {
@@ -89,7 +128,7 @@ async function formSubmit() {
                     username: userName,
                     accountname: accountName,
                     intro: intro,
-                    image: imageUrl,
+                    // image: `${reader.result}`,
                 },
             }),
         });
