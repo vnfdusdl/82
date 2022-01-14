@@ -9,26 +9,83 @@
   <link rel="stylesheet" href="../css/joinMembership.css">
 </head>
 <body>
-  <header>
-    <h1 class="tit_signIn">이메일로 회원가입</h1>
-  </header>
-  <main>
-    <form action="" class="form_signIn">
-      <h1 class="sr-only">회원가입 정보입력</h1>
-      <label for="inp_loginEmail">이메일</label>
-      <input 
-        type="text"
-        name="inp_loginEmail"
-        class="inp_loginEmail">
-      <span class="txt_emailWarn">*이미 가입된 이메일 주소입니다.</span>
-      <label for="inp_loginPw">비밀번호</label>
-      <input 
-        type="password"
-        name="inp_loginPw"
-        class="inp_loginPw">
-      <span class="txt_pwdWarn">*비밀번호는 6자 이상이어야 합니다.</span>
-      <button type="submit" class="btn_next" disabled>다음</button>
-    </form>
-  </main>
+  <section class="signIn">
+    <header>
+      <h1 class="tit_signIn">이메일로 회원가입</h1>
+    </header>
+    <main>
+      <form class="form_signIn">
+        <h1 class="sr-only">회원가입 정보입력</h1>
+        <label for="inp_loginEmail">이메일</label>
+        <input
+          type="text"
+          name="inp_loginEmail"
+          class="inp_loginEmail"
+          id="inp_loginEmail">
+        <span class="txt_emailWarn Duplicate"></span>
+        <span class="txt_emailWarn RegExp"></span>
+        <label for="inp_loginPw">비밀번호</label>
+        <input
+          type="password"
+          name="inp_loginPw"
+          class="inp_loginPw"
+          id="inp_loginPw">
+        <span class="txt_pwdWarn"></span>
+        <button type="submit" class="btn_next">다음</button>
+      </form>
+    </main>
+  </section>
+  <section class="setProfile">
+    <header>
+      <h1 class="tit_setting" aria-label="초기프로필설정">프로필 설정</h1>
+      <p class="desc_setting">나중에 언제든지 변경될 수 있습니다.</p>
+    </header>
+    <main>
+      <form action="" class="form_signIn">
+        <h1 class="sr-only">프로필설정 정보입력</h1>
+        <section class="wrap_inp_img">
+          <label for="inp_img" id="label_img">
+            <img src="../images/basic-profile-img.png" alt="기본프로필"
+            class="img_profile">
+            <img src="../images/upload-file.png" alt="프로필사진 업로드" class="img_upload">
+          </label>
+          <input
+            type="file"
+            name="image"
+            class="inp_img"
+            accept="image/*"
+            id="inp_img">
+          </section>
+        <label for="inp_name">사용자 이름</label>
+        <input
+          type="text"
+          minlength="2"
+          maxlength="10"
+          name="inp_name"
+          class="inp_name"
+          id="inp_name"
+          placeholder="2~10자 이내여야 합니다.">
+        <label for="inp_Id">계정 ID</label>
+        <input
+          type="text"
+          name="inp_Id"
+          class="inp_Id"
+          id="inp_Id"
+          placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다.">
+        <span class="warn" id="warn_valid"></span>
+        <span class="warn" id="warn_usedId"></span>
+        <label for="inp_intro">소개</label>
+        <input
+          type="text"
+          name="inp_intro"
+          class="inp_intro"
+          id="inp_intro"
+          placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
+        <button type="submit" class="btn_start" disabled>감귤마켓 시작하기</button>
+      </form>
+    </main>
+  </section>
+
+  <script src="../js/joinMembership.js"></script>
 </body>
 </html>

@@ -45,7 +45,9 @@ label {
   line-height: 18px;
   margin-top: 30px;
 }
-
+.btn_login[type="button"] {
+  background-color: #F26E22;
+}
 /* 푸터 */
 footer {
   margin-top: 20px;

@@ -19,16 +19,23 @@
       <input 
         type="text"
         name="inp_loginEmail"
-        class="inp_loginEmail">
+        class="inp_loginEmail"
+        id="inp_loginEmail">
       <label for="">비밀번호</label>
       <input
         type="password"
         name="inp_loginPw"
-        class="inp_loginPw">
-      <span class="txt_loginWarn">*이메일 또는 비밀번호가 일치하지 않습니다.</span>
-      <button type="submit" class="btn_login" disabled>로그인</button>
+        class="inp_loginPw"
+        id="inp_loginPw">
+      <span class="txt_loginWarn"></span>
+      <button 
+        type="submit"
+        class="btn_login"
+        id="btn_login"
+        >로그인</button>
     </form>
   </main>
-  <footer><a href="" class="btn_signIn">이메일로 회원가입</a></footer>
+  <footer><a href="joinMembership.html" class="btn_signIn">이메일로 회원가입</a></footer>
+  <script src="../js/login.js"></script>
 </body>
 </html>

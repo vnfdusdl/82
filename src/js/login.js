@@ -1,7 +1,23 @@
+// 버튼활성화
+const btnLogin = document.querySelector("#btn_login")
+const formLogin = document.querySelector('.form_login');
+
+const email = document.querySelector('#inp_loginEmail');
+const pwd = document.querySelector('#inp_loginPw');
+
+formLogin.addEventListener('input', () => {
+  btnAttrChange(); 
+});
+
+function btnAttrChange() {
+  if (email.value && pwd.value) {
+    btnLogin.setAttribute('type', 'button');
+  } else {
+    btnLogin.setAttribute('type', 'submit');
+  }
+}
 // 비동기 통신을 사용한 로그인 기능
 async function login() {
-  const email = document.querySelector('#inp_loginEmail');
-  const pwd = document.querySelector('#inp_loginPw');
   const url = "http://146.56.183.55:5050";
   const loginData = {
             "user":{
@@ -24,10 +40,12 @@ async function login() {
   const json = await res.json();
   // 외않됌? 포인트 res.json()도 비동기. await을 해줘야한다.
   console.log(json);
-  localStorage.setItem("Token",json.user.token)
+  // localStorage.setItem("Token",json.user.token)
   // location.href = "../../pages/home.html"
+
+  if (json.message) {
+    document.querySelector('.txt_loginWarn').innerText = `* ${json.message}`
+  }
 }
 const $loginBtn = document.querySelector('#btn_login')
 $loginBtn.addEventListener("click",login)
-
-// 눌렀을때 에러처리.

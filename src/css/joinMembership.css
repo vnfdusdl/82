@@ -1,11 +1,11 @@
-/* 로그인제목 */
+/* 회원가입제목 */
 .tit_signIn {
   text-align: center;
   font-size: 24px;
   line-height: 30px;
   margin: 30px 0 40px;
 }
-/* 로그인폼 */
+/* 회원가입폼 */
 .form_signIn {
   display: flex;
   flex-direction: column;
@@ -44,6 +44,111 @@ label~label {
   margin-top: 6px;
 }
 .btn_next {
+  background-color: #FFC7A7;
+  border-radius: 44px;
+  padding: 13px 0;
+  border: none;
+  color: #fff;
+  line-height: 18px;
+  margin-top: 30px;
+}
+.btn_next[type="button"] {
+  background-color: #F26E22;
+}
+
+/* 프로필설정 UI */
+/* 정보입력제목 */
+.tit_setting {
+  text-align: center;
+  font-size: 24px;
+  line-height: 30px;
+  margin: 30px 0 12px;
+}
+.desc_setting {
+  font-size: 14px;
+  color: #767676;
+  text-align: center;
+  margin-bottom: 30px;
+}
+/* 정보입력 폼 */
+form {
+  display: flex;
+  flex-direction: column;
+  color: #767676;
+  padding: 0 34px;
+}
+/* 공통인풋 */
+input {
+  border: none;
+  border-bottom: 1px solid #DBDBDB;
+  padding: 8px 0;
+  font-size: 14px;
+  line-height: 14px;
+  font-size: 14px;
+}
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #F26E22;
+}
+input::placeholder {
+  color: #DBDBDB;
+  font-size: 14px;
+}
+label {
+  font-size: 12px;
+  line-height: 15px;
+}
+label~label {
+  margin-top: 16px;
+}
+/* 프로필사진 */
+.wrap_inp_img {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+label[for="inp_img"] {
+  display: block;
+  width: 110px;
+  height: 110px;
+  cursor: pointer;
+  position: relative;
+}
+.img_upload {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 36px;
+}
+.img_profile {
+  width: auto;
+  height: 110px;
+  border-radius: 50%;
+}
+/* 직접적인 업로드 인풋은 숨기고 */
+.inp_img {
+  display: none;
+}
+.img_upload {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 36px;
+  height: 36px;
+}
+
+/* display:none 이었다가 js로 컨트롤? */
+.warn {
+  font-size: 12px;
+  line-height: 14px;
+  color: #EB5757;
+  margin-top: 6px;
+}
+.btn_start {
   background-color: #FFC7A7;
   border-radius: 44px;
   padding: 13px 0;
