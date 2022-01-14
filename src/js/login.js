@@ -38,14 +38,19 @@ async function login() {
   });
   // console.log(res);
   const json = await res.json();
-  // 외않됌? 포인트 res.json()도 비동기. await을 해줘야한다.
+  // res.json()도 비동기. await을 해줘야한다.
   console.log(json);
-  // localStorage.setItem("Token",json.user.token)
-  // location.href = "../../pages/home.html"
-
+  console.log(json.user.token);
+  console.log(json.user.accountname); // 잘 뜬다. 만약 넣을라면 넣을 수 있겠다.
   if (json.message) {
     document.querySelector('.txt_loginWarn').innerText = `* ${json.message}`
   }
+  localStorage.setItem("Token",json.user.token)
+  // accountname 이나 id를 같이 넣어준다
+  // 토큰만으로 유저의 정보를 알 수 있나?
+  localStorage.setItem("Accountname",json.user.accountname)
+  // location.href = "home.html"
+
 }
 const $loginBtn = document.querySelector('#btn_login')
 $loginBtn.addEventListener("click",login)
