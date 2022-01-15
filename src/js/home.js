@@ -85,18 +85,20 @@ function imgLoad(posts) {
     const image = post.image
     const commentCount = post.commentCount
     const content = post.content
-    const heartCounter = post.heartCounter
+    const heartCount = post.heartCount
     const hearted = post.hearted
 
-    let imgTag;
+    const imgArray = image.split(',');
+    const img = imgArray[0];
 
-    console.log(image);
+    console.log(img);
+
+    let imgTag;
 
     if (image === '') {
       imgTag = '';
     } else {
-      imgTag = `<img src= "${image}" alt="" class="image_feed" />`;
-
+      imgTag = `<img src= "${img}" alt="" class="image_feed" />`;
     }
 
     document.querySelector(".feed_section").innerHTML += `
@@ -104,10 +106,12 @@ function imgLoad(posts) {
       <h4 class="sr-only">피드</h4>
       <img class="profile_feed" src="${authorImage}" alt="${authorAccount}님의 프로필 사진" />
       <div class="content_feed">
-        <div>
+        <div class="content_nav">
           <strong>${authorName}</strong>
-          <img src="../images/icon/s-icon-more-vertical.png" alt="게시물 옵션" class="edit_feed" />
-        </div>
+          <button type="button" class="btn_postOption">
+            <img src="../images/icon/s-icon-more-vertical.png" alt="게시물 옵션" class="edit_feed" />
+          </button>
+          </div>
         <span>@${authorAccount}</span>
         <p>
           ${content}
@@ -117,7 +121,7 @@ function imgLoad(posts) {
         </div>
         <div class="icon_feed">
           <img src="../images/icon/icon-heart.png" alt="" />
-          <span class="likecount_feed">${heartCounter}</span>
+          <span class="likecount_feed">${heartCount}</span>
           <img src="../images/icon/icon-message-circle.png" alt="" />
           <span class="messagecount_feed">${commentCount}</span>
         </div>
