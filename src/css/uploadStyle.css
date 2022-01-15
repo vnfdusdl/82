@@ -93,31 +93,28 @@ button {
 .upload_main .form_upload textarea::placeholder {
   color: #C4C4C4;
 }
-.upload_main .form_upload .wrap_list_img {
-  overflow: hidden;
+.upload_main .form_upload .list_img .wrap_list_img {
+  overflow-x: scroll;
 }
 .upload_main .form_upload .list_img {
   display: flex;
   flex-wrap: nowrap;
-  height: 228px;
+  overflow-x: scroll;
   margin-left: 54px;
 }
-.upload_main .form_upload .img_upload {
+.upload_main .form_upload .list_img::-webkit-scrollbar {
+  display: none;
+}
+.upload_main .form_upload .list_img img {
   display: block;
   border-radius: 10px;
   width: 304px;
   height: 228px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
 }
-.upload_main .form_upload .btn_delete {
-  float: right;
-  margin: 6px;
-}
-.upload_main .form_upload .btn_delete img {
-  width: 22px;
-  height: 22px;
+.upload_main .form_upload .list_img .img_upload {
+  width: 168px;
+  height: 126px;
+  margin-right: 8px;
 }
 .upload_main .form_upload .inp_hide {
   overflow: hidden;
