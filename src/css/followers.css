@@ -83,17 +83,6 @@ button {
     background-size: 50px 50px;
     position: relative;
 }
-.img_profile.img_id2 {
-    background-image: url(../images/post-img-example.png);
-}
-
-.img_profile.img_id3 {
-    background-image: url(../images/Ellipse4.png);
-}
-
-.img_profile.img_id4 {
-    background-image: url(../images/Ellipse5.png);
-}
 
 .main-followersList .list-followers div {
     display: flex;
