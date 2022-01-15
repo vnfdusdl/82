@@ -43,6 +43,15 @@ body {
   align-items: center;
   padding: 30px 50px;
 }
+.profile_user .profile_image {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+}
+.info_user {
+  display: flex;
+  flex-direction: column;
+}
 .profile_user p {
   font-size: 18px;
   font-weight: bold;
@@ -182,6 +191,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  flex-grow: 1;
 }
 .content_feed .edit_feed {
   float: right;
@@ -230,6 +240,7 @@ body {
 .content_feed .icon_feed {
   display: flex;
   align-items: center;
+  margin-top: 16px;
   /* display: none; */
 }
 .icon_feed img {
