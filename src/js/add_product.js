@@ -51,7 +51,7 @@ function linkTest() {
         linkFlag = true;
     }
 }
-
+nameInput.focus();
 nameInput.addEventListener('focus', function () {
     nameTest();
     btnAttrChange();
