@@ -43,6 +43,8 @@ async function login() {
   if (json.message) {
     document.querySelector('.txt_loginWarn').innerText = `*이메일 또는 비밀번호가 일치하지 않습니다`
   }
+  console.log(json);
+
   localStorage.setItem("Token",json.user.token)
   // accountname 이나 id를 같이 넣어준다
   // 토큰만으로 유저의 정보를 알 수 있나?
