@@ -42,6 +42,10 @@ function priceTest() {
     priceInput.value = priceInput.value.replace(RegExp2, '');
 }
 
+function priceChange() {
+    priceInput.value = priceInput.value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function linkTest() {
     const RegExp3 = /(http(s)?:\/\/)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/gi;
     if (!RegExp3.test(linkInput.value)) {
@@ -66,6 +70,8 @@ priceInput.addEventListener('keyup', function () {
     priceTest();
     btnAttrChange();
 });
+
+priceInput.addEventListener("blur", priceChange)
 
 linkInput.addEventListener('keyup', function () {
     linkTest();
@@ -110,7 +116,7 @@ btnSave.addEventListener('click', formSubmit);
 
 async function formSubmit() {
     const itemName = nameInput.value;
-    const itemPrice = parseInt(priceInput.value); //number로 변환
+    const itemPrice = parseInt(priceInput.value.replaceAll(",", ""),10); //number로 변환
     const  itemLink = linkInput.value;
     const itemImage = imgPreview.style.backgroundImage.slice(5, -2); //url()을 잘라주기 위해서.
     const token = localStorage.getItem('Token');
@@ -140,3 +146,30 @@ async function formSubmit() {
         alert(err);
     }
 }
+
+async function formGET() {
+    const itemName = nameInput.value;
+    const itemPrice = parseInt(priceInput.value.replaceAll(",", ""),10); //number로 변환
+    const  itemLink = linkInput.value;
+    const itemImage = imgPreview.style.backgroundImage.slice(5, -2); //url()을 잘라주기 위해서.
+    const token = localStorage.getItem('Token');
+    try {
+        const res = await fetch(`http://146.56.183.55:5050/product`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-type': 'application/json',
+            }
+        });
+        const json = await res.json();
+        console.log(json)
+        // if (res.status == 200) {
+        //     location.href = './myprofile.html';
+        // } else {
+        //     console.log(json);
+        // }
+    } catch (err) {
+        alert(err);
+    }
+}
+formGET()
