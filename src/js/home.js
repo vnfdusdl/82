@@ -104,10 +104,12 @@ function imgLoad(posts) {
       <h4 class="sr-only">피드</h4>
       <img class="profile_feed" src="${authorImage}" alt="${authorAccount}님의 프로필 사진" />
       <div class="content_feed">
-        <div>
+        <div class="content_nav">
           <strong>${authorName}</strong>
-          <img src="../images/icon/s-icon-more-vertical.png" alt="게시물 옵션" class="edit_feed" />
-        </div>
+          <button type="button" class="btn_postOption">
+            <img src="../images/icon/s-icon-more-vertical.png" alt="게시물 옵션" class="edit_feed" />
+          </button>
+          </div>
         <span>@${authorAccount}</span>
         <p>
           ${content}
