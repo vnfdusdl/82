@@ -85,7 +85,7 @@ function imgLoad(posts) {
     const image = post.image
     const commentCount = post.commentCount
     const content = post.content
-    const heartCounter = post.heartCounter
+    const heartCount = post.heartCount
     const hearted = post.hearted
 
     let imgTag;
@@ -119,7 +119,7 @@ function imgLoad(posts) {
         </div>
         <div class="icon_feed">
           <img src="../images/icon/icon-heart.png" alt="" />
-          <span class="likecount_feed">${heartCounter}</span>
+          <span class="likecount_feed">${heartCount}</span>
           <img src="../images/icon/icon-message-circle.png" alt="" />
           <span class="messagecount_feed">${commentCount}</span>
         </div>
