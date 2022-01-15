@@ -71,6 +71,13 @@ async function getFeed() {
   })
   const json = await res.json()
   const posts = json.posts
+
+  console.log(json);
+  imgLoad(posts);
+
+}
+
+function imgLoad(posts) {
   posts.forEach(post => {
     const authorImage = post.author.image
     const authorAccount = post.author.accountname
@@ -80,7 +87,18 @@ async function getFeed() {
     const content = post.content
     const heartCounter = post.heartCounter
     const hearted = post.hearted
-    console.log(json);
+
+    let imgTag;
+
+    console.log(image);
+
+    if (image === '') {
+      imgTag = '';
+    } else {
+      imgTag = `<img src= "${image}" alt="" class="image_feed" />`;
+
+    }
+
     document.querySelector(".feed_section").innerHTML += `
     <article class="card_feed">
       <h4 class="sr-only">피드</h4>
@@ -95,7 +113,7 @@ async function getFeed() {
           ${content}
         </p>
         <div class="imagelist_feed">
-          <img src="${image}" alt="" class="image_feed" />
+          ${imgTag}
         </div>
         <div class="icon_feed">
           <img src="../images/icon/icon-heart.png" alt="" />
@@ -107,6 +125,9 @@ async function getFeed() {
       </div>
     </article>
     `
+
+
   });
 }
+
 getFeed()
