@@ -88,15 +88,17 @@ function imgLoad(posts) {
     const heartCount = post.heartCount
     const hearted = post.hearted
 
-    let imgTag;
+    const imgArray = image.split(',');
+    const img = imgArray[0];
 
-    console.log(image);
+    console.log(img);
+
+    let imgTag;
 
     if (image === '') {
       imgTag = '';
     } else {
-      imgTag = `<img src= "${image}" alt="" class="image_feed" />`;
-
+      imgTag = `<img src= "${img}" alt="" class="image_feed" />`;
     }
 
     document.querySelector(".feed_section").innerHTML += `
