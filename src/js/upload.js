@@ -126,4 +126,5 @@ async function createPost(e) {
 $submitBtn.addEventListener('click',(e) => {
   e.preventDefault();
   createPost()
+  window.history.back();
 })
