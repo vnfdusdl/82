@@ -74,9 +74,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: splash 3s linear;
+  animation: splash 4s linear;
   animation-fill-mode: forwards;
 }
+.splash img {
+  animation: splashImg 2s linear forwards;
+}
+
+@keyframes splashImg {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
 
 @keyframes splash {
   0% {opacity: 1;}
