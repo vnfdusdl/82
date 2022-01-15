@@ -72,15 +72,15 @@ async function getFeed() {
   const json = await res.json()
   const posts = json.posts
   posts.forEach(post => {
-    const authorImage = post.author.authorImage
+    const authorImage = post.author.image
     const authorAccount = post.author.accountname
     const authorName = post.author.username
     const image = post.image
-    console.log(image)
     const commentCount = post.commentCount
     const content = post.content
     const heartCounter = post.heartCounter
     const hearted = post.hearted
+    console.log(json);
     document.querySelector(".feed_section").innerHTML += `
     <article class="card_feed">
       <h4 class="sr-only">피드</h4>
@@ -96,16 +96,12 @@ async function getFeed() {
         </p>
         <div class="imagelist_feed">
           <img src="${image}" alt="" class="image_feed" />
-          <img src="../images/post-img-example.png" alt="" class="image_feed" />
-          <img src="https://dimg.donga.com/wps/NEWS/IMAGE/2020/04/18/100708414.1.jpg" alt="" class="image_feed" />
-          <img src="https://dimg.donga.com/wps/NEWS/IMAGE/2020/04/18/100708414.1.jpg" alt="" class="image_feed" />
-          <div class="more_image"></div>
         </div>
         <div class="icon_feed">
           <img src="../images/icon/icon-heart.png" alt="" />
-          <span class="likecount_feed"></span>
+          <span class="likecount_feed">${heartCounter}</span>
           <img src="../images/icon/icon-message-circle.png" alt="" />
-          <span class="messagecount_feed">12</span>
+          <span class="messagecount_feed">${commentCount}</span>
         </div>
         <span class="date_feed">2020년 10월 21일</span>
       </div>
