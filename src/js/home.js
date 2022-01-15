@@ -51,3 +51,83 @@ modal.addEventListener("click", (e) => {
     body.classList.remove("modal_active");
   }
 });
+
+// 로그인을 했다면 피드, 아니라면 로그인 화면으로
+const container = document.querySelector('.feed_section');
+// else {
+//   location.href = './login.html'
+// }
+
+// 피드 불러오기
+async function getFeed() {
+  const url = "http://146.56.183.55:5050"
+  const token = localStorage.getItem("Token")
+  const res = await fetch(url + "/post/feed", {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-type": "application/json"
+    }
+  })
+  const json = await res.json()
+  const posts = json.posts
+
+  console.log(json);
+  imgLoad(posts);
+
+}
+
+function imgLoad(posts) {
+  posts.forEach(post => {
+    const authorImage = post.author.image
+    const authorAccount = post.author.accountname
+    const authorName = post.author.username
+    const image = post.image
+    const commentCount = post.commentCount
+    const content = post.content
+    const heartCounter = post.heartCounter
+    const hearted = post.hearted
+
+    let imgTag;
+
+    console.log(image);
+
+    if (image === '') {
+      imgTag = '';
+    } else {
+      imgTag = `<img src= "${image}" alt="" class="image_feed" />`;
+
+    }
+
+    document.querySelector(".feed_section").innerHTML += `
+    <article class="card_feed">
+      <h4 class="sr-only">피드</h4>
+      <img class="profile_feed" src="${authorImage}" alt="${authorAccount}님의 프로필 사진" />
+      <div class="content_feed">
+        <div>
+          <strong>${authorName}</strong>
+          <img src="../images/icon/s-icon-more-vertical.png" alt="게시물 옵션" class="edit_feed" />
+        </div>
+        <span>@${authorAccount}</span>
+        <p>
+          ${content}
+        </p>
+        <div class="imagelist_feed">
+          ${imgTag}
+        </div>
+        <div class="icon_feed">
+          <img src="../images/icon/icon-heart.png" alt="" />
+          <span class="likecount_feed">${heartCounter}</span>
+          <img src="../images/icon/icon-message-circle.png" alt="" />
+          <span class="messagecount_feed">${commentCount}</span>
+        </div>
+        <span class="date_feed">2020년 10월 21일</span>
+      </div>
+    </article>
+    `
+
+
+  });
+}
+
+getFeed()
