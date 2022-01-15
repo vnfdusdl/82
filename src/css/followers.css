@@ -17,9 +17,7 @@ html {
     min-height: 100vh;
     margin: 0 auto;
 }
-body {
-    height: 100%;
-}
+
 strong {
     font-weight: 500;
 }
@@ -41,9 +39,14 @@ button {
 /* 헤더 */
 .header-followers {
     display: flex;
+    position: fixed;
+    top: 0;
+    width: 390px;
+    background-color: #fff;
     justify-content: flex-start;
     align-items: center;
     border-bottom: 1px solid #dbdbdb;
+    z-index: 20;
 }
 
 .header-followers .btn_back {
@@ -56,8 +59,7 @@ button {
 
 /* 팔로워 목록 */
 .main-followersList {
-    /* min-height: 712px; */
-    margin-top: 24px;
+    margin: 77px 0 84px;
     padding: 0 16px;
 }
 .main-followersList .list-followers li {
@@ -65,11 +67,6 @@ button {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 16px;
-}
-
-.main-followersList .list-followers .cont_user {
-    display: flex;
-    justify-content: space-between;
 }
 
 .img_profile {
@@ -84,23 +81,21 @@ button {
     position: relative;
 }
 
-.main-followersList .list-followers div {
+.main-followersList .list-followers strong {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 5px 0 6px;
     margin-right: auto;
 }
-.main-followersList .list-followers .cont_user strong {
-    display: block;
-}
-.main-followersList .list-followers .cont_user .txt_preview {
+
+.main-followersList .list-followers .txt_preview {
     max-width: 238px;
     margin-top: 6px;
     font-size: 12px;
     color: #767676;
 }
-.main-followersList .list-followers .cont_user .txt_date {
+.main-followersList .list-followers.txt_date {
     margin-top: auto;
     padding: 3px 0;
 }
