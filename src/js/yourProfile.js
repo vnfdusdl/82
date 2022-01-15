@@ -14,7 +14,6 @@ const modalContent = document.querySelector(".content");
 const modalLogout = document.querySelector(".modal_logout");
 const cancelBtn = modalLogout.querySelector(".cancel");
 const main = document.querySelector("main");
-const followBtn = document.querySelector(".follow_user");
 const profileBtn = document.querySelector(".btn_profile");
 const body = document.body;
 
@@ -24,17 +23,6 @@ feedImages.forEach((e) => {
   const moreImage = e.querySelector(".more_image");
   if (imgCount <= 1) {
     moreImage.classList.add("sr-only");
-  }
-});
-
-// 팔로우 on/off
-followBtn.addEventListener("click", (e) => {
-  main.classList.toggle("following");
-  followBtn.classList.toggle("following");
-  if (followBtn.classList.contains("following")) {
-    followBtn.textContent = "팔로잉";
-  } else {
-    followBtn.textContent = "팔로우";
   }
 });
 
