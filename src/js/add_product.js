@@ -4,20 +4,6 @@ btnBack.addEventListener('click', () => {
     window.history.back();
 });
 
-//상품 사진 변경
-// const imgInput = document.querySelector('#input-img');
-// const imgLabel = document.querySelector('#label-img');
-// imgInput.addEventListener('change', (e) => {
-//     let image = e.target.files[0]; //파일 선택
-//     const reader = new FileReader();
-//     reader.readAsDataURL(image); // 파일을 읽는 메서드
-//     reader.addEventListener('load', ()=>{
-//         console.log(reader.result);
-//         imgLabel.style = `background-image : url(${reader.result}); background-position: center; background-size : cover`
-//     })
-
-// })
-
 //유효성 검사
 const nameInput = document.getElementById('item-name');
 const priceInput = document.getElementById('item-price');
@@ -146,30 +132,3 @@ async function formSubmit() {
         alert(err);
     }
 }
-
-async function formGET() {
-    const itemName = nameInput.value;
-    const itemPrice = parseInt(priceInput.value.replaceAll(",", ""),10); //number로 변환
-    const  itemLink = linkInput.value;
-    const itemImage = imgPreview.style.backgroundImage.slice(5, -2); //url()을 잘라주기 위해서.
-    const token = localStorage.getItem('Token');
-    try {
-        const res = await fetch(`http://146.56.183.55:5050/product`, {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-type': 'application/json',
-            }
-        });
-        const json = await res.json();
-        console.log(json)
-        // if (res.status == 200) {
-        //     location.href = './myprofile.html';
-        // } else {
-        //     console.log(json);
-        // }
-    } catch (err) {
-        alert(err);
-    }
-}
-formGET()
