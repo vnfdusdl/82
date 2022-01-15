@@ -40,17 +40,15 @@ async function getFollowerData() {
                 const intro = follower.intro;
                 const image = follower.image;
                 const followerAccountName = follower.accountname;
-                
-                
+                // localStorage.setItem()
                 document.querySelector('.list-followers').innerHTML += `
                 <li>
-                <a href="" class="cont_user">
                 <img src="${image}"  class="img_profile" />
-                <div>
-                <strong>${userName}</strong>
+                
+                <strong>
+                ${userName}
                 <small class="txt_preview txt_ellipsis">${intro}</small>
-                </div>
-                </a>
+                </strong>
                 <button id="${followerAccountName}" class="btn-follow" ></button>
                 </li>
                 `;
@@ -122,3 +120,16 @@ async function getFollowerData() {
     }
 }
 getFollowerData();
+
+//버튼을 클릭했을 때, searchedUserAccountname 에 accountname이 담기도록....... 
+const followerListContainer = document.querySelector('ul');
+
+followerListContainer.addEventListener('click', (e) => {
+    // console.log(e.target)
+    if(e.target.tagName !== 'LI' && e.target.tagName !== 'BUTTON') {
+        const accountname = e.target.parentNode.querySelector('.btn-follow').getAttribute('id');
+        // console.log(accountname);
+        localStorage.setItem('searchedUserAccountname', accountname);
+        location.href = './yourprofile.html';
+    }
+})
