@@ -10,7 +10,6 @@ const priceInput = document.getElementById('item-price');
 const linkInput = document.getElementById('item-link');
 const btnSave = document.querySelector('.btn-save');
 let nameFlag = false;
-let priceFlag = false;
 let linkFlag = false;
 
 function nameTest() {
@@ -21,6 +20,7 @@ function nameTest() {
     } else {
         nameFlag = true;
     }
+    warnName();
 }
 
 function priceTest() {
@@ -30,6 +30,7 @@ function priceTest() {
 
 function priceChange() {
     priceInput.value = priceInput.value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
 }
 
 function linkTest() {
@@ -40,6 +41,7 @@ function linkTest() {
     } else {
         linkFlag = true;
     }
+    warnLink()
 }
 nameInput.focus();
 nameInput.addEventListener('focus', function () {
@@ -70,6 +72,25 @@ function btnAttrChange() {
         btnSave.removeAttribute('disabled');
     } else {
         btnSave.setAttribute('disabled', 'disabled');
+    }
+}
+
+//경고 문구
+function warnName() {
+    const warning = document.getElementById('itemname-test-warning');
+    if(nameFlag === true) {
+        warning.style.display = 'none';
+    } else {
+        warning.style.display = 'block';
+    }
+}
+
+function warnLink() {
+    const warning = document.getElementById('itemlink-test-warning');
+    if(linkFlag === true) {
+        warning.style.display = 'none';
+    } else {
+        warning.style.display = 'block';
     }
 }
 
