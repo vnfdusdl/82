@@ -216,6 +216,7 @@ body {
   object-fit: cover;
   border-radius: 10px;
   margin-top: 16px;
+  cursor: pointer;
 }
 .content_feed .date_feed {
   margin-top: 16px;
@@ -286,7 +287,7 @@ body {
 .card_wrap.grid .card_feed > img {
   display: none;
 }
-.card_wrap.grid .content_feed:after {
+.card_wrap.grid .content_feed::after {
   width: 0;
   height: 0;
   background: none;
