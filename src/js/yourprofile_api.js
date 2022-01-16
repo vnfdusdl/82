@@ -211,7 +211,7 @@ async function getFeed() {
       const commentPost = json.post.filter(
         (post) => post.content === commentPostContent
       );
-      localStorage.setItem("commentPostId", commentPost[0].id);
+      localStorage.setItem("selectedPostId", commentPost[0].id);
       location.href = "./post.html";
     });
   });
@@ -223,7 +223,7 @@ async function getFeed() {
       const imagePost = json.post.filter(
         (post) => post.content === imagePostContent
       );
-      localStorage.setItem("commentPostId", imagePost[0].id);
+      localStorage.setItem("selectedPostId", imagePost[0].id);
       location.href = "./post.html";
     });
   });
