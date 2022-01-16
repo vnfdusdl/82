@@ -59,6 +59,9 @@ label~label {
 }
 
 /* 프로필설정 UI */
+.set_profile {
+  display: none;
+}
 /* 정보입력제목 */
 .tit_setting {
   text-align: center;
