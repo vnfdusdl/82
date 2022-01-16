@@ -1,59 +1,9 @@
-// 이전 페이지로 이동
-const btnBack = document.querySelector('.btn-back');
-btnBack.addEventListener('click', () => {
-    window.history.back();
-});
-
-//유효성 검사
+let userId = '';
 let nameInput = document.getElementById('username');
-let idInput = document.getElementById('accountname');
+let accountInput = document.getElementById('accountname');
 const btnSave = document.querySelector('.btn-save');
 let nameFlag = false;
 let idFlag = false;
-
-function nameTest() {
-    const RegExp1 = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,10}$/;
-    if (!RegExp1.test(nameInput.value)) {
-        nameInput.focus();
-        nameFlag = false;
-    } else {
-        nameFlag = true;
-    }
-}
-function idTest() {
-    const RegExp2 = /^[a-zA-Z0-9_,]+$/;
-    if (!RegExp2.test(idInput.value)) {
-        idInput.focus();
-        idFlag = false;
-    } else {
-        idFlag = true;
-    }
-}
-
-//화면이 로딩될 때, nameInput에 focus가 되도록 했고, 이때 바로 유효성 검사가 되도록 함. 
-nameInput.addEventListener('focus', function () {
-    nameTest();
-    btnAttrChange();
-});
-
-nameInput.addEventListener('keyup', function () {
-    nameTest();
-    btnAttrChange();
-});
-
-idInput.addEventListener('keyup', function () {
-    idTest();
-    btnAttrChange();
-});
-
-// 저장 버튼 활성화 및 비활성화
-function btnAttrChange() {
-    if (nameFlag && idFlag) {
-        btnSave.removeAttribute('disabled');
-    } else {
-        btnSave.setAttribute('disabled', 'disabled');
-    }
-}
 
 // 기존 계정 정보 불러오기
 async function getUserData() {
@@ -70,21 +20,120 @@ async function getUserData() {
         }
     );
     const json = await res.json();
-    console.log(json.profile)
+    console.log(json.profile);
     const userImg = document.getElementById('label-img');
     const intro = document.getElementById('intro');
-    const userImgUrl = json.profile.image
-    userImg.style.backgroundImage = `url(${userImgUrl})`
-    console.log(userImg);
+    const userImgUrl = json.profile.image;
+    userImg.style.backgroundImage = `url(${userImgUrl})`;
+    // console.log(userImg);
     nameInput.value = json.profile.username;
-    idInput.value = accountName;
+    accountInput.value = accountName;
     intro.value = json.profile.intro;
-
+    // console.log(json.profile._id);
+    userId = json.profile._id;
     nameTest();
     idTest();
-    nameInput.focus(); //페이지 로드될 때 nameInput에 focus 되도록 하고, 이때 유효성 검사 일어남. 
+    nameInput.focus(); //페이지 로드될 때 nameInput에 focus 되도록 하고, 이때 유효성 검사 일어남.
 }
 getUserData();
+
+// 이전 페이지로 이동
+const btnBack = document.querySelector('.btn-back');
+btnBack.addEventListener('click', () => {
+    window.history.back();
+});
+
+//유효성 검사
+function nameTest() {
+    const RegExp1 = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,10}$/;
+    if (!RegExp1.test(nameInput.value)) {
+        nameInput.focus();
+        nameFlag = false;
+    } else {
+        nameFlag = true;
+    }
+}
+function idTest() {
+    const RegExp2 = /^[a-zA-Z0-9_,]+$/;
+    if (!RegExp2.test(accountInput.value)) {
+        accountInput.focus();
+        idFlag = false;
+    } else {
+        idFlag = true;
+    }
+}
+
+//화면이 로딩될 때, nameInput에 focus가 되도록 했고, 이때 바로 유효성 검사가 되도록 함.
+nameInput.addEventListener('focus', function () {
+    nameTest();
+    idUniqueTest();
+    btnAttrChange();
+});
+
+nameInput.addEventListener('keyup', function () {
+    nameTest();
+    btnAttrChange();
+});
+
+accountInput.addEventListener('keyup', function () {
+    idTest();
+    idUniqueTest();
+    btnAttrChange();
+});
+
+//id(accountname) 중복 검사
+let uniqueFlag = true;
+async function idUniqueTest() {
+    const accountname = accountInput.value;
+    const res = await fetch(`http://146.56.183.55:5050/user`, {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json',
+        },
+    });
+
+    const json = await res.json();
+    console.log(json);
+    userIDs = [];
+
+    //안되는 코드
+    // json.map((user) => userIDs.push(user.accountname));
+    // const flag = userIDs.find((x) => x === accountname);
+    // console.log(!!flag);
+    // if(!!flag) {
+    //     uniqueFlag = false;
+    // } else {
+    //     uniqueFlag = true;
+    // }
+    
+    //되는 코드
+    json.map((user) => {
+        userIDs.push({ account: user.accountname, id: user._id });
+    });
+    console.log(userIDs);
+    const flag = userIDs.find((x) => x.account === accountname && x.id !== userId);
+    console.log(`이미 존재하는 id입니다 : ${!!flag}`); 
+
+    if(!!flag) {
+        uniqueFlag = false;
+    } else {
+        uniqueFlag = true;
+
+    }
+    console.log(`존재하는 id이면 flase가 나올거임 : ${uniqueFlag}`);
+    btnAttrChange();
+}
+
+// 저장 버튼 활성화 및 비활성화
+function btnAttrChange() {
+    if (nameFlag && idFlag && uniqueFlag) {
+        console.log(`이게 출력되면 abled인거!, ${uniqueFlag}`)
+        btnSave.removeAttribute('disabled');
+    } else {
+        console.log(`이게 출력되면 disabled인거!, ${uniqueFlag}`) 
+        btnSave.setAttribute('disabled', 'disabled');
+    }
+}
 
 // 프로필 사진 변경
 document.querySelector('#input-img').addEventListener('change', profileImage);
@@ -115,9 +164,9 @@ btnSave.addEventListener('click', formSubmit);
 
 async function formSubmit() {
     const userName = nameInput.value;
-    const accountName = idInput.value;
+    const accountName = accountInput.value;
     const intro = document.querySelector('#intro').value;
-    const userImgUrl = imgPreview.style.backgroundImage.slice(5,-2); //url()을 잘라주기 위해서. 
+    const userImgUrl = imgPreview.style.backgroundImage.slice(5, -2); //url()을 잘라주기 위해서.
     const token = localStorage.getItem('Token');
     try {
         const res = await fetch(`http://146.56.183.55:5050/user`, {
@@ -137,6 +186,7 @@ async function formSubmit() {
         });
         const json = await res.json();
         if (res.status == 200) {
+            localStorage.setItem('Accountname', json.user.accountname);
             location.href = './myprofile.html';
         } else {
             console.log(json);
