@@ -93,7 +93,6 @@ button {
 
 .input-profile label {
     display: block;
-    /* margin-bottom: 16px; */
     color: #767676;
     font-size: 12px;
     line-height: 15px;
@@ -101,7 +100,7 @@ button {
 }
 
 .input-profile label:not(:first-child) {
-    margin-top: 10px;
+    margin-top: 16px;
 }
 
 .input-profile input {
@@ -110,7 +109,7 @@ button {
     line-height: 18px;
     color: black;
     padding: 0 0 9px;
-    margin: 6px 0 6px;
+    margin-top: 6px;
     outline: none;
     border: none;
     border-bottom: 1px solid #dbdbdb;
@@ -128,4 +127,5 @@ button {
     font-size: 12px;
     line-height: 14px;
     color: #EB5757;
+    margin-top: 6px;
 }
