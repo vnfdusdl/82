@@ -9,6 +9,8 @@ const deleteFeed = document.querySelector(".delete_feed");
 const modifyFeed = document.querySelector(".modify_feed");
 const token = localStorage.getItem("Token");
 
+document.title = "감성82 | " + myAccountName;
+
 async function getProfile() {
   const url = `http://146.56.183.55:5050/profile/${myAccountName}`;
   const res = await fetch(url, {
@@ -67,21 +69,21 @@ async function getFeed() {
   });
   const json = await res.json();
   const { image, username, accountname } = json.post[0].author;
-  console.log(json);
   const userImage = image;
   json.post.forEach((post) => {
     let { content, image, heartCount, commentCount, hearted, createdAt } = post;
     const div = document.createElement("div");
+    if (!image) image = "";
     const images = image.split(",");
     if (images[0]) {
       images.forEach((img) => {
         div.innerHTML += `
-        <img
-        src=${img} 
-        alt=""
-        class="image_feed"
-        />
-        `;
+          <img
+          src=${img} 
+          alt=""
+          class="image_feed"
+          />
+          `;
       });
       div.className = "imagelist_feed";
     }
@@ -205,7 +207,6 @@ async function getProductList() {
     },
   });
   const json = await res.json();
-  console.log(json);
   json.product.forEach((item) => {
     let { itemName, itemImage, price, link } = item;
     itemImage = itemImage.includes("http://146.56.183.55:5050/")
