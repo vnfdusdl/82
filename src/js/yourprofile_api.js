@@ -11,6 +11,7 @@ const token = localStorage.getItem("Token");
 if (myAccountName === searchedUserAccountName) {
   location.href = "./myprofile.html";
 }
+document.title = "감성82 | " + searchedUserAccountName;
 async function getProfile() {
   const url = `http://146.56.183.55:5050/profile/${searchedUserAccountName}`;
   const res = await fetch(url, {
@@ -127,7 +128,6 @@ async function getFeed() {
   });
   const json = await res.json();
   const { image, username, accountname } = json.post[0].author;
-  console.log(json);
   const userImage = image;
   json.post.forEach((post) => {
     let { content, image, heartCount, commentCount, hearted, createdAt } = post;

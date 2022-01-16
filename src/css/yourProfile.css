@@ -16,6 +16,7 @@ main.following {
   display: block;
 }
 body {
+  margin: 0 auto;
   max-width: 390px;
   background-color: #f2f2f2;
 }
