@@ -1,5 +1,9 @@
 const form = document.querySelector('.form_upload')
-
+// 뒤로가기
+const btnBack = document.querySelector('.btn_back');
+btnBack.addEventListener('click', () => {
+    window.history.back();
+});
 // 게시글이 입력되면 '업로드'버튼 활성화
 function send() {
   const textarea = form.querySelector('.inp_textarea');
