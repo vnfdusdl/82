@@ -265,12 +265,11 @@ body {
   margin-bottom: 74px;
 }
 .card_wrap.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px 8px 16px 16px;
 }
-.card_feed.grid > img {
+.card_wrap.grid .card_feed > img {
   display: none;
 }
 .card_wrap.grid .image_feed {
@@ -278,8 +277,9 @@ body {
   height: 114px;
   object-fit: cover;
   border-radius: 0;
-  margin: 0;
+  margin: 0 8px 8px 0;
 }
+
 .card_wrap.grid strong,
 .card_wrap.grid span,
 .card_wrap.grid p,

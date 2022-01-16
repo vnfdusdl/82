@@ -13,6 +13,7 @@ const modalLogout = document.querySelector(".modal_logout");
 const cancelBtn = modalLogout.querySelector(".cancel");
 const main = document.querySelector("main");
 const profileBtn = document.querySelector(".btn_profile");
+const modalFeedEdit = document.querySelector(".modal_feed");
 const backBtn = document.querySelector(".btn_back");
 
 const body = document.body;
@@ -101,7 +102,7 @@ logoutProfile.addEventListener("click", () => {
 });
 
 modalLogout.addEventListener("click", (e) => {
-  if (e.target.classList.contains("modal-overlay")) {
+  if (!e.target.classList.contains("modal_content")) {
     modalLogout.style.display = "none";
     body.classList.remove("modal_active");
   }
@@ -115,8 +116,16 @@ logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("Token");
   location.href = "./login.html";
 });
+
+modalFeedEdit.addEventListener("click", (e) => {
+  if (e.target.classList.contains("modal-overlay")) {
+    modalFeedEdit.style.display = "none";
+  }
+});
+
 backBtn.addEventListener("click", () => {
   history.back();
 });
+
 iList.addEventListener("click", iconClickHandler);
 iAlbum.addEventListener("click", iconClickHandler);
