@@ -204,9 +204,28 @@ async function getFeed() {
     });
   });
   const commentBtns = document.querySelectorAll(".comment_feed");
-  const feedImages = document.querySelectorAll(".image_feed");
   commentBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {});
+    btn.addEventListener("click", (e) => {
+      const commentPostContent =
+        e.target.parentNode.parentNode.querySelector("p").textContent;
+      const commentPost = json.post.filter(
+        (post) => post.content === commentPostContent
+      );
+      localStorage.setItem("commentPostId", commentPost[0].id);
+      location.href = "./post.html";
+    });
+  });
+  const feedImages = document.querySelectorAll(".image_feed");
+  feedImages.forEach((img) => {
+    img.addEventListener("click", (e) => {
+      const imagePostContent =
+        e.target.parentNode.querySelector("p").textContent;
+      const imagePost = json.post.filter(
+        (post) => post.content === imagePostContent
+      );
+      localStorage.setItem("commentPostId", imagePost[0].id);
+      location.href = "./post.html";
+    });
   });
 }
 

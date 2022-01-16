@@ -216,6 +216,7 @@ body {
   object-fit: cover;
   border-radius: 10px;
   margin-top: 16px;
+  cursor: pointer;
 }
 .content_feed .date_feed {
   margin-top: 16px;
