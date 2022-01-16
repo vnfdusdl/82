@@ -2,11 +2,9 @@ const iList = document.querySelector(".icon_list");
 const iAlbum = document.querySelector(".icon_album");
 const feedCard = document.querySelector(".card_wrap");
 const feedImages = document.querySelectorAll(".imagelist_feed");
-const feedEditBtn = document.querySelector(".edit_feed");
 const moreImageBtn = document.querySelectorAll(".more_image");
 const feedSection = document.querySelector(".feed_section");
 const modal = document.querySelector(".modal");
-const modalFeedEdit = document.querySelector(".modal_feed");
 const modalProfile = document.querySelector(".modal_profile");
 const logoutProfile = document.querySelector(".logout_profile");
 const closeBtn = modal.querySelector(".close-area");
@@ -32,7 +30,6 @@ function iconClickHandler(e) {
     iList.src = "../images/icon/icon-post-list-on.png";
     iAlbum.src = "../images/icon/icon-post-album-off.png";
     feedCard.classList.remove("grid");
-    feedEditBtn.style.display = "block";
     moreImageBtn.forEach((btn) => {
       btn.classList.remove("album");
     });
@@ -40,7 +37,6 @@ function iconClickHandler(e) {
     iList.src = "../images/icon/icon-post-list-off.png";
     iAlbum.src = "../images/icon/icon-post-album-on.png";
     feedCard.classList.add("grid");
-    feedEditBtn.style.display = "none";
     moreImageBtn.forEach((btn) => {
       btn.classList.add("album");
     });
@@ -79,20 +75,6 @@ modal.addEventListener("click", (e) => {
   if (e.target.classList.contains("modal-overlay")) {
     modal.style.display = "none";
     modalContent.innerHTML = "";
-    feedSection.classList.remove("modal_active");
-    body.classList.remove("modal_active");
-  }
-});
-
-feedEditBtn.addEventListener("click", (e) => {
-  modalFeedEdit.style.display = "flex";
-  feedSection.classList.add("modal_active");
-  body.classList.add("modal_active");
-});
-
-modalFeedEdit.addEventListener("click", (e) => {
-  if (e.target.classList.contains("modal-overlay")) {
-    modalFeedEdit.style.display = "none";
     feedSection.classList.remove("modal_active");
     body.classList.remove("modal_active");
   }

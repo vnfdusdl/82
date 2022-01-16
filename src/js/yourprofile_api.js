@@ -128,6 +128,7 @@ async function getFeed() {
   });
   const json = await res.json();
   const { image, username, accountname } = json.post[0].author;
+  console.log(json);
   const userImage = image;
   json.post.forEach((post) => {
     let { content, image, heartCount, commentCount, hearted, createdAt } = post;
@@ -161,13 +162,11 @@ async function getFeed() {
             <strong>${username}</strong>
           <span>@ ${accountname}</span>
           <p>${content}</p>
-          <div class="imagelist_feed">
             ${
               images[0]
                 ? `<img src=${images[0]} alt="" class="image_feed">`
-                : `<div></div>`
+                : ""
             }
-          </div>
           <div class="icon_feed">
             <img class="like_feed" src="${
               hearted
@@ -175,7 +174,7 @@ async function getFeed() {
                 : `../images/icon/icon-heart.png`
             }" alt="" />
             <span class="likecount_feed">${heartCount}</span>
-            <img src="../images/icon/icon-message-circle.png" alt="" />
+            <img class="comment_feed" src="../images/icon/icon-message-circle.png" alt="" />
             <span class="messagecount_feed">${commentCount}</span>
           </div>
           <span class="date_feed">${createdAt}</span>
@@ -184,28 +183,30 @@ async function getFeed() {
     `;
   });
 
-  const likeBtn = document.querySelectorAll(".like_feed");
-  const likeCount = document.querySelector(".likecount_feed");
-  likeBtn.forEach((btn) => {
+  const likeBtns = document.querySelectorAll(".like_feed");
+  likeBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const likedPostContent =
         e.target.parentNode.parentNode.querySelector("p").textContent;
       const likedPost = json.post.filter(
         (post) => post.content === likedPostContent
       );
+      const likeCount = e.target.parentNode.querySelector(".likecount_feed");
       if (e.target.src.includes("/images/icon/icon-heart-active.png")) {
         getUnLike(likedPost[0].id);
-        likeBtn.src = "../images/icon/icon-heart.png";
-        console.log(likeBtn.src);
+        btn.src = btn.src.replace("heart-active", "heart");
         likeCount.textContent = +likeCount.textContent - 1;
       } else {
         getLike(likedPost[0].id);
-        console.log(likeBtn.src);
-
-        likeBtn.src = "../images/icon/icon-heart-active.png";
+        btn.src = btn.src.replace("heart", "heart-active");
         likeCount.textContent = +likeCount.textContent + 1;
       }
     });
+  });
+  const commentBtns = document.querySelectorAll(".comment_feed");
+  const feedImages = document.querySelectorAll(".image_feed");
+  commentBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {});
   });
 }
 
@@ -237,28 +238,24 @@ async function getProductList() {
 
 async function getLike(postId) {
   const url = `http://146.56.183.55:5050/post/${postId}/heart`;
-  const res = await fetch(url, {
+  await fetch(url, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-type": "application/json",
     },
   });
-  const json = await res.json();
-  console.log(json);
 }
 
 async function getUnLike(postId) {
   const url = `http://146.56.183.55:5050/post/${postId}/unheart`;
-  const res = await fetch(url, {
+  await fetch(url, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-type": "application/json",
     },
   });
-  const json = await res.json();
-  console.log(json);
 }
 getFeed();
 getProductList();

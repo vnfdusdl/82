@@ -286,7 +286,7 @@ body {
 .card_wrap.grid .card_feed > img {
   display: none;
 }
-.card_wrap.grid .content_feed:after {
+.card_wrap.grid .content_feed::after {
   width: 0;
   height: 0;
   background: none;
