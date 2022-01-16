@@ -28,8 +28,11 @@
             <article class="input-profile">
                 <label for="username">사용자 이름</label>
                 <input type="text" name="username" placeholder="2~10자 이내여야 합니다" id="username">
+                <span id="username-test-warning" class="warning">* 2~10자 이내여야 합니다.</span>
                 <label for="accountname"">계정 ID</label>
                 <input type="text" name="accountname" placeholder="영문, 숫자, 특수문자(,),(_)만 사용 가능합니다." id="accountname">
+                <span id="accountname-test-warning" class="warning">* 영문, 숫자, 특수문자(,),(_)만 사용 가능합니다.</span>
+                <span id="accountname-unique-warning" class="warning">* 이미 존재하는 ID 입니다.</span>
                 <label for="intro">소개</label>
                 <input type="text" name="intro" placeholder="자신과 판매할 상품에 대해 소개해 주세요!" id="intro" maxlength="60">
             </article>

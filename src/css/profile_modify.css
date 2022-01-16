@@ -90,6 +90,7 @@ button {
     max-width: 322px;
     margin: 0 auto;
 }
+
 .input-profile label {
     display: block;
     /* margin-bottom: 16px; */
@@ -99,13 +100,17 @@ button {
     
 }
 
+.input-profile label:not(:first-child) {
+    margin-top: 10px;
+}
+
 .input-profile input {
     width: 100%;
     font-size: 14px;
     line-height: 18px;
     color: black;
     padding: 0 0 9px;
-    margin: 6px 0 16px;
+    margin: 6px 0 6px;
     outline: none;
     border: none;
     border-bottom: 1px solid #dbdbdb;
@@ -116,4 +121,11 @@ button {
 }
 .input-profile input::placeholder {
     color: #dbdbdb;
+}
+
+.warning {
+    display: none;
+    font-size: 12px;
+    line-height: 14px;
+    color: #EB5757;
 }

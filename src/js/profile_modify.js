@@ -52,6 +52,7 @@ function nameTest() {
     } else {
         nameFlag = true;
     }
+    warnUsername()
 }
 function idTest() {
     const RegExp2 = /^[a-zA-Z0-9_,]+$/;
@@ -61,6 +62,7 @@ function idTest() {
     } else {
         idFlag = true;
     }
+    warnAccountname()
 }
 
 //화면이 로딩될 때, nameInput에 focus가 되도록 했고, 이때 바로 유효성 검사가 되도록 함.
@@ -121,6 +123,7 @@ async function idUniqueTest() {
 
     }
     console.log(`존재하는 id이면 flase가 나올거임 : ${uniqueFlag}`);
+    wanrAccountUnique();
     btnAttrChange();
 }
 
@@ -132,6 +135,34 @@ function btnAttrChange() {
     } else {
         console.log(`이게 출력되면 disabled인거!, ${uniqueFlag}`) 
         btnSave.setAttribute('disabled', 'disabled');
+    }
+}
+
+//경고 문구
+function warnUsername() {
+    const warning = document.getElementById('username-test-warning');
+    if(nameFlag === true) {
+        warning.style.display = 'none';
+    } else {
+        warning.style.display = 'block';
+    }
+}
+
+function warnAccountname() {
+    const warning = document.getElementById('accountname-test-warning');
+    if(idFlag === true) {
+        warning.style.display = 'none';
+    } else {
+        warning.style.display = 'block';
+    }
+}
+
+function wanrAccountUnique() {
+    const warning = document.getElementById('accountname-unique-warning');
+    if(uniqueFlag === true) {
+        warning.style.display = 'none';
+    } else {
+        warning.style.display = 'block';
     }
 }
 
