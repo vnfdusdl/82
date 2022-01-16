@@ -114,7 +114,10 @@ function imgLoad(posts) {
     ${imgTag}
     </div>
     <div class="icon_feed">
-    <img src="../images/icon/icon-heart.png" alt="" />
+    <img class="like_feed" src="${hearted
+        ? `../images/icon/icon-heart-active.png`
+        : `../images/icon/icon-heart.png`
+      }" alt="" />
     <span class="likecount_feed">${heartCount}</span>
     <img src="../images/icon/icon-message-circle.png" alt="" />
     <span class="messagecount_feed">${commentCount}</span>
@@ -123,6 +126,9 @@ function imgLoad(posts) {
     </div>
     </article>
     `
+
+
+
   });
 }
 
@@ -154,3 +160,25 @@ function getFistPage() {
   article.appendChild(a);
   main.prepend(article);
 }
+
+// 하트 클릭 시 변화
+const likeBtns = document.querySelectorAll(".like_feed");
+likeBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const likedPostContent =
+      e.target.parentNode.parentNode.querySelector("p").textContent;
+    const likedPost = json.post.filter(
+      (post) => post.content === likedPostContent
+    );
+    const likeCount = e.target.parentNode.querySelector(".likecount_feed");
+    if (e.target.src.includes("/images/icon/icon-heart-active.png")) {
+      getUnLike(likedPost[0].id);
+      btn.src = btn.src.replace("heart-active", "heart");
+      likeCount.textContent = +likeCount.textContent - 1;
+    } else {
+      getLike(likedPost[0].id);
+      btn.src = btn.src.replace("heart", "heart-active");
+      likeCount.textContent = +likeCount.textContent + 1;
+    }
+  });
+});
