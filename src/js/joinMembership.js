@@ -58,7 +58,6 @@ async function checkEmailValid(email) {
     body:JSON.stringify(emailData)
   })
   const json = await res.json();
-  // console.log(json);
   return json.message == "사용 가능한 이메일 입니다." ? true : false
 }
 
@@ -66,8 +65,6 @@ btnNext.addEventListener("click", async () => {
   // 클릭이벤트 발생 시의 값을 불러와야 하기에 이벤트 함수 안에서 선언
   const emailVal = email.value;
   const emailValid = await checkEmailValid(emailVal)
-  console.log(emailVal);
-  console.log(emailValid);
   if (emailValid) {
     $signIn.style.display = "none"
     $setProfile.style.display = "block"
@@ -86,15 +83,13 @@ const imgPre = document.querySelector("#img_pre");
 async function imageUpload(files){
   const formData = new FormData();
   formData.append("image", files[0]);//formData.append("키이름","값")
-  console.log(formData);
   const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
       method: "POST",
       body : formData
   })
   const data = await res.json()
   const productImgName = data["filename"];
-  // console.log(productImgName); => 1642158806566.png 요런식임
-  return productImgName
+  return productImgName // 1642158806566.png 이런 형태
 }
 
 // 클릭시, 데이터(사진) -> 서버 -> 다시 내 html img의 src로
@@ -102,13 +97,11 @@ async function profileImage(e) {
   // e : input:change == 사진 올리기
   const files = e.target.files
   const result = await imageUpload(files)
-  imgPre.src = url+"/"+result // 요청url/123889127.png
+  imgPre.src = url+"/"+result
   //console.log(result) => 1642158806566.png 
 }
 // 인풋에 변화가 생기면 해당 태그의 소스값을 서버에서 받아온다
 document.querySelector("#inp_img").addEventListener("change",profileImage)
-
-// 유효성검사!!! 이름 2~10자 //// 계정아이디 영문,숫자,특수문자(,)(_) + 중복불가
 
 // 이름 : 공백제외 10자 => html max-length로는 불가능
 const userName = document.querySelector("#inp_name");
@@ -131,6 +124,9 @@ let idFlag = false;
 // 계정 아이디 => 영문,숫자,특수문자(.),(_) 
 const userId = document.querySelector("#inp_Id");
 userId.addEventListener('input', idCheck);
+userId.addEventListener('input', () => {
+  warnDuplicate.style.display = 'none';
+});
 
 function idCheck() {
   const exptext = /^[A-Za-z0-9_.]{1,}$/;
@@ -155,6 +151,7 @@ function btnActive() {
 }
 // 종합으로 내 프로필설정값 보내기
 const submitBtn = document.querySelector(".btn_start");
+const warnDuplicate = document.querySelector("#warn_userdId");
 
 async function join(){
   const email = document.querySelector("#inp_loginEmail").value;
@@ -164,7 +161,6 @@ async function join(){
   const intro = document.querySelector("#inp_intro").value;
   const imageUrl = document.querySelector("#img_pre").src;
 
-  const warnDuplicate = document.querySelector("#warn_userdId");
 
   try{
       const res = await fetch("http://146.56.183.55:5050/user", {
@@ -183,19 +179,11 @@ async function join(){
               }
           })
       })
-      // 확인
-      console.log(res);
-      
       const json = await res.json();
       const message = json.message;
-      // 확인
-      console.log(json);
-      console.log(message);
-
       if(res.status==200){
-        console.log("성공^^")
         location.href = "./loginEmail.html"
-      } else if(json.message == '필수 입력사항을 입력해주세요.') {
+      } else if(message == '필수 입력사항을 입력해주세요.') {
         console.log(json)
       } else {
         warnDuplicate.style.display = 'inline';
