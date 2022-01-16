@@ -37,7 +37,7 @@ label {
   margin-top: 6px;
 }
 .btn_login {
-  background-color: #FFC7A7;
+  background-color: #F26E22;
   border-radius: 44px;
   padding: 13px 0;
   border: none;
@@ -45,8 +45,8 @@ label {
   line-height: 18px;
   margin-top: 30px;
 }
-.btn_login[type="button"] {
-  background-color: #F26E22;
+.btn_login[disabled] {
+  background-color: #FFC7A7;
 }
 /* 푸터 */
 footer {
