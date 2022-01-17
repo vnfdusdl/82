@@ -11,6 +11,33 @@ const token = localStorage.getItem("Token");
 
 document.title = "감성82 | " + myAccountName;
 
+productList.addEventListener("mousedown", (e) => {
+  isMouseDown = true;
+  productList.classList.add("active");
+
+  startX = e.pageX - productList.offsetLeft;
+  scrollLeft = productList.scrollLeft;
+});
+
+productList.addEventListener("mouseleave", () => {
+  isMouseDown = false;
+  productList.classList.remove("active");
+});
+
+productList.addEventListener("mouseup", () => {
+  isMouseDown = false;
+  productList.classList.remove("active");
+});
+
+productList.addEventListener("mousemove", (e) => {
+  if (!isMouseDown) return;
+
+  e.preventDefault();
+  const x = e.pageX - productList.offsetLeft;
+  const walk = (x - startX) * 1;
+  productList.scrollLeft = scrollLeft - walk;
+});
+
 async function getProfile() {
   const url = `http://146.56.183.55:5050/profile/${myAccountName}`;
   const res = await fetch(url, {
@@ -59,7 +86,7 @@ async function getProductList() {
 }
 
 async function getFeed() {
-  const url = `http://146.56.183.55:5050/post/${myAccountName}/userpost`;
+  const url = `http://146.56.183.55:5050/post/${myAccountName}/userpost/?limit=100&skip=0`;
   const res = await fetch(url, {
     method: "GET",
     headers: {
