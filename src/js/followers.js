@@ -42,7 +42,7 @@ async function getFollowerData() {
         const followerAccountName = follower.accountname;
         document.querySelector('.list-followers').innerHTML += `
                 <li>
-                <img src="${image}"  class="img_profile" />
+                <img src="${image}" onerror="this.src='../images/basic-profile-img.png'" class="img_profile" />
                 
                 <strong>
                 ${userName}
