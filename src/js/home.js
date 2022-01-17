@@ -46,7 +46,7 @@ function getNumber(num) {
 async function getFeed() {
   const url = "http://146.56.183.55:5050"
   const token = localStorage.getItem("Token")
-  const res = await fetch(url + "/post/feed", {
+  const res = await fetch(url + "/post/feed/?limit=Number&skip=Number", {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${token}`,
