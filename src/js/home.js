@@ -54,8 +54,9 @@ async function getFeed() {
   heartChange(json);
 
   const article = document.querySelectorAll('article');
-  const pageHeight = article[article.length - 1].getBoundingClientRect().top;
-  console.log(pageHeight);
+  const headerHeight = document.querySelector('.home_header').getBoundingClientRect().height;
+  const pageHeight = article[article.length - 1].getBoundingClientRect().bottom + headerHeight;
+  console.log(article[article.length - 1].getBoundingClientRect());
   const postOption = document.querySelectorAll(".btn_postOption");
   const section = document.querySelector('.feed_section');
   for (let i = 0; i < postOption.length; i++) {
