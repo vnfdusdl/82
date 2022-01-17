@@ -8,6 +8,36 @@ const followBtn = document.querySelector(".follow_user");
 const productList = document.querySelector(".productlist_card");
 const feedList = document.querySelector(".card_wrap");
 const token = localStorage.getItem("Token");
+let isMouseDown = false;
+let startX, scrollLeft;
+
+productList.addEventListener("mousedown", (e) => {
+  isMouseDown = true;
+  productList.classList.add("active");
+
+  startX = e.pageX - productList.offsetLeft;
+  scrollLeft = productList.scrollLeft;
+});
+
+productList.addEventListener("mouseleave", () => {
+  isMouseDown = false;
+  productList.classList.remove("active");
+});
+
+productList.addEventListener("mouseup", () => {
+  isMouseDown = false;
+  productList.classList.remove("active");
+});
+
+productList.addEventListener("mousemove", (e) => {
+  if (!isMouseDown) return;
+
+  e.preventDefault();
+  const x = e.pageX - productList.offsetLeft;
+  const walk = (x - startX) * 1;
+  productList.scrollLeft = scrollLeft - walk;
+});
+
 if (myAccountName === searchedUserAccountName) {
   location.href = "./myprofile.html";
 }
@@ -118,7 +148,7 @@ async function getProductList() {
 }
 
 async function getFeed() {
-  const url = `http://146.56.183.55:5050/post/${searchedUserAccountName}/userpost`;
+  const url = `http://146.56.183.55:5050/post/${searchedUserAccountName}/userpost/?limit=100&skip=0`;
   const res = await fetch(url, {
     method: "GET",
     headers: {
