@@ -16,6 +16,7 @@ email.addEventListener('input', () => {
     emailWarnRegExp.style.display = "none";
   } 
 });
+
 // 비밀번호 유효성검사 (6자 이상)
 pwd.addEventListener('input', () => {
   if (pwd.value.length < 6) {
@@ -24,6 +25,7 @@ pwd.addEventListener('input', () => {
     pwdWarn.style.display = 'none';
   }
 });
+
 // 버튼활성화 => disabled 쓰기
 formSignIn.addEventListener('input', () => {
   btnAttrChange(); 
@@ -38,6 +40,7 @@ function btnAttrChange() {
 // 프로필설정으로 넘어가기
 const $signIn = document.querySelector('.signIn');
 const $setProfile = document.querySelector('.set_profile');
+
 // 이메일 중복체크 함수
 const url = "http://146.56.183.55:5050";
 async function checkEmailValid(email) {
@@ -65,11 +68,13 @@ btnNext.addEventListener("click", async () => {
     document.querySelector(".txt_emailWarn.Duplicate").style.display = "inline";
   }
 })
+
 // 경고문구 처리
 email.addEventListener("keyup", () => {
   document.querySelector(".txt_emailWarn.Duplicate").style.display = "none";
 })
 // 데이터(사진) 보내기
+
 const imgPre = document.querySelector("#img_pre");
 async function imageUpload(files){
   const formData = new FormData();
@@ -171,7 +176,7 @@ async function join(){
       const message = json.message;
       if(res.status==200){
         location.href = "./loginEmail.html"
-      } else{
+      } else {
         warnDuplicate.style.display = 'inline';
       }
   }catch(err){

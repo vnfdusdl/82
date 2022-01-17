@@ -2,18 +2,17 @@ const followers = document.querySelector(".followers_main");
 const followings = document.querySelector(".followings_main");
 const info = document.querySelector(".info_user");
 const myAccountName = localStorage.getItem("Accountname");
-const searchedUserAccountName = localStorage.getItem("searchedUserAccountname");
 const profileImage = document.querySelector(".profile_image");
-const followBtn = document.querySelector(".follow_user");
 const productList = document.querySelector(".productlist_card");
 const feedList = document.querySelector(".card_wrap");
+const deleteFeed = document.querySelector(".delete_feed");
+const modifyFeed = document.querySelector(".modify_feed");
 const token = localStorage.getItem("Token");
-if (myAccountName === searchedUserAccountName) {
-  location.href = "./myprofile.html";
-}
-document.title = "감성82 | " + searchedUserAccountName;
+
+document.title = "감성82 | " + myAccountName;
+
 async function getProfile() {
-  const url = `http://146.56.183.55:5050/profile/${searchedUserAccountName}`;
+  const url = `http://146.56.183.55:5050/profile/${myAccountName}`;
   const res = await fetch(url, {
     method: "GET",
     headers: {
@@ -33,66 +32,8 @@ async function getProfile() {
   `;
 }
 
-async function isFollowingProfile() {
-  const url = `http://146.56.183.55:5050/profile/${myAccountName}/following`;
-  const res = await fetch(url, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-type": "application/json",
-    },
-  });
-  const json = await res.json();
-  json.forEach((data) => {
-    if (data.accountname === searchedUserAccountName) {
-      followBtn.classList.add("following");
-      followBtn.textContent = "팔로잉";
-      main.classList.add("following");
-    }
-  });
-}
-
-async function getFollow() {
-  const url = `http://146.56.183.55:5050/profile/${searchedUserAccountName}/follow`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-type": "application/json",
-    },
-  });
-  const json = await res.json();
-  followBtn.classList.add("following");
-  followBtn.textContent = "팔로잉";
-  main.classList.add("following");
-  followers.textContent = +followers.textContent + 1;
-}
-
-async function getUnFollow() {
-  const url = `http://146.56.183.55:5050/profile/${searchedUserAccountName}/unfollow`;
-  await fetch(url, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-type": "application/json",
-    },
-  });
-  followBtn.classList.remove("following");
-  followBtn.textContent = "팔로우";
-  main.classList.remove("following");
-  followers.textContent = +followers.textContent - 1;
-}
-
-followBtn.addEventListener("click", () => {
-  if (followBtn.classList.contains("following")) {
-    getUnFollow();
-  } else {
-    getFollow();
-  }
-});
-
 async function getProductList() {
-  const url = `http://146.56.183.55:5050/product/${searchedUserAccountName}`;
+  const url = `http://146.56.183.55:5050/product/${myAccountName}`;
   const res = await fetch(url, {
     method: "GET",
     headers: {
@@ -118,7 +59,7 @@ async function getProductList() {
 }
 
 async function getFeed() {
-  const url = `http://146.56.183.55:5050/post/${searchedUserAccountName}/userpost`;
+  const url = `http://146.56.183.55:5050/post/${myAccountName}/userpost`;
   const res = await fetch(url, {
     method: "GET",
     headers: {
@@ -132,16 +73,17 @@ async function getFeed() {
   json.post.forEach((post) => {
     let { content, image, heartCount, commentCount, hearted, createdAt } = post;
     const div = document.createElement("div");
+    if (!image) image = "";
     const images = image.split(",");
     if (images[0]) {
       images.forEach((img) => {
         div.innerHTML += `
-        <img
-        src=${img} 
-        alt=""
-        class="image_feed"
-        />
-        `;
+          <img
+          src=${img} 
+          alt=""
+          class="image_feed"
+          />
+          `;
       });
       div.className = "imagelist_feed";
     }
@@ -158,7 +100,14 @@ async function getFeed() {
         <h4 class="sr-only">피드</h4>
         <img class="profile_feed" src="${userImage}" alt="" />
         <div class="content_feed">
-          <strong>${username}</strong>
+          <div>
+            <strong>${username}</strong>
+            <img
+              src="../images/icon/s-icon-more-vertical.png"
+              alt=""
+              class="edit_feed"
+            />
+          </div>  
           <span>@ ${accountname}</span>
           <p>${content}</p>
             ${
@@ -226,10 +175,30 @@ async function getFeed() {
       location.href = "./post.html";
     });
   });
+  const feedEditBtns = document.querySelectorAll(".edit_feed");
+
+  feedEditBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      modalFeedEdit.style.display = "block";
+      const editPostContent =
+        e.target.parentNode.parentNode.querySelector("p").textContent;
+      const editPost = json.post.filter(
+        (post) => post.content === editPostContent
+      );
+      deleteFeed.addEventListener("click", () => {
+        getDeleteFeed(editPost[0].id);
+        location.reload();
+      });
+      modifyFeed.addEventListener("click", () => {
+        localStorage.setItem("selectedPostId", editPost[0].id);
+        location.href = "./upload.html";
+      });
+    });
+  });
 }
 
 async function getProductList() {
-  const url = `http://146.56.183.55:5050/product/${searchedUserAccountName}`;
+  const url = `http://146.56.183.55:5050/product/${myAccountName}`;
   const res = await fetch(url, {
     method: "GET",
     headers: {
@@ -279,7 +248,21 @@ async function getUnLike(postId) {
     },
   });
 }
+
+async function getDeleteFeed(postId) {
+  const url = `http://146.56.183.55:5050/post/${postId}`;
+  await fetch(url, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+  });
+}
+
+followers.addEventListener("click", () => {
+  location.href = "./followers.html";
+});
 getFeed();
 getProductList();
 getProfile();
-isFollowingProfile();

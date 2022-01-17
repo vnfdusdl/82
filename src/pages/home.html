@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/home.css">
   <title>home</title>
+  <script src="../js/home.js" defer></script>
 </head>
 
 <body class="home_main">
@@ -19,11 +20,6 @@
     </a>
   </header>
   <main class="main_start">
-    <!-- <article class="article_guide">
-      <img src="../images/symbol-logo-gray.png" class="img_logo" alt="">
-      <p>유저를 검색해 팔로우 해보세요!</p>
-      <a href="./search2.html" class="link_searchMain"><span>검색하기</span></a>
-    </article> -->
     <section class="feed_section">
 
     </section>
@@ -34,21 +30,26 @@
       </div>
     </div>
   </main>
+  <div class="modal-overlay modal_profile">
+    <div class="modal-window modal-profileWindow">
+      <div class="modal_content setting_profile">신고</div>
+    </div>
+  </div>
 
   <footer id="footer_chatList" class="footer_chatList">
     <h2 class="sr-only">메뉴 목록</h2>
     <ul class="list_nav">
-      <li><a href="" class="item_menu"><img src="../images/icon/icon-home-fill.png" alt=""><small>홈</small></a>
+      <li><a href="home.html" class="item_menu"><img src="../images/icon/icon-home-fill.png" alt=""><small>홈</small></a>
       </li>
       <li><a href="chatList.html" class="item_menu"><img src="../images/icon/icon-message-circle.png"
             alt=""><small>채팅</small></a></li>
       <li><a href="upload.html" class="item_menu"><img src="../images/icon/icon-edit.png" alt=""><small>게시물
             작성</small></a>
       </li>
-      <li><a href="" class="item_menu"><img src="../images/icon/icon-user.png" alt=""><small>프로필</small></a></li>
+      <li><a href="myprofile.html" class="item_menu"><img src="../images/icon/icon-user.png"
+            alt=""><small>프로필</small></a></li>
     </ul>
   </footer>
-  <script src="../js/home.js"></script>
 </body>
 
 </html>
