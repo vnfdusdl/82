@@ -1,5 +1,5 @@
 // ------------------ 이메일 비밀번호 섹션 ------------------- 
-// 유효성검사와 버튼활성화를 위한 변수선언
+// 유효성검사와 버튼활성화
 const btnNext = document.querySelector(".btn_next")
 const formSignIn = document.querySelector('.form_signIn');
 const email = document.querySelector('#inp_loginEmail');
@@ -14,7 +14,6 @@ email.addEventListener('input', () => {
     emailWarnRegExp.style.display = "inline";
   } else if (exptext.test(email.value) == true) {
     emailWarnRegExp.style.display = "none";
-    return true;
   } 
 });
 
@@ -31,7 +30,6 @@ pwd.addEventListener('input', () => {
 formSignIn.addEventListener('input', () => {
   btnAttrChange(); 
 });
-
 function btnAttrChange() {
   if (exptext.test(email.value) && pwd.value.length > 5) {
     btnNext.disabled = false;
@@ -39,8 +37,7 @@ function btnAttrChange() {
     btnNext.disabled = true;
   }
 };
-
-// 프로필설정으로 넘어가기 => 섹션을 숨기고 보여주는 처리임
+// 프로필설정으로 넘어가기
 const $signIn = document.querySelector('.signIn');
 const $setProfile = document.querySelector('.set_profile');
 
@@ -62,7 +59,6 @@ async function checkEmailValid(email) {
 }
 
 btnNext.addEventListener("click", async () => {
-  // 클릭이벤트 발생 시의 값을 불러와야 하기에 이벤트 함수 안에서 선언
   const emailVal = email.value;
   const emailValid = await checkEmailValid(emailVal)
   if (emailValid) {
@@ -72,13 +68,13 @@ btnNext.addEventListener("click", async () => {
     document.querySelector(".txt_emailWarn.Duplicate").style.display = "inline";
   }
 })
-// 지울때 중복된이메일 입니다 없애기
-email.addEventListener("input", () => {
+
+// 경고문구 처리
+email.addEventListener("keyup", () => {
   document.querySelector(".txt_emailWarn.Duplicate").style.display = "none";
 })
-// ------------------ 프로필 설정 섹션 ------------------- 
 // 데이터(사진) 보내기
-// 데이터를 폼 형식으로 보내주는걸 js로 컨트롤 하는거임
+
 const imgPre = document.querySelector("#img_pre");
 async function imageUpload(files){
   const formData = new FormData();
@@ -89,26 +85,24 @@ async function imageUpload(files){
   })
   const data = await res.json()
   const productImgName = data["filename"];
-  return productImgName // 1642158806566.png 이런 형태
+  return productImgName
 }
 
-// 클릭시, 데이터(사진) -> 서버 -> 다시 내 html img의 src로
+// 사진을 응답받은 값으로 뿌리기
 async function profileImage(e) {
-  // e : input:change == 사진 올리기
   const files = e.target.files
   const result = await imageUpload(files)
-  imgPre.src = url+"/"+result
-  //console.log(result) => 1642158806566.png 
+  imgPre.src = url+"/"+result 
 }
 // 인풋에 변화가 생기면 해당 태그의 소스값을 서버에서 받아온다
 document.querySelector("#inp_img").addEventListener("change",profileImage)
 
-// 이름 : 공백제외 10자 => html max-length로는 불가능
+// 유효성검사
 const userName = document.querySelector("#inp_name");
-userName.addEventListener('input', nameCheck);
+const warnLength = document.querySelector("#warn_length");
+userName.addEventListener('keyup', nameCheck);
 
 function nameCheck() {
-  const warnLength = document.querySelector("#warn_length");
   if (userName.value.replace(/(\s*)/g, '').length < 2 || userName.value.replace(/(\s*)/g, '').length > 10) {
     warnLength.style.display = 'inline';
     nameFlag = false;
@@ -161,7 +155,6 @@ async function join(){
   const intro = document.querySelector("#inp_intro").value;
   const imageUrl = document.querySelector("#img_pre").src;
 
-
   try{
       const res = await fetch("http://146.56.183.55:5050/user", {
           method: "POST",
@@ -183,8 +176,6 @@ async function join(){
       const message = json.message;
       if(res.status==200){
         location.href = "./loginEmail.html"
-      } else if(message == '필수 입력사항을 입력해주세요.') {
-        console.log(json)
       } else {
         warnDuplicate.style.display = 'inline';
       }
