@@ -99,20 +99,10 @@ function send() {
 }
 send();
 
-
-
 // API
-console.log(localStorage.getItem("Token"))
-// if(localStorage.getItem('Token') && localStorage.getItem('postId')){
-//   getPostData()
-// }
-// else{
-//   location.href = './login.html'
-// }
-// console.log(localStorage.getItem("Token"))//요거는 로컬스토리지에 값잘 있나 확인.
 async function getPostData() {
   const url = "http://146.56.183.55:5050";
-  const postId = localStorage.getItem('postId'); // 피드에서 클릭한 게시물의 post_id값
+  const postId = localStorage.getItem('postId');
   const token = localStorage.getItem('Token');
   const res = await fetch(url+`/post/${postId}`, {
     method:"GET",
@@ -122,22 +112,14 @@ async function getPostData() {
     }
   })
   const json = await res.json()
-  console.log(json);
   const post = json.post
-  console.log(post);
-
-  
 // 데이터 호출
   const profileImage = post.author.image;
   const username = post.author.username;
-  console.log(username);
   const accountname = post.author.accountname;
   const content = post.content;
-  const image = post.image; // 이미지 데이터 삽입 방법 고민
-  // console.log(image);
-  // console.log(image.split(',')); // 만약 2장 이상이면 배열로 만들어서 이미지 삽입
+  const image = post.image;
   const postImgLength = image.split(',').length
-  // console.log(postImgLength);
   const heartCount = post.heartCount;
   const commentCount = post.commentCount;
   const hearted = post.hearted;
@@ -165,9 +147,7 @@ async function getPostData() {
 
   if(postImgLength > 1) {
     btnSlide.style.display = 'flex'
-    // postImg.src = image.split(',')[0];
     for (let i = 0; i < postImgLength; i++) {
-      console.log(image.split(',')[i]);
       secPost.querySelector('.list_btnSlide').innerHTML += `
       <li><button type="button" class="btn_slide"></button></li>
       `;
@@ -184,3 +164,63 @@ async function getPostData() {
   }
 }
 getPostData()
+// 댓글 불러오기
+async function getCommentData() {
+  const url = "http://146.56.183.55:5050";
+  const postId = localStorage.getItem('postId');
+  const token = localStorage.getItem('Token');
+  const res = await fetch(url+`/post/${postId}/comments`, {
+    method:"GET",
+    headers:{
+      Authorization : `Bearer ${token}`,
+      "Content-type" : "application/json"
+    },
+  })
+  const jsonComment = await res.json()
+  const comments = jsonComment.comments
+
+  // 데이터 호출
+  comments.forEach((comment) => {
+    const listComment = document.querySelector('.list_comment')
+    const commentImg = comment.author.image
+    const commentName = comment.author.username
+    const commentCreated = comment.createdAt.split('-');
+    const commentContent = comment.content
+    
+    listComment.innerHTML += `
+      <li>
+        <a href="" class="item_comment">
+          <img src="${commentImg}" class="img_profile">
+          <div class="wrap_txt_comment">
+            <strong>${commentName}</strong>
+            <small class="txt_date">${commentCreated[0]}년 ${commentCreated[1]}월 ${commentCreated[2].slice(0, 2)}일</small>
+          </div>
+        </a>
+        <button type="button" class="btn_more"><img src="../images/icon/icon-more-vertical.png" alt=""></button>
+        <p>${commentContent}</p>
+      </li>
+    `
+  })
+}
+getCommentData()
+// 좋아요
+async function getLike(postId) {
+  const url = `http://146.56.183.55:5050/post/${postId}/heart`;
+  await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+  });
+}
+async function getUnLike(postId) {
+  const url = `http://146.56.183.55:5050/post/${postId}/unheart`;
+  await fetch(url, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+  });
+}
