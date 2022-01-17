@@ -1,13 +1,16 @@
 const btnBack = document.querySelector('.btn-back');
+const token = localStorage.getItem('Token');
+const accountName = localStorage.getItem('Accountname');
+const followingIdArray = [];
+const followerListContainer = document.querySelector('ul');
+
 btnBack.addEventListener('click', () => {
     window.history.back();
 });
 
-async function getFollowerData() {
-    const token = localStorage.getItem('Token');
-    const accountName = localStorage.getItem('Accountname');
+async function getFollowingData() {
     const followingRes = await fetch(
-        `http://146.56.183.55:5050/profile/${accountName}/following`,
+        `http://146.56.183.55:5050/profile/${accountName}/following?limit=100&skip=0`,
         {
             method: 'GET',
             headers: {
@@ -17,13 +20,15 @@ async function getFollowerData() {
         }
     );
     const followingjson = await followingRes.json();
-    const followingIdArray = [];
     followingjson.map((following) => {
         followingIdArray.push(following._id);
     });
+    getFollowerData();
+}
 
+async function getFollowerData() {
     const followerRes = await fetch(
-        `http://146.56.183.55:5050/profile/${accountName}/follower`,
+        `http://146.56.183.55:5050/profile/${accountName}/follower?limit=100&skip=0`,
         {
             method: 'GET',
             headers: {
@@ -42,7 +47,7 @@ async function getFollowerData() {
         const followerAccountName = follower.accountname;
         document.querySelector('.list-followers').innerHTML += `
                 <li>
-                <img src="${image}"  class="img_profile" />
+                <img src="${image}" onerror="this.src='../images/basic-profile-img.png'" class="img_profile" />
                 
                 <strong>
                 ${userName}
@@ -67,47 +72,52 @@ async function getFollowerData() {
         followBtn.addEventListener('click', () => {
             const accountName = followBtn.getAttribute('id');
             if (followBtn.classList.contains('following')) {
-                async function UnFollow() {
-                    const token = localStorage.getItem('Token');
-                    const res = await fetch(
-                        `http://146.56.183.55:5050/profile/${accountName}/unfollow`,
-                        {
-                            method: 'DELETE',
-                            headers: {
-                                Authorization: `Bearer ${token}`,
-                                'Content-type': 'application/json',
-                            },
-                        }
-                    );
-                    const json = await res.json();
-                    followBtn.textContent = '팔로우';
-                }
-                UnFollow();
+                UnFollow(followBtn, accountName);
             } else {
-                async function Follow() {
-                    const token = localStorage.getItem('Token');
-                    const res = await fetch(
-                        `http://146.56.183.55:5050/profile/${accountName}/follow`,
-                        {
-                            method: 'POST',
-                            headers: {
-                                Authorization: `Bearer ${token}`,
-                                'Content-type': 'application/json',
-                            },
-                        }
-                    );
-                    const json = await res.json();
-                    followBtn.textContent = '취소';
-                }
-                Follow();
+                
+                Follow(followBtn, accountName);
             }
-            followBtn.classList.toggle('following');
         });
     }
 }
-getFollowerData();
 
-const followerListContainer = document.querySelector('ul');
+async function UnFollow(followBtn, accountName) {
+    const token = localStorage.getItem('Token');
+    const res = await fetch(
+        `http://146.56.183.55:5050/profile/${accountName}/unfollow`,
+        {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-type': 'application/json',
+            },
+        }
+        );
+        console.log(res);
+    if (res.status == 200) {
+        followBtn.textContent = '팔로우';
+        followBtn.classList.toggle('following');
+    }
+}
+
+async function Follow(followBtn, accountName) {
+    const token = localStorage.getItem('Token');
+    const res = await fetch(
+        `http://146.56.183.55:5050/profile/${accountName}/follow`,
+        {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-type': 'application/json',
+            },
+        }
+        );
+        console.log(res);
+    if (res.status == 200) {
+        followBtn.textContent = '취소';
+        followBtn.classList.add('following');
+    }
+}
 
 followerListContainer.addEventListener('click', (e) => {
     if (e.target.tagName !== 'LI' && e.target.tagName !== 'BUTTON') {
@@ -118,3 +128,5 @@ followerListContainer.addEventListener('click', (e) => {
         location.href = './yourprofile.html';
     }
 });
+
+getFollowingData();
