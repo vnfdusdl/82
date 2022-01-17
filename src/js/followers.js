@@ -79,8 +79,10 @@ async function getFollowerData() {
                             },
                         }
                     );
-                    const json = await res.json();
-                    followBtn.textContent = '팔로우';
+                    if (res.status == 200) {
+                        followBtn.textContent = '팔로우';
+                        followBtn.classList.toggle('following');
+                    }
                 }
                 UnFollow();
             } else {
@@ -96,12 +98,14 @@ async function getFollowerData() {
                             },
                         }
                     );
-                    const json = await res.json();
-                    followBtn.textContent = '취소';
+                    if (res.status == 200) {
+                        followBtn.textContent = '취소';
+                        followBtn.classList.toggle('following');
+                    }
                 }
                 Follow();
             }
-            followBtn.classList.toggle('following');
+            // followBtn.classList.toggle('following');
         });
     }
 }
