@@ -8,10 +8,11 @@ const closeBtn = modal.querySelector(".close-area");
 const logoutProfile = document.querySelector(".logout_profile");
 const modalContent = document.querySelector(".content");
 
+const token = localStorage.getItem("Token");
+
 // 팔로잉 리스트 가져오기
 async function getFollowing() {
   const url = "http://146.56.183.55:5050";
-  const token = localStorage.getItem("Token");
   const accountName = localStorage.getItem("Accountname");
   const res = await fetch(url + `/profile/${accountName}/following?limit=Number&skip=Number`, {
     method: "GET",
@@ -31,6 +32,15 @@ async function getFollowing() {
 
 getFollowing();
 
+// 팔로워 수를 가져와서 0이면 초기화면, 피드를 보여주기
+function getNumber(num) {
+  if (num > 0) {
+    getFeed();
+  } else {
+    getFistPage();
+  }
+};
+
 
 // 피드 불러오기
 async function getFeed() {
@@ -45,9 +55,11 @@ async function getFeed() {
   })
   const json = await res.json();
   const posts = json.posts;
+  const content = json.content;
 
   //console.log(json);
   imgLoad(posts);
+  heartChange(json);
 
   const article = document.querySelectorAll('article');
   const pageHeight = article[article.length - 1].getBoundingClientRect().top;
@@ -129,56 +141,81 @@ function imgLoad(posts) {
 
 
 
+    // 초기 화면 보여주는 함수
+    function getFistPage() {
+      const main = document.querySelector('.main_start');
+      const article = document.createElement('article');
+      article.setAttribute('class', 'article_guide');
+      const img = document.createElement('img');
+      img.setAttribute('class', 'img_logo');
+      img.setAttribute('src', '../images/symbol-logo-gray.png');
+      const p = document.createElement('p');
+      p.innerText = '유저를 검색해 팔로우 해보세요!';
+      const a = document.createElement('a');
+      a.setAttribute('class', 'link_searchMain');
+      a.setAttribute('href', './search2.html');
+      a.innerHTML = '<span>검색하기</span>';
+      article.appendChild(img);
+      article.appendChild(p);
+      article.appendChild(a);
+      main.prepend(article);
+    }
+
   });
 }
 
-// 팔로워 수를 가져와서 0이면 초기화면, 피드를 보여주기
-function getNumber(num) {
-  if (num > 0) {
-    getFeed();
-  } else {
-    getFistPage();
-  }
+// 하트 수 변화하는 함수
+async function heartChange(json) {
+  const posts = json.posts;
+  const content = json.content;
+  console.log(posts);
+  const { image, username, accountname } = posts[0].author;
+
+  const likeBtns = document.querySelectorAll(".like_feed");
+  likeBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      console.log(e.target.parentNode.parentNode);
+      const likedPostContent = e.target.parentNode.parentNode.querySelector("p").textContent.trim();
+      const likedPost = json.posts.filter(
+        (post) => post.content === likedPostContent
+      );
+      const likeNumber = e.target.parentNode.querySelector('.likecount_feed');
+
+      if (!likedPost[0].hearted) {
+        e.target.src = `../images/icon/icon-heart-active.png`;
+        getLike(likedPost[0].id);
+        likedPost[0].hearted = true;
+        likeNumber.innerText = Number(likeNumber.innerText) + 1;
+      } else {
+        e.target.src = `../images/icon/icon-heart.png`;
+        getUnLike(likedPost[0].id);
+        likedPost[0].hearted = false;
+        likeNumber.innerText = Number(likeNumber.innerText) - 1;
+      };
+    });
+  });
 };
 
-// 초기 화면 보여주는 함수
-function getFistPage() {
-  const main = document.querySelector('.main_start');
-  const article = document.createElement('article');
-  article.setAttribute('class', 'article_guide');
-  const img = document.createElement('img');
-  img.setAttribute('class', 'img_logo');
-  img.setAttribute('src', '../images/symbol-logo-gray.png');
-  const p = document.createElement('p');
-  p.innerText = '유저를 검색해 팔로우 해보세요!';
-  const a = document.createElement('a');
-  a.setAttribute('class', 'link_searchMain');
-  a.setAttribute('href', './search2.html');
-  a.innerHTML = '<span>검색하기</span>';
-  article.appendChild(img);
-  article.appendChild(p);
-  article.appendChild(a);
-  main.prepend(article);
+//게시물 좋아요
+async function getLike(postId) {
+  const url = `http://146.56.183.55:5050/post/${postId}/heart`;
+  await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+  });
 }
 
-// 하트 클릭 시 변화
-const likeBtns = document.querySelectorAll(".like_feed");
-likeBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const likedPostContent =
-      e.target.parentNode.parentNode.querySelector("p").textContent;
-    const likedPost = json.post.filter(
-      (post) => post.content === likedPostContent
-    );
-    const likeCount = e.target.parentNode.querySelector(".likecount_feed");
-    if (e.target.src.includes("/images/icon/icon-heart-active.png")) {
-      getUnLike(likedPost[0].id);
-      btn.src = btn.src.replace("heart-active", "heart");
-      likeCount.textContent = +likeCount.textContent - 1;
-    } else {
-      getLike(likedPost[0].id);
-      btn.src = btn.src.replace("heart", "heart-active");
-      likeCount.textContent = +likeCount.textContent + 1;
-    }
+// 게시물 싫어요
+async function getUnLike(postId) {
+  const url = `http://146.56.183.55:5050/post/${postId}/unheart`;
+  await fetch(url, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
   });
-});
+}
