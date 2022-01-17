@@ -37,7 +37,7 @@ getFollowing();
 async function getFeed() {
   const url = "http://146.56.183.55:5050"
   const token = localStorage.getItem("Token")
-  const res = await fetch(url + "/post/feed", {
+  const res = await fetch(url + "/post/feed/?limit=Number&skip=Number", {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${token}`,
@@ -79,7 +79,8 @@ async function getFeed() {
 }
 
 function imgLoad(posts) {
-  posts.forEach(post => {
+  console.log(posts);
+  posts.forEach((post, index) => {
     const authorImage = post.author.image
     const authorAccount = post.author.accountname
     const authorName = post.author.username
@@ -90,6 +91,9 @@ function imgLoad(posts) {
     const hearted = post.hearted
     const postId = post.id
 
+    if (image === undefined) {
+      return;
+    }
     const imgArray = image.split(',');
     const img = imgArray[0];
 
@@ -168,6 +172,9 @@ function getData(posts) {
   dataImg.forEach((img) => {
     img.addEventListener('click', () => {
       posts.find((post) => {
+        if (post.image === undefined) {
+          return;
+        }
         if (post.image.split(',')[0] == img.src) {
           const postId = post.id;
           localStorage.setItem("postId", postId);
@@ -227,15 +234,20 @@ async function heartChange(json) {
 };
 
 function heartedCheck(posts) {
+  const article = document.querySelectorAll('article');
   // const heartedContent = document.querySelector(`article:nth-child(2)`);
   // console.log(heartedContent.childNodes);
-  const content = document.querySelectorAll('p');
   posts.forEach((e, index) => {
-    // console.log(e.content);
-    // console.log(index);
+    console.log(index);
+    if (index >= article.length) {
+      return;
+    }
     if (e.hearted) {
       console.log(e);
+
       const heartedContent = document.querySelector(`article:nth-child(${index + 1})`);
+      // const heartedContent = document.querySelector(`article`);
+      console.log(heartedContent, index);
       const heartImg = heartedContent.children[2].querySelector('.icon_feed').querySelector('.like_feed');
       heartImg.src = `../images/icon/icon-heart-active.png`;
     }
