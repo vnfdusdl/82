@@ -1,4 +1,7 @@
-/* 회원가입제목 */
+body {
+  max-width: 390px;
+  margin: 0 auto
+}/* 회원가입제목 */
 .tit_signIn {
   text-align: center;
   font-size: 24px;

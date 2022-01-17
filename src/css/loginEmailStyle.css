@@ -1,3 +1,7 @@
+body {
+  max-width: 390px;
+  margin: 0 auto
+}
 /* 로그인제목 */
 .tit_login {
   text-align: center;
