@@ -1,14 +1,15 @@
-const btnBack = document.querySelector('.btn-back');
-const token = localStorage.getItem('Token');
-const accountName = localStorage.getItem('Accountname');
-const followingIdArray = [];
-const followerListContainer = document.querySelector('ul');
-
-btnBack.addEventListener('click', () => {
-    window.history.back();
-});
+(function () {
+    const btnBack = document.querySelector('.btn-back');
+    btnBack.addEventListener('click', () => {
+        window.history.back();
+    });
+    
+}());
 
 async function getFollowingData() {
+    const token = localStorage.getItem('Token');
+    const accountName = localStorage.getItem('Accountname');
+    const followingIdArray = [];
     const followingRes = await fetch(
         `http://146.56.183.55:5050/profile/${accountName}/following?limit=100&skip=0`,
         {
@@ -23,10 +24,10 @@ async function getFollowingData() {
     followingjson.map((following) => {
         followingIdArray.push(following._id);
     });
-    getFollowerData();
+    getFollowerData(followingIdArray, token, accountName);
 }
 
-async function getFollowerData() {
+async function getFollowerData(followingIdArray, token, accountName) {
     const followerRes = await fetch(
         `http://146.56.183.55:5050/profile/${accountName}/follower?limit=100&skip=0`,
         {
@@ -48,7 +49,6 @@ async function getFollowerData() {
         document.querySelector('.list-followers').innerHTML += `
                 <li>
                 <img src="${image}" onerror="this.src='../images/basic-profile-img.png'" class="img_profile" />
-                
                 <strong>
                 ${userName}
                 <small class="txt_preview txt_ellipsis">${intro}</small>
@@ -72,17 +72,16 @@ async function getFollowerData() {
         followBtn.addEventListener('click', () => {
             const accountName = followBtn.getAttribute('id');
             if (followBtn.classList.contains('following')) {
-                UnFollow(followBtn, accountName);
+                UnFollow(followBtn, accountName, token);
             } else {
                 
-                Follow(followBtn, accountName);
+                Follow(followBtn, accountName, token);
             }
         });
     }
 }
 
-async function UnFollow(followBtn, accountName) {
-    const token = localStorage.getItem('Token');
+async function UnFollow(followBtn, accountName, token) {
     const res = await fetch(
         `http://146.56.183.55:5050/profile/${accountName}/unfollow`,
         {
@@ -93,15 +92,13 @@ async function UnFollow(followBtn, accountName) {
             },
         }
         );
-        console.log(res);
     if (res.status == 200) {
         followBtn.textContent = '팔로우';
         followBtn.classList.toggle('following');
     }
 }
 
-async function Follow(followBtn, accountName) {
-    const token = localStorage.getItem('Token');
+async function Follow(followBtn, accountName, token) {
     const res = await fetch(
         `http://146.56.183.55:5050/profile/${accountName}/follow`,
         {
@@ -112,21 +109,23 @@ async function Follow(followBtn, accountName) {
             },
         }
         );
-        console.log(res);
     if (res.status == 200) {
         followBtn.textContent = '취소';
         followBtn.classList.add('following');
     }
 }
 
-followerListContainer.addEventListener('click', (e) => {
-    if (e.target.tagName !== 'LI' && e.target.tagName !== 'BUTTON') {
-        const accountname = e.target.parentNode
+(function() {
+    const followerListContainer = document.querySelector('ul');
+    followerListContainer.addEventListener('click', (e) => {
+        if (e.target.tagName !== 'LI' && e.target.tagName !== 'BUTTON') {
+            const accountname = e.target.parentNode
             .querySelector('.btn-follow')
             .getAttribute('id');
-        localStorage.setItem('searchedUserAccountname', accountname);
-        location.href = './yourprofile.html';
-    }
-});
+            localStorage.setItem('searchedUserAccountname', accountname);
+            location.href = './yourprofile.html';
+        }
+    });
+}());
 
 getFollowingData();
