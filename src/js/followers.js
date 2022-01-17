@@ -7,7 +7,7 @@ async function getFollowerData() {
     const token = localStorage.getItem('Token');
     const accountName = localStorage.getItem('Accountname');
     const followingRes = await fetch(
-        `http://146.56.183.55:5050/profile/${accountName}/following`,
+        `http://146.56.183.55:5050/profile/${accountName}/following?limit=100&skip=0`,
         {
             method: 'GET',
             headers: {
@@ -23,7 +23,7 @@ async function getFollowerData() {
     });
 
     const followerRes = await fetch(
-        `http://146.56.183.55:5050/profile/${accountName}/follower`,
+        `http://146.56.183.55:5050/profile/${accountName}/follower?limit=100&skip=0`,
         {
             method: 'GET',
             headers: {
