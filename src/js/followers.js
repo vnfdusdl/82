@@ -1,3 +1,9 @@
+// 이전 페이지로 이동
+const btnBack = document.querySelector('.btn-back');
+console.log(btnBack);
+btnBack.addEventListener('click', () => {window.history.back();
+});
+
 //팔로워 리스트 들고 오기
 async function getFollowerData() {
     const token = localStorage.getItem('Token');
