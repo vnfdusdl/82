@@ -7,11 +7,12 @@ const modalProfile = document.querySelector(".modal_profile");
 const closeBtn = modal.querySelector(".close-area");
 const logoutProfile = document.querySelector(".logout_profile");
 const modalContent = document.querySelector(".content");
+const token = localStorage.getItem("Token");
 
+console.log('제밧 시발');
 // 팔로잉 리스트 가져오기
 async function getFollowing() {
   const url = "http://146.56.183.55:5050";
-  const token = localStorage.getItem("Token");
   const accountName = localStorage.getItem("Accountname");
   const res = await fetch(url + `/profile/${accountName}/following?limit=Number&skip=Number`, {
     method: "GET",
@@ -36,7 +37,7 @@ getFollowing();
 async function getFeed() {
   const url = "http://146.56.183.55:5050"
   const token = localStorage.getItem("Token")
-  const res = await fetch(url + "/post/feed", {
+  const res = await fetch(url + "/post/feed/?limit=Number&skip=Number", {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${token}`,
@@ -48,11 +49,14 @@ async function getFeed() {
 
   //console.log(json);
   imgLoad(posts);
-  getData(posts)
+  getData(posts);
+  heartedCheck(posts);
+  heartChange(json);
 
   const article = document.querySelectorAll('article');
-  const pageHeight = article[article.length - 1].getBoundingClientRect().top;
-  console.log(pageHeight);
+  const headerHeight = document.querySelector('.home_header').getBoundingClientRect().height;
+  const pageHeight = article[article.length - 1].getBoundingClientRect().bottom + headerHeight;
+  console.log(article[article.length - 1].getBoundingClientRect());
   const postOption = document.querySelectorAll(".btn_postOption");
   const section = document.querySelector('.feed_section');
   for (let i = 0; i < postOption.length; i++) {
@@ -75,7 +79,8 @@ async function getFeed() {
 }
 
 function imgLoad(posts) {
-  posts.forEach(post => {
+  console.log(posts);
+  posts.forEach((post, index) => {
     const authorImage = post.author.image
     const authorAccount = post.author.accountname
     const authorName = post.author.username
@@ -86,6 +91,9 @@ function imgLoad(posts) {
     const hearted = post.hearted
     const postId = post.id
 
+    if (image === undefined) {
+      return;
+    }
     const imgArray = image.split(',');
     const img = imgArray[0];
 
@@ -116,7 +124,7 @@ function imgLoad(posts) {
     ${imgTag}
     </div>
     <div class="icon_feed">
-    <img src="../images/icon/icon-heart.png" alt="" />
+    <img src="../images/icon/icon-heart.png" alt="" class="like_feed"/>
     <span class="likecount_feed">${heartCount}</span>
     <img src="../images/icon/icon-message-circle.png" alt="" class="img_comment"/>
     <span class="messagecount_feed">${commentCount}</span>
@@ -149,7 +157,7 @@ function getFistPage() {
   p.innerText = '유저를 검색해 팔로우 해보세요!';
   const a = document.createElement('a');
   a.setAttribute('class', 'link_searchMain');
-  a.setAttribute('href', './search2.html');
+  a.setAttribute('href', './search.html');
   a.innerHTML = '<span>검색하기</span>';
   article.appendChild(img);
   article.appendChild(p);
@@ -164,7 +172,10 @@ function getData(posts) {
   dataImg.forEach((img) => {
     img.addEventListener('click', () => {
       posts.find((post) => {
-        if(post.image.split(',')[0] == img.src) {
+        if (post.image === undefined) {
+          return;
+        }
+        if (post.image.split(',')[0] == img.src) {
           const postId = post.id;
           localStorage.setItem("postId", postId);
           location.href = './post.html'
@@ -174,13 +185,13 @@ function getData(posts) {
   })
 
   const btnComment = document.querySelectorAll('.img_comment')
-  
+
   btnComment.forEach((i) => {
     i.addEventListener('click', () => {
       let secComment = i.parentNode.parentNode;
       let userPostId = secComment.dataset.id;
       posts.find((post) => {
-        if(post.id == userPostId) {
+        if (post.id == userPostId) {
           const postId = post.id;
           localStorage.setItem("postId", postId);
           location.href = './post.html'
@@ -188,4 +199,81 @@ function getData(posts) {
       })
     })
   })
+}
+
+// 하트 수 변화하는 함수
+async function heartChange(json) {
+  const posts = json.posts;
+  const content = json.content;
+  console.log(posts);
+
+  const likeBtns = document.querySelectorAll(".like_feed");
+  likeBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      console.log(e.target.parentNode.parentNode);
+      const likedPostContent = e.target.parentNode.parentNode.querySelector("p").textContent.trim();
+      const likedPost = json.posts.filter(
+        (post) => post.content === likedPostContent
+      );
+      const likeNumber = e.target.parentNode.querySelector('.likecount_feed');
+
+      if (!likedPost[0].hearted) {
+        console.log('help me.....');
+        e.target.src = `../images/icon/icon-heart-active.png`;
+        getLike(likedPost[0].id);
+        likedPost[0].hearted = true;
+        likeNumber.innerText = Number(likeNumber.innerText) + 1;
+      } else {
+        e.target.src = `../images/icon/icon-heart.png`;
+        getUnLike(likedPost[0].id);
+        likedPost[0].hearted = false;
+        likeNumber.innerText = Number(likeNumber.innerText) - 1;
+      };
+    });
+  });
+};
+
+function heartedCheck(posts) {
+  const article = document.querySelectorAll('article');
+  // const heartedContent = document.querySelector(`article:nth-child(2)`);
+  // console.log(heartedContent.childNodes);
+  posts.forEach((e, index) => {
+    console.log(index);
+    if (index >= article.length) {
+      return;
+    }
+    if (e.hearted) {
+      console.log(e);
+
+      const heartedContent = document.querySelector(`article:nth-child(${index + 1})`);
+      // const heartedContent = document.querySelector(`article`);
+      console.log(heartedContent, index);
+      const heartImg = heartedContent.children[2].querySelector('.icon_feed').querySelector('.like_feed');
+      heartImg.src = `../images/icon/icon-heart-active.png`;
+    }
+  })
+}
+
+//게시물 좋아요
+async function getLike(postId) {
+  const url = `http://146.56.183.55:5050/post/${postId}/heart`;
+  await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+  });
+}
+
+// 게시물 싫어요
+async function getUnLike(postId) {
+  const url = `http://146.56.183.55:5050/post/${postId}/unheart`;
+  await fetch(url, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+  });
 }
