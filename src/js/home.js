@@ -9,7 +9,6 @@ const logoutProfile = document.querySelector(".logout_profile");
 const modalContent = document.querySelector(".content");
 const token = localStorage.getItem("Token");
 
-console.log('제밧 시발');
 // 팔로잉 리스트 가져오기
 async function getFollowing() {
   const url = "http://146.56.183.55:5050";
@@ -117,7 +116,7 @@ function imgLoad(posts) {
     </button>
     </div>
     <span class="data_account">@${authorAccount}</span>
-    <p>
+    <p class="postText">
     ${content}
     </p>
     <div class="imagelist_feed">
@@ -165,8 +164,27 @@ function getFistPage() {
   main.prepend(article);
 }
 
-// 여러장의 이미지는 식별 못하는 문제..
+// 클릭하면 해당 포스트로 이동
+
+// 글 클릭하면 해당 포스트로 이동
 function getData(posts) {
+  const postText = document.querySelectorAll('.postText');
+
+  postText.forEach((p) => {
+    p.addEventListener('click', () => {
+      let userPost = p.parentNode.parentNode;
+      let userPostId = userPost.querySelector('div').dataset.id;
+      posts.find((post) => {
+        if (post.id == userPostId) {
+          const postId = post.id;
+          localStorage.setItem("postId", postId);
+          location.href = './post.html'
+        }
+      })
+    })
+  })
+
+  // 그림 클릭하면 해당 포스트로 이동
   const dataImg = document.querySelectorAll('.image_feed');
 
   dataImg.forEach((img) => {
@@ -184,6 +202,7 @@ function getData(posts) {
     })
   })
 
+  // 댓글 클릭하면 해당 포스트로 이동
   const btnComment = document.querySelectorAll('.img_comment')
 
   btnComment.forEach((i) => {
