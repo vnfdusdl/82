@@ -1,10 +1,12 @@
 const form = document.querySelector('.form_upload')
+
 // 뒤로가기
 const btnBack = document.querySelector('.btn_back');
 btnBack.addEventListener('click', () => {
     window.history.back();
 });
-// 게시글이 입력되면 '업로드'버튼 활성화
+
+// 버튼 활성화
 function send() {
   const textarea = form.querySelector('.inp_textarea');
   const file = form.querySelector('.inp_file')
@@ -14,7 +16,7 @@ function send() {
     if (textarea.value != '') {
       btn.removeAttribute('disabled');
       btn.style.backgroundColor = '#F26E22';
-    } else if (textarea.value == '') {
+    } else if (textarea.value == '' && file.value == '') {
       btn.setAttribute('disabled', 'disabled');
       btn.style.backgroundColor = '#FFC7A7';
     }
@@ -30,7 +32,7 @@ function send() {
 }
 send();
 
-// 게시글 입력창이 텍스트 길이에 따라 늘어남
+// 게시글 입력창
 const textarea = form.querySelector('.inp_textarea');
 textarea.addEventListener('keyup', () => {
   textarea.style.height = "1px";
@@ -52,14 +54,12 @@ function previewImg(e) {
         if(inputImg.files.length > 1)
         img.setAttribute('class', 'img_upload');
       };
-      console.log(image);
       reader.readAsDataURL(image);
     }
   } else {
     alert('사진은 3장을 초과할 수 없습니다.')
     return false;
   }
-  
 }
 inputImg.addEventListener('change', previewImg);
 
@@ -71,11 +71,6 @@ btnImg.addEventListener('click', () => {
     i.remove()
   })
 })
-
-// 이미지가 2장 이상이면 슬라이드
-// 최대 이미지 3장까지
-
-
 
 // API
 const $image =document.querySelector(".inp_file")
@@ -90,18 +85,17 @@ async function imageUpload(files,index){
     body : formData
   })
   const data = await res.json()
-  console.log('data :', data)
   const productImgName = data["filename"];
-  console.log('imgname: ' + productImgName)
   return productImgName
 }
+
 async function createPost(e) {
   const url = "http://146.56.183.55:5050"
   const token = localStorage.getItem("Token")
   const contentText = $content.value
-  console.log("contentText: " + contentText)
   const imageUrls = []
   const files = $image.files
+
   if (files.length<=3) {
     for (let index = 0; index < files.length; index++) {
       const imgurl = await imageUpload(files,index)
@@ -120,13 +114,11 @@ async function createPost(e) {
             }
         })
     })
-    console.log(imageUrls)
-    const json = await res.json()
-    console.log('json: ', json)
-  }else{
-      alert("아 이미지 갯수가 너무 많소")
+  } else {
+      alert("이미지가 3장을 초과했습니다.")
   }
 }
+
 $submitBtn.addEventListener('click',(e) => {
   e.preventDefault();
   createPost()

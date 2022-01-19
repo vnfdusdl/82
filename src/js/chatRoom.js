@@ -1,7 +1,7 @@
 const form = document.querySelector('.form_comment')
 const btnSend = form.querySelector('.btn_comment');
 
-
+// 모달창: 나가기
 function modalSet() {
   const btnMenu = document.querySelector('.btn_menu');
   const modalOut = document.querySelector('.modal_out');
@@ -16,6 +16,7 @@ function modalSet() {
 }
 modalSet()
 
+// 버튼 활성화
 function send() {
   const textarea = form.querySelector('.inp_comment');
   
