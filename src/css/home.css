@@ -217,16 +217,14 @@ body {
 
 .modal-window.modal-profileWindow {
   background: #fff;
+  width: 100%;
   height: auto;
-  width: 390px;
   box-sizing: border-box;
-  padding: 0;
-}
-
-.modal-window.modal-profileWindow {
-  top: 817px;
+  padding: 0 0 100%;
+  top: 760px;
   z-index: 100;
 }
+
 
 .close-area {
   display: inline;
