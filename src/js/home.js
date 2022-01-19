@@ -1,5 +1,6 @@
 const feedImages = document.querySelectorAll(".imagelist_feed");
 const feedCard = document.querySelector(".card_wrap");
+const article = document.querySelector('.card_feed');
 const feedSection = document.querySelector(".feed_section");
 const moreImageBtn = document.querySelectorAll(".more_image");
 const modal = document.querySelector(".modal");
@@ -8,6 +9,8 @@ const closeBtn = modal.querySelector(".close-area");
 const logoutProfile = document.querySelector(".logout_profile");
 const modalContent = document.querySelector(".content");
 const token = localStorage.getItem("Token");
+
+
 
 // 팔로잉 리스트 가져오기
 async function getFollowing() {
@@ -48,7 +51,7 @@ async function getFeed() {
 
   //console.log(json);
   imgLoad(posts);
-  getData(posts);
+  getDataPost(posts);
   heartedCheck(posts);
   heartChange(json);
 
@@ -60,7 +63,6 @@ async function getFeed() {
   const section = document.querySelector('.feed_section');
   for (let i = 0; i < postOption.length; i++) {
     postOption.item(i).addEventListener("click", () => {
-      console.log('확인!');
       modalProfile.style.display = "block";
       modalProfile.style.height = `${pageHeight}px`;
       section.classList.add("modal_active");
@@ -89,6 +91,10 @@ function imgLoad(posts) {
     const heartCount = post.heartCount
     const hearted = post.hearted
     const postId = post.id
+    const postCreatedAt = post.createdAt
+    const substring = postCreatedAt.substring(0, 10)
+    const dateArr = substring.split('-')
+    const postDate = `${dateArr[0]}년 ${dateArr[1]}월 ${dateArr[2]}일`
 
     if (image === undefined) {
       return;
@@ -128,7 +134,7 @@ function imgLoad(posts) {
     <img src="../images/icon/icon-message-circle.png" alt="" class="img_comment"/>
     <span class="messagecount_feed">${commentCount}</span>
     </div>
-    <span class="date_feed">2020년 10월 21일</span>
+    <span class="date_feed">${postDate}</span>
     </div>
     </article>
     `
@@ -167,7 +173,7 @@ function getFistPage() {
 // 클릭하면 해당 포스트로 이동
 
 // 글 클릭하면 해당 포스트로 이동
-function getData(posts) {
+function getDataPost(posts) {
   const postText = document.querySelectorAll('.postText');
 
   postText.forEach((p) => {
@@ -204,7 +210,6 @@ function getData(posts) {
 
   // 댓글 클릭하면 해당 포스트로 이동
   const btnComment = document.querySelectorAll('.img_comment')
-
   btnComment.forEach((i) => {
     i.addEventListener('click', () => {
       let secComment = i.parentNode.parentNode;
@@ -216,9 +221,48 @@ function getData(posts) {
           location.href = './post.html'
         }
       })
+
     })
   })
+
+
 }
+
+//사용자 프로필로 이동하는 로직 1
+const profileFeed = document.querySelectorAll('.profile_feed');
+
+profileFeed.forEach((img) => {
+  img.addEventListener("click", () => {
+    const articleProfile = img.parentNode;
+    console.log(articleProfile, "이거 뭐뜨더라요?")
+    const profileId = articleProfile.querySelector('div').dataset.id;
+    console.log(profileId, "이거뭐나와여");
+    // async function getUserId() {
+    //   const url = "http://146.56.183.55:3000";
+    //   const token = localStorage.getItem("Token");
+    //   const res = await fetch(
+    //     url + `/user/searchuser/?keyword=${accountname}`,
+    //     {
+    //       method: "GET",
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //         "Content-type": "application/json",
+    //       },
+    //     }
+    //   );
+    //   const json = await res.json();
+    //   json.forEach((data) => {
+    //     if (data.accountname === accountname) {
+    //     }
+    //   });
+    // }
+    // getUserId();
+    localStorage.setItem("searchedUserAccountname", accountname);
+    location.href = "./yourprofile.html";
+  });
+});
+
+
 
 // 하트 수 변화하는 함수
 async function heartChange(json) {
@@ -251,6 +295,7 @@ async function heartChange(json) {
     });
   });
 };
+
 
 function heartedCheck(posts) {
   const article = document.querySelectorAll('article');
