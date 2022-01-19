@@ -7,6 +7,7 @@ const btnBack = document.querySelector('.btn_back');
 btnBack.addEventListener('click', () => {
     window.history.back();
 });
+
 // 모달 출력: 개인 계정 설정
 function modalSet() {
   const btnMenu = document.querySelector('.btn_menu');
@@ -20,6 +21,7 @@ function modalSet() {
   })
 }
 modalSet()
+
 // 모달 출력: 신고하기
 function modalNotify() {
   const modalNotify = document.querySelector('.modal_notify');
@@ -34,6 +36,7 @@ function modalNotify() {
   })
 }
 modalNotify()
+
 // 이미지 3장
 function imgShow() {
   const img = post.querySelectorAll('.item_img');
@@ -41,7 +44,6 @@ function imgShow() {
 
   btnSlide[0].classList.add('on');
   img[0].classList.add('on');
-  // console.log(btnSlide.length);
   if(btnSlide.length == 3) {
     btnSlide[0].addEventListener('click', () => {
       img[0].style.display = 'block'
@@ -82,6 +84,7 @@ function imgShow() {
     })
   }
 }
+
 // 입력창 활성화
 function send() {
   const textarea = form.querySelector('.inp_comment');
@@ -164,6 +167,7 @@ async function getPostData() {
   }
 }
 getPostData()
+
 // 댓글 불러오기
 async function getCommentData() {
   const url = "http://146.56.183.55:5050";
@@ -178,8 +182,7 @@ async function getCommentData() {
   })
   const jsonComment = await res.json()
   const comments = jsonComment.comments
-
-  // 데이터 호출
+  // 데이터 호출/출력
   comments.forEach((comment) => {
     const listComment = document.querySelector('.list_comment')
     const commentImg = comment.author.image
@@ -203,24 +206,25 @@ async function getCommentData() {
   })
 }
 getCommentData()
+
 // 좋아요
-async function getLike(postId) {
-  const url = `http://146.56.183.55:5050/post/${postId}/heart`;
-  await fetch(url, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-type": "application/json",
-    },
-  });
-}
-async function getUnLike(postId) {
-  const url = `http://146.56.183.55:5050/post/${postId}/unheart`;
-  await fetch(url, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-type": "application/json",
-    },
-  });
-}
+// async function getLike(postId) {
+//   const url = `http://146.56.183.55:5050/post/${postId}/heart`;
+//   await fetch(url, {
+//     method: "POST",
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//       "Content-type": "application/json",
+//     },
+//   });
+// }
+// async function getUnLike(postId) {
+//   const url = `http://146.56.183.55:5050/post/${postId}/unheart`;
+//   await fetch(url, {
+//     method: "DELETE",
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//       "Content-type": "application/json",
+//     },
+//   });
+// }
