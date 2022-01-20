@@ -229,19 +229,18 @@ function getDataPost(posts) {
 
   //피드에 프로필사진, 아이디, 닉네임 클릭시 프로필로 이동
   const articlePost = document.querySelectorAll('.card_feed');
-  console.log(articlePost);
   articlePost.forEach((element) => {
 
     element.addEventListener("click", (e) => {
       if (e.target.className === "profile_feed") {
-        const postTaget = e.target.parentNode.patentNode
-        const accountname = postTaget.querySelector('.content_feed').querySelector('.data_account').textContent.substr(1);
+        const postTarget = e.target.parentNode
+        const accountname = postTarget.querySelector('.data_account').textContent.substr(1);
         localStorage.setItem("searchedUserAccountname", accountname);
         location.href = './yourProfile.html';
       }
       else if (e.target.className === "profileName") {
-        const postTaget = e.target.parentNode.parentNode;
-        const accountname = postTaget.querySelector('.data_account').textContent.substr(1);
+        const postTarget = e.target.parentNode.parentNode;
+        const accountname = postTarget.querySelector('.data_account').textContent.substr(1);
         localStorage.setItem("searchedUserAccountname", accountname);
         location.href = './yourProfile.html';
       }
@@ -262,12 +261,10 @@ function getDataPost(posts) {
 async function heartChange(json) {
   const posts = json.posts;
   const content = json.content;
-  console.log(posts);
 
   const likeBtns = document.querySelectorAll(".like_feed");
   likeBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      console.log(e.target.parentNode.parentNode);
       const likedPostContent = e.target.parentNode.parentNode.querySelector("p").textContent.trim();
       const likedPost = json.posts.filter(
         (post) => post.content === likedPostContent
@@ -275,7 +272,6 @@ async function heartChange(json) {
       const likeNumber = e.target.parentNode.querySelector('.likecount_feed');
 
       if (!likedPost[0].hearted) {
-        console.log('help me.....');
         e.target.src = `../images/icon/icon-heart-active.png`;
         getLike(likedPost[0].id);
         likedPost[0].hearted = true;
@@ -293,16 +289,12 @@ async function heartChange(json) {
 
 function heartedCheck(posts) {
   const article = document.querySelectorAll('article');
-  // const heartedContent = document.querySelector(`article:nth-child(2)`);
-  // console.log(heartedContent.childNodes);
   posts.forEach((e, index) => {
     if (index >= article.length) {
       return;
     }
     if (e.hearted) {
       const heartedContent = document.querySelector(`article:nth-child(${index + 1})`);
-      // const heartedContent = document.querySelector(`article`);
-      console.log(heartedContent, index);
       const heartImg = heartedContent.children[2].querySelector('.icon_feed').querySelector('.like_feed');
       heartImg.src = `../images/icon/icon-heart-active.png`;
     }
