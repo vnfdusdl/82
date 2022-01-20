@@ -9,6 +9,7 @@ const closeBtn = modal.querySelector(".close-area");
 const logoutProfile = document.querySelector(".logout_profile");
 const modalContent = document.querySelector(".content");
 const token = localStorage.getItem("Token");
+const contentFeed = document.querySelector('.content_feed')
 
 
 
@@ -116,7 +117,7 @@ function imgLoad(posts) {
     <img class="profile_feed" src="${authorImage}" alt="${authorAccount}님의 프로필 사진" />
     <div data-id="${postId}" class="content_feed">
     <div class="content_nav">
-    <strong>${authorName}</strong>
+    <strong class="profileName">${authorName}</strong>
     <button type="button" class="btn_postOption">
     <img src="../images/icon/s-icon-more-vertical.png" alt="게시물 옵션" class="edit_feed" />
     </button>
@@ -226,41 +227,34 @@ function getDataPost(posts) {
   })
 
 
+  //피드에 프로필사진, 아이디, 닉네임 클릭시 프로필로 이동
+  const articlePost = document.querySelectorAll('.card_feed');
+  console.log(articlePost);
+  articlePost.forEach((element) => {
+
+    element.addEventListener("click", (e) => {
+      if (e.target.className === "profile_feed") {
+        const postTaget = e.target.parentNode.patentNode
+        const accountname = postTaget.querySelector('.content_feed').querySelector('.data_account').textContent.substr(1);
+        localStorage.setItem("searchedUserAccountname", accountname);
+        location.href = './yourProfile.html';
+      }
+      else if (e.target.className === "profileName") {
+        const postTaget = e.target.parentNode.parentNode;
+        const accountname = postTaget.querySelector('.data_account').textContent.substr(1);
+        localStorage.setItem("searchedUserAccountname", accountname);
+        location.href = './yourProfile.html';
+      }
+      else if (e.target.className === "data_account") {
+        const accountname = e.target.textContent.substr(1);
+        localStorage.setItem("searchedUserAccountname", accountname);
+        location.href = './yourProfile.html';
+      }
+
+    })
+  })
+
 }
-
-//사용자 프로필로 이동하는 로직 1
-const profileFeed = document.querySelectorAll('.profile_feed');
-
-profileFeed.forEach((img) => {
-  img.addEventListener("click", () => {
-    const articleProfile = img.parentNode;
-    console.log(articleProfile, "이거 뭐뜨더라요?")
-    const profileId = articleProfile.querySelector('div').dataset.id;
-    console.log(profileId, "이거뭐나와여");
-    // async function getUserId() {
-    //   const url = "http://146.56.183.55:3000";
-    //   const token = localStorage.getItem("Token");
-    //   const res = await fetch(
-    //     url + `/user/searchuser/?keyword=${accountname}`,
-    //     {
-    //       method: "GET",
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //         "Content-type": "application/json",
-    //       },
-    //     }
-    //   );
-    //   const json = await res.json();
-    //   json.forEach((data) => {
-    //     if (data.accountname === accountname) {
-    //     }
-    //   });
-    // }
-    // getUserId();
-    localStorage.setItem("searchedUserAccountname", accountname);
-    location.href = "./yourprofile.html";
-  });
-});
 
 
 
@@ -302,13 +296,10 @@ function heartedCheck(posts) {
   // const heartedContent = document.querySelector(`article:nth-child(2)`);
   // console.log(heartedContent.childNodes);
   posts.forEach((e, index) => {
-    console.log(index);
     if (index >= article.length) {
       return;
     }
     if (e.hearted) {
-      console.log(e);
-
       const heartedContent = document.querySelector(`article:nth-child(${index + 1})`);
       // const heartedContent = document.querySelector(`article`);
       console.log(heartedContent, index);
