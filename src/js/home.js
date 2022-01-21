@@ -1,5 +1,6 @@
 const feedImages = document.querySelectorAll(".imagelist_feed");
 const feedCard = document.querySelector(".card_wrap");
+const article = document.querySelector('.card_feed');
 const feedSection = document.querySelector(".feed_section");
 const moreImageBtn = document.querySelectorAll(".more_image");
 const modal = document.querySelector(".modal");
@@ -8,6 +9,9 @@ const closeBtn = modal.querySelector(".close-area");
 const logoutProfile = document.querySelector(".logout_profile");
 const modalContent = document.querySelector(".content");
 const token = localStorage.getItem("Token");
+const contentFeed = document.querySelector('.content_feed')
+
+
 
 // 팔로잉 리스트 가져오기
 async function getFollowing() {
@@ -48,7 +52,7 @@ async function getFeed() {
 
   //console.log(json);
   imgLoad(posts);
-  getData(posts);
+  getDataPost(posts);
   heartedCheck(posts);
   heartChange(json);
 
@@ -60,7 +64,6 @@ async function getFeed() {
   const section = document.querySelector('.feed_section');
   for (let i = 0; i < postOption.length; i++) {
     postOption.item(i).addEventListener("click", () => {
-      console.log('확인!');
       modalProfile.style.display = "block";
       modalProfile.style.height = `${pageHeight}px`;
       section.classList.add("modal_active");
@@ -89,6 +92,10 @@ function imgLoad(posts) {
     const heartCount = post.heartCount
     const hearted = post.hearted
     const postId = post.id
+    const postCreatedAt = post.createdAt
+    const substring = postCreatedAt.substring(0, 10)
+    const dateArr = substring.split('-')
+    const postDate = `${dateArr[0]}년 ${dateArr[1]}월 ${dateArr[2]}일`
 
     if (image === undefined) {
       return;
@@ -110,7 +117,7 @@ function imgLoad(posts) {
     <img class="profile_feed" src="${authorImage}" alt="${authorAccount}님의 프로필 사진" />
     <div data-id="${postId}" class="content_feed">
     <div class="content_nav">
-    <strong>${authorName}</strong>
+    <strong class="profileName">${authorName}</strong>
     <button type="button" class="btn_postOption">
     <img src="../images/icon/s-icon-more-vertical.png" alt="게시물 옵션" class="edit_feed" />
     </button>
@@ -128,7 +135,7 @@ function imgLoad(posts) {
     <img src="../images/icon/icon-message-circle.png" alt="" class="img_comment"/>
     <span class="messagecount_feed">${commentCount}</span>
     </div>
-    <span class="date_feed">2020년 10월 21일</span>
+    <span class="date_feed">${postDate}</span>
     </div>
     </article>
     `
@@ -167,7 +174,7 @@ function getFistPage() {
 // 클릭하면 해당 포스트로 이동
 
 // 글 클릭하면 해당 포스트로 이동
-function getData(posts) {
+function getDataPost(posts) {
   const postText = document.querySelectorAll('.postText');
 
   postText.forEach((p) => {
@@ -204,7 +211,6 @@ function getData(posts) {
 
   // 댓글 클릭하면 해당 포스트로 이동
   const btnComment = document.querySelectorAll('.img_comment')
-
   btnComment.forEach((i) => {
     i.addEventListener('click', () => {
       let secComment = i.parentNode.parentNode;
@@ -216,20 +222,49 @@ function getData(posts) {
           location.href = './post.html'
         }
       })
+
     })
   })
+
+
+  //피드에 프로필사진, 아이디, 닉네임 클릭시 프로필로 이동
+  const articlePost = document.querySelectorAll('.card_feed');
+  articlePost.forEach((element) => {
+
+    element.addEventListener("click", (e) => {
+      if (e.target.className === "profile_feed") {
+        const postTarget = e.target.parentNode
+        const accountname = postTarget.querySelector('.data_account').textContent.substr(1);
+        localStorage.setItem("searchedUserAccountname", accountname);
+        location.href = './yourProfile.html';
+      }
+      else if (e.target.className === "profileName") {
+        const postTarget = e.target.parentNode.parentNode;
+        const accountname = postTarget.querySelector('.data_account').textContent.substr(1);
+        localStorage.setItem("searchedUserAccountname", accountname);
+        location.href = './yourProfile.html';
+      }
+      else if (e.target.className === "data_account") {
+        const accountname = e.target.textContent.substr(1);
+        localStorage.setItem("searchedUserAccountname", accountname);
+        location.href = './yourProfile.html';
+      }
+
+    })
+  })
+
 }
+
+
 
 // 하트 수 변화하는 함수
 async function heartChange(json) {
   const posts = json.posts;
   const content = json.content;
-  console.log(posts);
 
   const likeBtns = document.querySelectorAll(".like_feed");
   likeBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      console.log(e.target.parentNode.parentNode);
       const likedPostContent = e.target.parentNode.parentNode.querySelector("p").textContent.trim();
       const likedPost = json.posts.filter(
         (post) => post.content === likedPostContent
@@ -237,7 +272,6 @@ async function heartChange(json) {
       const likeNumber = e.target.parentNode.querySelector('.likecount_feed');
 
       if (!likedPost[0].hearted) {
-        console.log('help me.....');
         e.target.src = `../images/icon/icon-heart-active.png`;
         getLike(likedPost[0].id);
         likedPost[0].hearted = true;
@@ -252,21 +286,15 @@ async function heartChange(json) {
   });
 };
 
+
 function heartedCheck(posts) {
   const article = document.querySelectorAll('article');
-  // const heartedContent = document.querySelector(`article:nth-child(2)`);
-  // console.log(heartedContent.childNodes);
   posts.forEach((e, index) => {
-    console.log(index);
     if (index >= article.length) {
       return;
     }
     if (e.hearted) {
-      console.log(e);
-
       const heartedContent = document.querySelector(`article:nth-child(${index + 1})`);
-      // const heartedContent = document.querySelector(`article`);
-      console.log(heartedContent, index);
       const heartImg = heartedContent.children[2].querySelector('.icon_feed').querySelector('.like_feed');
       heartImg.src = `../images/icon/icon-heart-active.png`;
     }
