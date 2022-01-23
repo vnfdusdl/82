@@ -46,7 +46,6 @@ async function getFeed() {
   const json = await res.json();
   const posts = json.posts;
 
-  //console.log(json);
   imgLoad(posts);
   getDataPost(posts);
   heartedCheck(posts);
@@ -55,7 +54,7 @@ async function getFeed() {
   const article = document.querySelectorAll('article');
   const headerHeight = document.querySelector('.home_header').getBoundingClientRect().height;
   const pageHeight = article[article.length - 1].getBoundingClientRect().bottom + headerHeight;
-  console.log(article[article.length - 1].getBoundingClientRect());
+  //console.log(article[article.length - 1].getBoundingClientRect());
   const postOption = document.querySelectorAll(".btn_postOption");
   const section = document.querySelector('.feed_section');
   for (let i = 0; i < postOption.length; i++) {
@@ -67,7 +66,7 @@ async function getFeed() {
   }
 
   modalProfile.addEventListener("click", (e) => {
-    console.log(e.target);
+    //console.log(e.target);
     if (e.target.classList.contains("modal-overlay")) {
       modalProfile.style.display = "none";
       section.classList.remove("modal_active");
@@ -76,7 +75,7 @@ async function getFeed() {
 }
 
 function imgLoad(posts) {
-  console.log(posts);
+  //console.log(posts);
   let imgNumber = 0;
   let imgSrc = '';
   posts.forEach((post, index) => {
@@ -106,7 +105,6 @@ function imgLoad(posts) {
       imgTag = '';
     } else {
       for (let i = 0; i < imgArray.length; i++) {
-        console.log(i);
         imgSrc = imgArray[i];
         if (i === 0) {
           imgTag = `<img src= "${imgSrc}" alt="" class="image_feed img_visible" id="${i}"/>`;
@@ -115,19 +113,31 @@ function imgLoad(posts) {
         }
       }
     }
+
     //이미지 태그 만들고 첫번째 제외하고 class넣고, 클릭할 때 class제거
 
     const imgLength = imgArray.length;
+    const btnImgSelect = document.querySelectorAll('.btn_imgSlide');
+
     let imgSelectBtn = '';
 
     if (imgLength > 1) {
       for (let i = 0; i < imgLength; i++) {
-        imgSelectBtn = imgSelectBtn + `
-        <li class="imgSlide">
-          <button class="btn_imgSlide" data-num="${i}">
-          </button>
-        </li>
-        `;
+        if (i === 0) {
+          imgSelectBtn = imgSelectBtn + `
+          <li class="imgSlide">
+            <button class="btn_imgSlide btn_imgSelected" data-num="${i}">
+            </button>
+          </li>
+          `;
+        } else {
+          imgSelectBtn = imgSelectBtn + `
+          <li class="imgSlide">
+            <button class="btn_imgSlide" data-num="${i}">
+            </button>
+          </li>
+          `;
+        }
       }
     } else {
       imgSelectBtn = '';
@@ -148,12 +158,15 @@ function imgLoad(posts) {
     <p class="postText">
     ${content}
     </p>
-    <ul class="imgSelectBtnList">
-    ${imgSelectBtn}
-    </ul>
-    <ul class="imagelist_feed">
-    ${imgTag}
-    </ul>
+    <div class="img_wrap">
+      <ul class="imagelist_feed">
+      ${imgTag}
+      </ul>
+      <ul class="imgSelectBtnList">
+        ${imgSelectBtn}
+      </ul>
+    </div>
+    
     <div class="icon_feed">
     <img src="../images/icon/icon-heart.png" alt="" class="like_feed"/>
     <span class="likecount_feed">${heartCount}</span>
@@ -166,22 +179,38 @@ function imgLoad(posts) {
     `;
   });
 
+  // 버튼 누르면 해당 이미지로 넘어가는 기능, 버튼 선택하면 색 주황색으로 변화하는 기능
   const ul_list = document.querySelectorAll('.imgSelectBtnList');
-  console.log(ul_list);
   for (let i = 0; i < ul_list.length; i++) {
     ul_list.item(i).addEventListener('click', (event) => {
       const target = event.target;
+      //console.log(target.parentNode.parentNode, "버튼타겟의부모의 부모")
       if (target.tagName !== 'BUTTON') {
         return;
       }
 
-      const num = event.target.dataset.num
-      const imgWrapGet = event.target.parentNode.parentNode.parentNode.querySelector('.imagelist_feed');
-      const imgTagList = imgWrapGet.children;
-      for (let i = 0; i < imgTagList.length; i++) {
-        console.log(imgTagList[i].id);
-        console.log(imgTagList[i], i)
+      const targetBtn = target.parentNode.parentNode.querySelector('.btn_imgSlide')
 
+      const num = event.target.dataset.num;
+      const imgWrapGet = event.target.parentNode.parentNode.parentNode.querySelector('.imagelist_feed');
+      const selectBtnList = event.target.parentNode.parentNode.parentNode.querySelector('.imgSelectBtnList').children;
+      const imgTagList = imgWrapGet.children;
+
+      //console.log(selectBtnList[0].children);
+      const btnImgSlide = document.querySelector('.btn_imgSlide');
+
+      for (let i = 0; i < selectBtnList.length; i++) {
+        if (i === Number(num)) {
+          selectBtnList[i].children[0].classList.add('btn_imgSelected');
+          selectBtnList[i].children[0].classList.remove('btn_unSelect');
+        } else {
+          selectBtnList[i].children[0].classList.remove('btn_imgSelected');
+          selectBtnList[i].children[0].classList.add('btn_unSelect');
+        }
+      }
+
+
+      for (let i = 0; i < imgTagList.length; i++) {
         if (imgTagList[i].id === num) {
           imgTagList[i].classList.add('img_visible');
           imgTagList[i].classList.remove('img_invisible');
@@ -190,8 +219,21 @@ function imgLoad(posts) {
           imgTagList[i].classList.remove('img_visible');
         }
       }
+
+      for (let i = 0; i < imgTagList.length; i++) {
+        //console.log(imgTagList);
+        if (i === Number(num)) {
+          btnImgSlide.style.backgroundColor = '#F26E22'
+        } else {
+          btnImgSlide.style.backgroundColor = '#FFFFFF'
+        }
+      }
+
     })
+
+
   }
+
 
 }
 
@@ -307,7 +349,6 @@ function getDataPost(posts) {
   })
 
 }
-
 
 
 // 하트 수 변화하는 함수
