@@ -9,9 +9,7 @@ const closeBtn = modal.querySelector(".close-area");
 const logoutProfile = document.querySelector(".logout_profile");
 const modalContent = document.querySelector(".content");
 const token = localStorage.getItem("Token");
-const contentFeed = document.querySelector('.content_feed')
-
-
+const contentFeed = document.querySelector('.content_feed');
 
 // 팔로잉 리스트 가져오기
 async function getFollowing() {
@@ -28,9 +26,7 @@ async function getFollowing() {
 
   const json = await res.json();
   getNumber(json.length);
-  //console.log(json);
-  // rkarbfskfk (팔로잉 0명);
-  // hey_binky (팔로잉 n명);
+
 };
 
 getFollowing();
@@ -50,7 +46,6 @@ async function getFeed() {
   const json = await res.json();
   const posts = json.posts;
 
-  //console.log(json);
   imgLoad(posts);
   getDataPost(posts);
   heartedCheck(posts);
@@ -59,7 +54,7 @@ async function getFeed() {
   const article = document.querySelectorAll('article');
   const headerHeight = document.querySelector('.home_header').getBoundingClientRect().height;
   const pageHeight = article[article.length - 1].getBoundingClientRect().bottom + headerHeight;
-  console.log(article[article.length - 1].getBoundingClientRect());
+  //console.log(article[article.length - 1].getBoundingClientRect());
   const postOption = document.querySelectorAll(".btn_postOption");
   const section = document.querySelector('.feed_section');
   for (let i = 0; i < postOption.length; i++) {
@@ -67,12 +62,11 @@ async function getFeed() {
       modalProfile.style.display = "block";
       modalProfile.style.height = `${pageHeight}px`;
       section.classList.add("modal_active");
-      //removeModal(section.classList);
     });
   }
 
   modalProfile.addEventListener("click", (e) => {
-    console.log(e.target);
+    //console.log(e.target);
     if (e.target.classList.contains("modal-overlay")) {
       modalProfile.style.display = "none";
       section.classList.remove("modal_active");
@@ -81,7 +75,9 @@ async function getFeed() {
 }
 
 function imgLoad(posts) {
-  console.log(posts);
+  //console.log(posts);
+  let imgNumber = 0;
+  let imgSrc = '';
   posts.forEach((post, index) => {
     const authorImage = post.author.image
     const authorAccount = post.author.accountname
@@ -101,14 +97,50 @@ function imgLoad(posts) {
       return;
     }
     const imgArray = image.split(',');
-    const img = imgArray[0];
 
-    let imgTag;
+    let imgTag = '';
 
+    // numberGet(imgNumber);
     if (image === '') {
       imgTag = '';
     } else {
-      imgTag = `<img src= "${img}" alt="" class="image_feed" />`;
+      for (let i = 0; i < imgArray.length; i++) {
+        imgSrc = imgArray[i];
+        if (i === 0) {
+          imgTag = `<img src= "${imgSrc}" alt="" class="image_feed img_visible" id="${i}"/>`;
+        } else {
+          imgTag = imgTag + `<img src= "${imgSrc}" alt="" class="image_feed img_invisible" id="${i}"/>`;
+        }
+      }
+    }
+
+    //이미지 태그 만들고 첫번째 제외하고 class넣고, 클릭할 때 class제거
+
+    const imgLength = imgArray.length;
+    const btnImgSelect = document.querySelectorAll('.btn_imgSlide');
+
+    let imgSelectBtn = '';
+
+    if (imgLength > 1) {
+      for (let i = 0; i < imgLength; i++) {
+        if (i === 0) {
+          imgSelectBtn = imgSelectBtn + `
+          <li class="imgSlide">
+            <button class="btn_imgSlide btn_imgSelected" data-num="${i}">
+            </button>
+          </li>
+          `;
+        } else {
+          imgSelectBtn = imgSelectBtn + `
+          <li class="imgSlide">
+            <button class="btn_imgSlide" data-num="${i}">
+            </button>
+          </li>
+          `;
+        }
+      }
+    } else {
+      imgSelectBtn = '';
     }
 
     document.querySelector(".feed_section").innerHTML += `
@@ -126,9 +158,15 @@ function imgLoad(posts) {
     <p class="postText">
     ${content}
     </p>
-    <div class="imagelist_feed">
-    ${imgTag}
+    <div class="img_wrap">
+      <ul class="imagelist_feed">
+      ${imgTag}
+      </ul>
+      <ul class="imgSelectBtnList">
+        ${imgSelectBtn}
+      </ul>
     </div>
+    
     <div class="icon_feed">
     <img src="../images/icon/icon-heart.png" alt="" class="like_feed"/>
     <span class="likecount_feed">${heartCount}</span>
@@ -138,8 +176,65 @@ function imgLoad(posts) {
     <span class="date_feed">${postDate}</span>
     </div>
     </article>
-    `
+    `;
   });
+
+  // 버튼 누르면 해당 이미지로 넘어가는 기능, 버튼 선택하면 색 주황색으로 변화하는 기능
+  const ul_list = document.querySelectorAll('.imgSelectBtnList');
+  for (let i = 0; i < ul_list.length; i++) {
+    ul_list.item(i).addEventListener('click', (event) => {
+      const target = event.target;
+      //console.log(target.parentNode.parentNode, "버튼타겟의부모의 부모")
+      if (target.tagName !== 'BUTTON') {
+        return;
+      }
+
+      const targetBtn = target.parentNode.parentNode.querySelector('.btn_imgSlide')
+
+      const num = event.target.dataset.num;
+      const imgWrapGet = event.target.parentNode.parentNode.parentNode.querySelector('.imagelist_feed');
+      const selectBtnList = event.target.parentNode.parentNode.parentNode.querySelector('.imgSelectBtnList').children;
+      const imgTagList = imgWrapGet.children;
+
+      //console.log(selectBtnList[0].children);
+      const btnImgSlide = document.querySelector('.btn_imgSlide');
+
+      for (let i = 0; i < selectBtnList.length; i++) {
+        if (i === Number(num)) {
+          selectBtnList[i].children[0].classList.add('btn_imgSelected');
+          selectBtnList[i].children[0].classList.remove('btn_unSelect');
+        } else {
+          selectBtnList[i].children[0].classList.remove('btn_imgSelected');
+          selectBtnList[i].children[0].classList.add('btn_unSelect');
+        }
+      }
+
+
+      for (let i = 0; i < imgTagList.length; i++) {
+        if (imgTagList[i].id === num) {
+          imgTagList[i].classList.add('img_visible');
+          imgTagList[i].classList.remove('img_invisible');
+        } else {
+          imgTagList[i].classList.add('img_invisible');
+          imgTagList[i].classList.remove('img_visible');
+        }
+      }
+
+      for (let i = 0; i < imgTagList.length; i++) {
+        //console.log(imgTagList);
+        if (i === Number(num)) {
+          btnImgSlide.style.backgroundColor = '#F26E22'
+        } else {
+          btnImgSlide.style.backgroundColor = '#FFFFFF'
+        }
+      }
+
+    })
+
+
+  }
+
+
 }
 
 // 팔로워 수를 가져와서 0이면 초기화면, 피드를 보여주기
@@ -192,22 +287,22 @@ function getDataPost(posts) {
   })
 
   // 그림 클릭하면 해당 포스트로 이동
-  const dataImg = document.querySelectorAll('.image_feed');
+  // const dataImg = document.querySelectorAll('.image_feed');
 
-  dataImg.forEach((img) => {
-    img.addEventListener('click', () => {
-      posts.find((post) => {
-        if (post.image === undefined) {
-          return;
-        }
-        if (post.image.split(',')[0] == img.src) {
-          const postId = post.id;
-          localStorage.setItem("postId", postId);
-          location.href = './post.html'
-        }
-      })
-    })
-  })
+  // dataImg.forEach((img) => {
+  //   img.addEventListener('click', () => {
+  //     posts.find((post) => {
+  //       if (post.image === undefined) {
+  //         return;
+  //       }
+  //       if (post.image.split(',')[0] == img.src) {
+  //         const postId = post.id;
+  //         localStorage.setItem("postId", postId);
+  //         location.href = './post.html'
+  //       }
+  //     })
+  //   })
+  // })
 
   // 댓글 클릭하면 해당 포스트로 이동
   const btnComment = document.querySelectorAll('.img_comment')
@@ -254,7 +349,6 @@ function getDataPost(posts) {
   })
 
 }
-
 
 
 // 하트 수 변화하는 함수
