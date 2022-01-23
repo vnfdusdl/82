@@ -82,6 +82,14 @@ body {
   padding-top: 20px;
   padding-bottom: 80px;
 }
+
+.btn_imgSlide {
+    border-radius: 100%;
+    width: 6px;
+    height: 6px;
+    margin: 12px 6px;
+    cursor: pointer;
+}
 /* 팔로잉에 따른 화면 보이기 */
 
 .card_wrap {
@@ -102,6 +110,7 @@ body {
   width: 304px;
   flex-direction: column;
 }
+
 .content_feed .edit_feed {
   float: right;
   cursor: pointer;
@@ -135,8 +144,24 @@ body {
   margin-top: 16px;
   object-fit: cover;
   border-radius: 10px;
-  cursor:pointer;
 }
+
+.profile_feed {
+  cursor: pointer;
+}
+
+.profileName {
+  cursor: pointer;
+}
+
+.data_account {
+  cursor: pointer;
+}
+
+.postText {
+  cursor: pointer;
+}
+
 .content_feed .date_feed {
   margin-top: 16px;
 }
@@ -147,9 +172,6 @@ body {
   margin-bottom: 2px;
 }
 
-.imagelist_feed > img:nth-child(1) ~ img {
-  display: none;
-}
 .more_image {
   position: absolute;
   background: url(../images/icon/iccon-img-layers.png);
@@ -181,6 +203,46 @@ body {
 .card_feed .date_feed {
   color: #767676;
   font-size: 10px;
+}
+
+.img_wrap {
+  display: flex;
+  position: relative;
+}
+
+.imgSelectBtnList {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,600%);
+}
+
+.imgSlide {
+  float: left;
+}
+
+.btn_imgSlide{
+  padding: 4px 5px;
+  border-radius: 100%;
+  width: 0px;
+  height: 11px;
+  margin: 12px 4px;
+  border-style: none;
+}
+
+.img_visible {
+  display: block;
+}
+
+.img_invisible {
+  display: none;
+}
+
+.btn_imgSelected {
+  background-color: #F26E22;
+}
+
+.btn_unSelect {
+  background-color: #ffff;
 }
 
 /* modal */
@@ -260,7 +322,6 @@ body.modal_active {
   content: "";
   margin: 16px auto;
 }
-
 
 /* footer */
 
