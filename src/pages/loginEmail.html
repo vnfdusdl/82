@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>감귤마켓 | 이메일로 로그인</title>
-  <link rel="stylesheet" href="../css/reset.css">
-  <link rel="stylesheet" href="../css/loginEmailStyle.css">
-</head>
-<body>
-  <header>
-    <h1 class="tit_login">로그인</h1>
-  </header>
-  <main>
-    <form class="form_login">
-      <h1 class="sr-only">로그인 정보입력</h1>
-      <label for="inp_loginEmail">이메일</label>
-      <input 
-        type="text"
-        class="inp_loginEmail"
-        id="inp_loginEmail">
-      <label for="inp_loginPw">비밀번호</label>
-      <input
-        type="password"
-        class="inp_loginPw"
-        id="inp_loginPw">
-      <span class="txt_loginWarn"></span>
-      <button 
-        type="button"
-        class="btn_login"
-        id="btn_login" 
-        disabled>로그인</button>
-    </form>
-  </main>
-  <footer><a href="joinMembership.html" class="btn_signIn">이메일로 회원가입</a></footer>
-  <script src="../js/login.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+    <title>감귤마켓 | 이메일로 로그인</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/loginEmailStyle.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="tit_login">로그인</h1>
+    </header>
+    <main>
+      <form class="form_login">
+        <h1 class="sr-only">로그인 정보입력</h1>
+        <label for="inp_loginEmail">이메일</label>
+        <input type="text" class="inp_loginEmail" id="inp_loginEmail" />
+        <label for="inp_loginPw">비밀번호</label>
+        <input type="password" class="inp_loginPw" id="inp_loginPw" />
+        <span class="txt_loginWarn"></span>
+        <button type="button" class="btn_login" id="btn_login" disabled>
+          로그인
+        </button>
+      </form>
+    </main>
+    <footer>
+      <a href="joinMembership.html" class="btn_signIn">이메일로 회원가입</a>
+    </footer>
+    <script src="../js/login.js"></script>
+  </body>
 </html>
