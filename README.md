@@ -11,7 +11,7 @@
 - 채팅
 
 # 2. 배포 URL
-[감귤마켓](https://useon.github.io/mandarin-market/src/pages/login)
+[감귤마켓 배포🍊](https://useon.github.io/mandarin-market/src/pages/login)
 - 현재는 서버 문제로 사용이 불가합니다. 
 
 # 3. 프로젝트 구조와 개발 일정
@@ -51,12 +51,11 @@
 - 게시글 등록, 채팅 : 조윤식
 
 # 5. UI
+[감귤마켓 피그마🎨](https://www.figma.com/file/Gn6gQJdYwImYsEYSzBXhud/%EB%A9%8B%EC%82%AC_%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C%EC%8A%A4%EC%BF%A8?node-id=39%3A1814)
 - 전체 피그마 이미지
 - 구역별 피그마 이미지입니다
 - 각 페이지 설명 및 기능구현 목표
-
-[감귤마켓 피그마](https://www.figma.com/file/Gn6gQJdYwImYsEYSzBXhud/%EB%A9%8B%EC%82%AC_%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C%EC%8A%A4%EC%BF%A8?node-id=39%3A1814)
-
+- 
 ## 5.2 로그인/회원가입 - 곽성재
 
 ### 5.2.1 🎨 피그마
